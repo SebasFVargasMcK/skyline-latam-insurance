@@ -1,0 +1,21 @@
+{
+  "name": "playwright-cnsf",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "test": "playwright test",
+    "descargar:cnsf": "node scripts/descargar-cnsf.js",
+    "leer:cnsf": "node scripts/leer-cnsf.js",
+    "inspeccionar:cnsf": "node scripts/inspeccionar-cnsf.js",
+    "transformar:cnsf": "node scripts/transformar-cnsf.js",
+    "exportar:cnsf": "node scripts/exportar-cnsf-csv.js",
+    "pipeline:cnsf": "node scripts/descargar-cnsf.js && node scripts/leer-cnsf.js && node scripts/inspeccionar-cnsf.js && node scripts/transformar-cnsf.js && node scripts/exportar-cnsf-csv.js"
+  },
+  "dependencies": {
+    "playwright": "^1.59.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}
