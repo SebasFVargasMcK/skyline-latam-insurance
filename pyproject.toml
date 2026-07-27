@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "skyline-latam-ingest"
+version = "0.1.0"
+description = "LATAM financial-regulator data ingestion pipeline"
+requires-python = ">=3.11"
+dependencies = [
+    "duckdb>=1.5",
+    "openpyxl>=3.1",
+    "pandas>=2.2",
+    "pyarrow>=15",
+    "requests>=2.31",
+    "streamlit>=1.35",
+]
+
+[project.optional-dependencies]
+databricks = [
+    "databricks-sdk>=0.20",
+    "pyspark>=3.5",
+]
+dev = [
+    "pytest>=8",
+    "pytest-mock>=3.12",
+    "responses>=0.25",
+]
+
+[project.scripts]
+ingest-mx-cnsf = "pipelines.mx_cnsf:_cli"
+ingest-co-sfc  = "pipelines.co_sfc:_cli"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["connectors*", "pipelines*", "app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

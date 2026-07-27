@@ -1,8 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+.env
 
-# Playwright
-node_modules/
+# Data (local files — committed via .gitkeep placeholders only)
+data/local/raw/*
+data/local/normalized/*
+data/*.duckdb
+downloads/
+
+# Test artefacts
+.pytest_cache/
 /test-results/
 /playwright-report/
 /blob-report/
+
+# Node (legacy — can be removed once Node deps are fully dropped)
+node_modules/
 /playwright/.cache/
 /playwright/.auth/
+
+# OS
+.DS_Store
+Thumbs.db
