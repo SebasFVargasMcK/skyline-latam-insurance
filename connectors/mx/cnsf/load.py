@@ -61,9 +61,9 @@ def load(
     """
     if os.getenv("DATABRICKS_HOST"):
         full_name = load_databricks(df)
-        print(f"Loaded {len(df):,} rows → {full_name}")
+        print(f"Loaded {len(df):,} rows ->> {full_name}")
     else:
         if db_path is None:
             raise ValueError("db_path is required when DATABRICKS_HOST is not set")
         rows = load_duckdb(df, db_path, mode=mode)
-        print(f"Loaded {rows:,} rows → {db_path}")
+        print(f"Loaded {rows:,} rows ->> {db_path}")

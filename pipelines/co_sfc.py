@@ -31,11 +31,11 @@ def run(mode: str = "replace") -> None:
 
     print("[1/3] Downloading Formato 290 from datos.gov.co...")
     raw_file = download.download(RAW_DIR)
-    print(f"      → {raw_file}")
+    print(f"      ->> {raw_file}")
 
     print("[2/3] Transforming...")
     df = transform.transform(raw_file)
-    print(f"      → {len(df):,} rows, {len(df.columns)} columns")
+    print(f"      ->> {len(df):,} rows, {len(df.columns)} columns")
 
     print("[3/3] Loading...")
     load.load(df, db_path=DB_PATH, mode=mode)

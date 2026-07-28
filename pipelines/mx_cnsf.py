@@ -27,11 +27,11 @@ def run(date: str | None = None, mode: str = "replace") -> None:
 
     print(f"[1/3] Downloading... (date={date or 'latest'})")
     raw_file = download.download(RAW_DIR, date=date)
-    print(f"      → {raw_file}")
+    print(f"      ->> {raw_file}")
 
     print("[2/3] Transforming...")
     df = transform.transform(raw_file)
-    print(f"      → {len(df):,} rows, {len(df.columns)} columns")
+    print(f"      ->> {len(df):,} rows, {len(df.columns)} columns")
 
     print("[3/3] Loading...")
     load.load(df, db_path=DB_PATH, mode=mode)
