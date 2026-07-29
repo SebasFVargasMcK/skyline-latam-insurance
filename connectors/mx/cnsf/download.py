@@ -57,4 +57,5 @@ def download(
 
     url = f"{BASE_URL}/{reporting_date.isoformat()}"
     dest = Path(dest_dir) / filename
-    return download_file(url, dest)
+    # sio.cnsf.gob.mx uses a Mexican government CA not included in certifi
+    return download_file(url, dest, verify=False)

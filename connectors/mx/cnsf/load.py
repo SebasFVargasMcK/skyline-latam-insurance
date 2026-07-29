@@ -8,7 +8,7 @@ from pathlib import Path
 import duckdb
 import pandas as pd
 
-TABLE = "estado_resultados"
+TABLE = "cnsf_asegurados"
 
 
 def load_duckdb(df: pd.DataFrame, db_path: Path, *, mode: str = "replace") -> int:
