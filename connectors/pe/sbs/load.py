@@ -1,4 +1,4 @@
-"""Load normalized CNSF data into DuckDB (local) or Databricks (production)."""
+"""Load normalized SBS S-203 data into DuckDB (local) or Databricks (production)."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from pathlib import Path
 import duckdb
 import pandas as pd
 
-TABLE = "cnsf_asegurados"
+TABLE = "sbs_s203"
 
 
 def load_duckdb(df: pd.DataFrame, db_path: Path, *, mode: str = "replace") -> int:
@@ -30,12 +30,11 @@ def load_duckdb(df: pd.DataFrame, db_path: Path, *, mode: str = "replace") -> in
 
 def load_databricks(df: pd.DataFrame, *, table: str = TABLE) -> str:
     from connectors.shared.databricks import upload_dataframe
-    import os
 
     return upload_dataframe(
         df,
         table,
-        schema="insurance_mx",
+        schema="insurance_pe",
         catalog=os.environ.get("DATABRICKS_CATALOG"),
     )
 
