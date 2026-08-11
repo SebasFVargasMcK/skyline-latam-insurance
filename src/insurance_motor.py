@@ -29,7 +29,10 @@ import argparse
 import datetime
 import json
 import os
+import re
 import sys
+import urllib.request
+from datetime import date, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -879,6 +882,83 @@ def _quality_check(all_countries: list[dict]) -> tuple[dict, list[str], list[str
     return country_quality, errors, warnings
 
 
+# ── News scraper ──────────────────────────────────────────────────────────────
+
+_NEWS_BASELINE_ISSUE = 6292
+_NEWS_BASELINE_DATE  = date(2026, 8, 11)
+
+_COUNTRY_FLAG: dict[str, str] = {
+    "Argentina": "🇦🇷", "Brasil": "🇧🇷", "Brazil": "🇧🇷",
+    "Chile": "🇨🇱", "Colombia": "🇨🇴", "Ecuador": "🇪🇨",
+    "México": "🇲🇽", "Mexico": "🇲🇽", "Perú": "🇵🇪", "Peru": "🇵🇪",
+    "Panamá": "🇵🇦", "Panama": "🇵🇦", "Uruguay": "🇺🇾",
+    "Bolivia": "🇧🇴", "Paraguay": "🇵🇾", "Venezuela": "🇻🇪",
+    "Costa Rica": "🇨🇷", "Guatemala": "🇬🇹", "Honduras": "🇭🇳",
+    "El Salvador": "🇸🇻", "Nicaragua": "🇳🇮", "Cuba": "🇨🇺",
+    "República Dominicana": "🇩🇴", "Internacional": "🌎",
+}
+
+
+def _pull_news(days: int = 7) -> list[dict]:
+    """Scrape the last `days` daily issues from boletines.latinoinsurance.com."""
+    headers = {"User-Agent": "Mozilla/5.0 (compatible; PFIC-Motor/1.0)"}
+
+    # Auto-detect current issue from homepage
+    try:
+        req = urllib.request.Request("https://boletines.latinoinsurance.com/", headers=headers)
+        with urllib.request.urlopen(req, timeout=10) as r:
+            homepage = r.read().decode("utf-8", errors="replace")
+        nums = [int(n) for n in re.findall(r"\?new=(\d+)", homepage)]
+        current_issue = max(nums) if nums else _NEWS_BASELINE_ISSUE
+    except Exception:
+        current_issue = _NEWS_BASELINE_ISSUE
+
+    results = []
+    for offset in range(days):
+        issue_num = current_issue - offset
+        issue_date = _NEWS_BASELINE_DATE + timedelta(days=(issue_num - _NEWS_BASELINE_ISSUE))
+        url = f"https://boletines.latinoinsurance.com/day?new={issue_num}"
+        try:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=10) as r:
+                html = r.read().decode("utf-8", errors="replace")
+        except Exception:
+            continue
+
+        # Each article: country link (class="text-dark") followed by headline link
+        raw = re.findall(
+            r'href="(https://boletines\.latinoinsurance\.com/[^"?]+)\?new=\d+"[^>]*'
+            r'class="text-dark"[^>]*>\s*([^<]+?)\s*</a>'
+            r'.*?'
+            r'href="[^"]*\?new=\d+"[^>]*style="line-height[^>]*>\s*([^<]+?)\s*</a>',
+            html, re.DOTALL,
+        )
+        articles = []
+        seen = set()
+        for article_url, country, headline in raw:
+            country  = country.strip()
+            headline = headline.strip()
+            key = (country, headline)
+            if key in seen:
+                continue
+            seen.add(key)
+            articles.append({
+                "country":  country,
+                "flag":     _COUNTRY_FLAG.get(country, "🌎"),
+                "headline": headline,
+                "url":      article_url,
+            })
+
+        if articles:
+            results.append({
+                "issue":    issue_num,
+                "date":     issue_date.isoformat(),
+                "articles": articles,
+            })
+
+    return results
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def run(year: int = _DEFAULT_YEAR, out_path: Path = _DEFAULT_OUT, dry_run: bool = False):
@@ -969,6 +1049,14 @@ def run(year: int = _DEFAULT_YEAR, out_path: Path = _DEFAULT_OUT, dry_run: bool 
     print("  Building regional section…")
     region = _build_region(all_country_data, metrics, history_years)
 
+    print("  Fetching industry news (last 7 days)…")
+    try:
+        news = _pull_news(days=7)
+        print(f"    {sum(len(d['articles']) for d in news)} articles across {len(news)} issues")
+    except Exception as e:
+        print(f"    WARN: news fetch failed — {e}")
+        news = []
+
     print("  Running quality checks…")
     cq, errors, warnings = _quality_check(all_country_data)
     publication_allowed  = len(errors) == 0
@@ -1030,6 +1118,7 @@ def run(year: int = _DEFAULT_YEAR, out_path: Path = _DEFAULT_OUT, dry_run: bool 
             "errors":   errors,
             "warnings": warnings,
         },
+        "news": news,
     }
 
     print(f"  Writing {out_path}…", end=" ", flush=True)

@@ -69521,5 +69521,1453 @@
     "status": "PASS",
     "errors": [],
     "warnings": []
-  }
+  },
+  "news": [
+    {
+      "issue": 6292,
+      "date": "2026-08-11",
+      "articles": [
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Una prueba piloto cambió el mapa del seguro rural",
+          "url": "https://boletines.latinoinsurance.com/una-prueba-piloto-cambio-el-mapa-del-seguro-rural"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Sancor Seguros reafirmó el valor de sus tradiciones en un nuevo encuentro",
+          "url": "https://boletines.latinoinsurance.com/sancor-seguros-reafirmo-el-valor-de-sus-tradiciones-en-un-nuevo-encuentro"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Seguros y Salud: la SSN presentó los alcances de la Resolución 258/2026 en la Fundación Sanatorio Güemes",
+          "url": "https://boletines.latinoinsurance.com/seguros-y-salud-la-ssn-presento-los-alcances-de-la-resolucion-2582026-en-la-fundacion-sanatorio-guemes"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Seguro agrícola ante el granizo: cuánto cuesta, qué cubre y cómo se calculan los daños",
+          "url": "https://boletines.latinoinsurance.com/seguro-agricola-ante-el-granizo-cuanto-cuesta-que-cubre-y-como-se-calculan-los-danos"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Grupo Bradesco Seguros é reconhecido como líder na categoria “Seguros e Planos de Saúde” na 12ª edição do Prêmio Valor Inovação Brasil",
+          "url": "https://boletines.latinoinsurance.com/grupo-bradesco-seguros-e-reconhecido-como-lider-na-categoria-seguros-e-planos-de-saude-na-12a-edicao-do-premio-valor-inovacao-brasil"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "La digitalización acelera la competencia en el mercado de los seguros e impulsa el avance de las insurtechs",
+          "url": "https://boletines.latinoinsurance.com/digitalizacao-acelera-disputa-no-mercado-de-seguros-e-impulsiona-avanco-das-insurtechs"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Porto Seguro registra un beneficio de 888,6 millones de reales en el segundo trimestre y revisa sus previsiones para 2026",
+          "url": "https://boletines.latinoinsurance.com/porto-seguro-tem-lucro-de-r-8886-milhoes-no-segundo-trimestre-e-revisa-guidance-de-2026"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Los beneficios de GBS crecen un 20,4 % en el primer semestre",
+          "url": "https://boletines.latinoinsurance.com/lucro-do-gbs-cresce-204-no-primeiro-semestre"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Sancor Seguros transforma origem cooperativista em estratégia de crescimento no Brasil",
+          "url": "https://boletines.latinoinsurance.com/sancor-seguros-transforma-origem-cooperativista-em-estrategia-de-crescimento-no-brasil"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Inter Seguros e Omni1 impulsionam resultados da Wiz Co no segundo trimestre",
+          "url": "https://boletines.latinoinsurance.com/inter-seguros-e-omni1-impulsionam-resultados-da-wiz-co-no-segundo-trimestre"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Fitch Ratifica Clasificación de BCI Vida en &#039;AA+(cl)&#039;; Perspectiva Estable",
+          "url": "https://boletines.latinoinsurance.com/fitch-ratifica-clasificacion-de-bci-vida-en-aacl-perspectiva-estable-2"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Fitch Afirma y Retira la Clasificación de Renta Vida en &#039;A(cl)&#039;; Perspectiva Estable",
+          "url": "https://boletines.latinoinsurance.com/fitch-afirma-y-retira-la-clasificacion-de-renta-vida-en-acl-perspectiva-estable"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Envejecimiento en Chile: seguridad económica y salud mental",
+          "url": "https://boletines.latinoinsurance.com/envejecimiento-en-chile-seguridad-economica-y-salud-mental"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Fuerte terremoto de 7,4 en el occidente de Colombia sacude a todo el país hoy 10 de agosto",
+          "url": "https://boletines.latinoinsurance.com/fuerte-terremoto-de-74-en-el-occidente-de-colombia-sacude-a-todo-el-pais-hoy-10-de-agosto"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Seguros de vivienda contra terremotos: ¿Cómo acceder y qué cubren?",
+          "url": "https://boletines.latinoinsurance.com/seguros-de-vivienda-contra-terremotos-como-acceder-y-que-cubren"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Terremoto en Colombia: qué daños cubren los seguros para sismos y cómo reclamar la póliza",
+          "url": "https://boletines.latinoinsurance.com/terremoto-en-colombia-que-danos-cubren-los-seguros-para-sismos-y-como-reclamar-la-poliza"
+        },
+        {
+          "country": "Costa Rica",
+          "flag": "🇨🇷",
+          "headline": "Primas Emitidas para ramo Vida aumentó 6% en USD a junio 2026 12 meses (+1% en colones)",
+          "url": "https://boletines.latinoinsurance.com/primas-emitidas-para-ramo-vida-aumento-6-en-usd-a-junio-2026-12-meses-1-en-colones"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Índice de Resultado Técnico para Daños subió 2pp a junio 2026 12ms",
+          "url": "https://boletines.latinoinsurance.com/indice-de-resultado-tecnico-para-danos-subio-2pp-a-junio-2026-12ms"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Quito será sede del XXXVI Congreso Iberoamericano COPAPROSE 2026, un espacio para analizar el futuro de la industria aseguradora",
+          "url": "https://boletines.latinoinsurance.com/quito-sera-sede-del-xxxvi-congreso-iberoamericano-copaprose-2026-un-espacio-para-analizar-el-futuro-de-la-industria-aseguradora"
+        },
+        {
+          "country": "Guatemala",
+          "flag": "🇬🇹",
+          "headline": "Siniestralidad para el ramo de Vida fue de 46% en junio 2026 12 meses",
+          "url": "https://boletines.latinoinsurance.com/siniestralidad-para-el-ramo-de-vida-fue-de-46-en-junio-2026-12-meses"
+        },
+        {
+          "country": "Honduras",
+          "flag": "🇭🇳",
+          "headline": "Nivel de Siniestralidad Bruta para el ramo de Fianzas bajó 4 puntos porcentuales en junio 2026 12 meses",
+          "url": "https://boletines.latinoinsurance.com/nivel-de-siniestralidad-bruta-para-el-ramo-de-fianzas-bajo-4-puntos-porcentuales-en-junio-2026-12-meses"
+        },
+        {
+          "country": "Latinoamérica",
+          "flag": "🌎",
+          "headline": "Chubb amplía sus seguros para energías renovables en América Latina",
+          "url": "https://boletines.latinoinsurance.com/chubb-amplia-sus-seguros-para-energias-renovables-en-america-latina"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Índice Combinado Neto del ramo de Ramos Técnicos fue 89% a marzo 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-combinado-neto-del-ramo-de-ramos-tecnicos-fue-89-a-marzo-2026"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "44% de los pagos de seguros en México aún se realiza en efectivo: Puntored",
+          "url": "https://boletines.latinoinsurance.com/44-de-los-pagos-de-seguros-en-mexico-aun-se-realiza-en-efectivo-puntored"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Ven poco asegurado Guerrero",
+          "url": "https://boletines.latinoinsurance.com/ven-poco-asegurado-guerrero"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Más vale asegurar la casa que lamentar",
+          "url": "https://boletines.latinoinsurance.com/mas-vale-asegurar-la-casa-que-lamentar"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Alto costo de pólizas de seguro limita contratación para motocicletas en Durango",
+          "url": "https://boletines.latinoinsurance.com/alto-costo-de-polizas-de-seguro-limita-contratacion-para-motocicletas-en-durango"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "Encuesta de Marsh: el apetito de las aseguradoras por el crédito privado sigue creciendo, pero la disciplina sigue siendo primordial",
+          "url": "https://boletines.latinoinsurance.com/encuesta-de-marsh-el-apetito-de-las-aseguradoras-por-el-credito-privado-sigue-creciendo-pero-la-disciplina-sigue-siendo-primordial"
+        },
+        {
+          "country": "Nicaragua",
+          "flag": "🇳🇮",
+          "headline": "Índice de Gastos Administrativos fue de 16% a junio 2026 12 meses.",
+          "url": "https://boletines.latinoinsurance.com/indice-de-gastos-administrativos-fue-de-16-a-junio-2026-12-meses"
+        },
+        {
+          "country": "Panama",
+          "flag": "🇵🇦",
+          "headline": "Solo 2% de panameños cuenta con seguro de desempleo, según estudio",
+          "url": "https://boletines.latinoinsurance.com/solo-2-de-panamenos-cuenta-con-seguro-de-desempleo-segun-estudio"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "Índice de Resultado Técnico de Fianzas fue 33% en junio 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-de-resultado-tecnico-de-fianzas-fue-33-en-junio-2026"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "Empresas pueden elevar su rentabilidad con IA para retener clientes",
+          "url": "https://boletines.latinoinsurance.com/empresas-pueden-elevar-su-rentabilidad-con-ia-para-retener-clientes"
+        },
+        {
+          "country": "Venezuela",
+          "flag": "🇻🇪",
+          "headline": "El costo de no asegurar la vivienda es mayor que el valor de la póliza",
+          "url": "https://boletines.latinoinsurance.com/el-costo-de-no-asegurar-la-vivienda-es-mayor-que-el-valor-de-la-poliza"
+        }
+      ]
+    },
+    {
+      "issue": 6291,
+      "date": "2026-08-10",
+      "articles": [
+        {
+          "country": "Anuncio",
+          "flag": "🌎",
+          "headline": "Ya se encuentra en nuestro website la información financiera de Nicaragua (Totales, Ramos - Otra Información) a junio 2026",
+          "url": "https://boletines.latinoinsurance.com/ya-se-encuentra-en-nuestro-website-la-informacion-financiera-de-nicaragua-totales-ramos-otra-informacion-a-junio-2026"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Banco Provincia lanzó un Seguro para mascotas",
+          "url": "https://boletines.latinoinsurance.com/banco-provincia-lanzo-un-seguro-para-mascotas"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "El Fondo de Asistencia Laboral obligatorio entra en escena: qué cambia y qué debe mirar el mercado asegurador",
+          "url": "https://boletines.latinoinsurance.com/el-fondo-de-asistencia-laboral-obligatorio-entra-en-escena-que-cambia-y-que-debe-mirar-el-mercado-asegurador"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "BIND Seguros y Mecubro lanzan un seguro por día para eventos con emisión inmediata",
+          "url": "https://boletines.latinoinsurance.com/bind-seguros-y-mecubro-lanzan-un-seguro-por-dia-para-eventos-con-emision-inmediata"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "AVIRA anuncia el 19° Seminario Internacional de Seguros de Vida y Retiro",
+          "url": "https://boletines.latinoinsurance.com/avira-anuncia-el-19-seminario-internacional-de-seguros-de-vida-y-retiro"
+        },
+        {
+          "country": "Bolivia",
+          "flag": "🇧🇴",
+          "headline": "Nacional Seguros reafirma su apuesta por Bolivia impulsando inversión, empleo y crecimiento sostenible",
+          "url": "https://boletines.latinoinsurance.com/nacional-seguros-reafirma-su-apuesta-por-bolivia-impulsando-inversion-empleo-y-crecimiento-sostenible"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Los títulos de capitalización son una alternativa como garantía en los contratos de alquiler",
+          "url": "https://boletines.latinoinsurance.com/titulo-de-capitalizacao-e-alternativa-de-garantia-em-contratos-de-aluguel"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Austral Re destaca potencial dos seguros inclusivos diante da falta de cobertura para 4 bilhões de pessoas no mundo",
+          "url": "https://boletines.latinoinsurance.com/austral-re-destaca-potencial-dos-seguros-inclusivos-diante-da-falta-de-cobertura-para-4-bilhoes-de-pessoas-no-mundo-2"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Prudential pretende recaudar 3.000 millones de dólares con su salida de los mercados emergentes, incluido Brasil",
+          "url": "https://boletines.latinoinsurance.com/prudential-busca-levantar-us-3-bilhoes-com-saida-de-mercados-emergentes-incluindo-brasil"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Prudential explica a venda da operação no Brasil",
+          "url": "https://boletines.latinoinsurance.com/prudential-explica-a-venda-da-operacao-no-brasil"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Marcio Barros assume unidade da Lojacorr em Caxias do Sul",
+          "url": "https://boletines.latinoinsurance.com/marcio-barros-assume-unidade-da-lojacorr-em-caxias-do-sul"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "BB Seguridade alcanza un beneficio de 4.400 millones de reales en el primer semestre de 2026",
+          "url": "https://boletines.latinoinsurance.com/bb-seguridade-alcanca-lucro-de-r-44-bilhoes-no-1o-semestre-de-2026"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Este 12 y 13 de agosto: Eila26 marcará el pulso de la insurtech en Chile y América Latina",
+          "url": "https://boletines.latinoinsurance.com/este-12-y-13-de-agosto-eila26-marcara-el-pulso-de-la-insurtech-en-chile-y-america-latina"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Asociación de Aseguradores y Universidad de Chile unen esfuerzos para promover un envejecimiento activo y saludable",
+          "url": "https://boletines.latinoinsurance.com/asociacion-de-aseguradores-y-universidad-de-chile-unen-esfuerzos-para-promover-un-envejecimiento-activo-y-saludable"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "“Ya no basta solamente con un buen discurso o un buen beneficio”: la fórmula con que Sura Seguros llegó al Top 10 de empleadores jóvenes",
+          "url": "https://boletines.latinoinsurance.com/ya-no-basta-solamente-con-un-buen-discurso-o-un-buen-beneficio-la-formula-con-que-sura-seguros-llego-al-top-10-de-empleadores-jovenes"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Más de 1.200 caficultores en Antioquia fortalecieron su producción con modelo de financiamiento verde",
+          "url": "https://boletines.latinoinsurance.com/mas-de-1-200-caficultores-en-antioquia-fortalecieron-su-produccion-con-modelo-de-financiamiento-verde"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Cibest adquiere Avista Colombia: impulso a crédito pensionados",
+          "url": "https://boletines.latinoinsurance.com/cibest-adquiere-avista-colombia-impulso-a-credito-pensionados"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "ASOPARTES plantea seis prioridades para fortalecer el sector motriz",
+          "url": "https://boletines.latinoinsurance.com/asopartes-plantea-seis-prioridades-para-fortalecer-el-sector-motriz"
+        },
+        {
+          "country": "Costa Rica",
+          "flag": "🇨🇷",
+          "headline": "Primas Emitidas para ramo Salud aumentó 7% en USD a junio 2026 12 meses (+2% en colones).",
+          "url": "https://boletines.latinoinsurance.com/primas-emitidas-para-ramo-salud-aumento-7-en-usd-a-junio-2026-12-meses-2-en-colones"
+        },
+        {
+          "country": "Dominicana",
+          "flag": "🌎",
+          "headline": "One Alliance Seguros arriba a su primera década con nuevos desafíos y apuesta por la innovación",
+          "url": "https://boletines.latinoinsurance.com/one-alliance-seguros-arriba-a-su-primera-decada-con-nuevos-desafios-y-apuesta-por-la-innovacion"
+        },
+        {
+          "country": "Dominicana",
+          "flag": "🌎",
+          "headline": "AM BEST confirma calificaciones crediticias de Seguros Reservas de A- (Excelente) con perspectiva estable",
+          "url": "https://boletines.latinoinsurance.com/am-best-confirma-calificaciones-crediticias-de-seguros-reservas-de-a-excelente-con-perspectiva-estable"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Índice de Resultado Técnico para el ramo Autos bajó 2.7pp a junio 2026 12ms",
+          "url": "https://boletines.latinoinsurance.com/indice-de-resultado-tecnico-para-el-ramo-autos-bajo-2-7pp-a-junio-2026-12ms"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Seguro corporativo: la clave estratégica para retener talento en Ecuador",
+          "url": "https://boletines.latinoinsurance.com/seguro-corporativo-la-clave-estrategica-para-retener-talento-en-ecuador"
+        },
+        {
+          "country": "Guatemala",
+          "flag": "🇬🇹",
+          "headline": "Siniestralidad para el ramo de Fianzas subió 1 punto porcentual a junio 2026 12 meses",
+          "url": "https://boletines.latinoinsurance.com/siniestralidad-para-el-ramo-de-fianzas-subio-1-punto-porcentual-a-junio-2026-12-meses"
+        },
+        {
+          "country": "Honduras",
+          "flag": "🇭🇳",
+          "headline": "Nivel de Siniestralidad Bruta para el ramo de Autos bajó 2 puntos porcentuales en junio 2026 12 meses",
+          "url": "https://boletines.latinoinsurance.com/nivel-de-siniestralidad-bruta-para-el-ramo-de-autos-bajo-2-puntos-porcentuales-en-junio-2026-12-meses"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Índice Combinado Neto del ramo de Incendio y Terremoto fue 123% a marzo 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-combinado-neto-del-ramo-de-incendio-y-terremoto-fue-123-a-marzo-2026"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Sector financiero es el más preparado para adoptar IA en México",
+          "url": "https://boletines.latinoinsurance.com/sector-financiero-es-el-mas-preparado-para-adoptar-ia-en-mexico"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "¿Por qué México no ha consolidado un seguro nacional de desempleo?",
+          "url": "https://boletines.latinoinsurance.com/por-que-mexico-no-ha-consolidado-un-seguro-nacional-de-desempleo"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Infonavit activa seguro para viviendas dañadas por lluvias",
+          "url": "https://boletines.latinoinsurance.com/infonavit-activa-seguro-para-viviendas-danadas-por-lluvias"
+        },
+        {
+          "country": "Nicaragua",
+          "flag": "🇳🇮",
+          "headline": "Siniestralidad Bruta disminuyó 2 p.p. a junio 2026 12 meses.",
+          "url": "https://boletines.latinoinsurance.com/siniestralidad-bruta-disminuyo-2-p-p-a-junio-2026-12-meses"
+        },
+        {
+          "country": "Nicaragua",
+          "flag": "🇳🇮",
+          "headline": "Índice de Resultado Técnico fue de 20% a junio 2026 12 meses",
+          "url": "https://boletines.latinoinsurance.com/indice-de-resultado-tecnico-fue-de-20-a-junio-2026-12-meses"
+        },
+        {
+          "country": "Paraguay",
+          "flag": "🇵🇾",
+          "headline": "Seguridad Seguros fortalece su propuesta ante compra de 0 km",
+          "url": "https://boletines.latinoinsurance.com/seguridad-seguros-fortalece-su-propuesta-ante-compra-de-0-km"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "Volumen de primas en ramo Fianzas subió 2% en USD (-0,92% en Nuevos Soles) en junio 2026",
+          "url": "https://boletines.latinoinsurance.com/volumen-de-primas-en-ramo-fianzas-subio-2-en-usd-092-en-nuevos-soles-en-junio-2026"
+        },
+        {
+          "country": "Venezuela",
+          "flag": "🇻🇪",
+          "headline": "Exhortan a aseguradoras a ser medios alternativos en sector bancario",
+          "url": "https://boletines.latinoinsurance.com/exhortan-a-aseguradoras-a-ser-medios-alternativos-en-sector-bancario"
+        }
+      ]
+    },
+    {
+      "issue": 6290,
+      "date": "2026-08-09",
+      "articles": [
+        {
+          "country": "Anuncio",
+          "flag": "🌎",
+          "headline": "Ya se encuentra en nuestro website la información financiera de Bolivia (Totales, Ramos - Otra Información) y de Paraguay (Totales, Ramos - Otra Información) a junio 2026",
+          "url": "https://boletines.latinoinsurance.com/ya-se-encuentra-en-nuestro-website-la-informacion-financiera-de-bolivia-totales-ramos-otra-informacion-de-panama-totales-ramos-otra-informacion-y-de-paraguay-totales-ramos-otra-informac"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Accidentes personales colectivo: crecimiento de la participación por entidad entre marzo de 2023 y marzo de 2026",
+          "url": "https://boletines.latinoinsurance.com/accidentes-personales-colectivo-crecimiento-de-la-participacion-por-entidad-entre-marzo-de-2023-y-marzo-de-2026"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Galicia Seguros suma una nueva plataforma digital que mejora la experiencia de los productores",
+          "url": "https://boletines.latinoinsurance.com/galicia-seguros-suma-una-nueva-plataforma-digital-que-mejora-la-experiencia-de-los-productores-2"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Resolución 258/2026: alcances y límites de los seguros de salud prestacionales",
+          "url": "https://boletines.latinoinsurance.com/resolucion-2582026-alcances-y-limites-de-los-seguros-de-salud-prestacionales"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "La IA y la automatización redefinen la gestión sanitaria: eficiencia, predicción y toma de decisiones en tiempo real",
+          "url": "https://boletines.latinoinsurance.com/la-ia-y-la-automatizacion-redefinen-la-gestion-sanitaria-eficiencia-prediccion-y-toma-de-decisiones-en-tiempo-real"
+        },
+        {
+          "country": "Bolivia",
+          "flag": "🇧🇴",
+          "headline": "Mercado bajó 0.3% en USD en junio 2026 12meses, (+3.1% en bolivianos)",
+          "url": "https://boletines.latinoinsurance.com/mercado-bajo-0-3-en-usd-en-junio-2026-12meses-3-1-en-bolivianos"
+        },
+        {
+          "country": "Bolivia",
+          "flag": "🇧🇴",
+          "headline": "Mercado para el ramo Vida bajó 1.9% en junio 2026 12meses, (+1.4% en bolivianos)",
+          "url": "https://boletines.latinoinsurance.com/mercado-para-el-ramo-vida-bajo-1-9-en-junio-2026-12meses-1-4-en-bolivianos"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Los ingresos de Bradsaúde crecen un 11 % en el segundo trimestre del año, hasta alcanzar los 14 mil millones de reales",
+          "url": "https://boletines.latinoinsurance.com/receita-da-bradsaude-cresce-11-no-segundo-trimestre-do-ano-alcancando-r-14-bi"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "CNseg: el Gobierno crea un grupo para revisar y armonizar los seguros en las concesiones de puertos, vías navegables y aeropuertos",
+          "url": "https://boletines.latinoinsurance.com/cnseg-governo-cria-grupo-para-revisar-e-padronizar-seguros-em-concessoes-de-portos-hidrovias-e-aeroportos"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Yelum cria Caixa do Recomeço para devolução de veículos reparados",
+          "url": "https://boletines.latinoinsurance.com/yelum-cria-caixa-do-recomeco-para-devolucao-de-veiculos-reparados"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Seguro garantia se firma como ferramenta financeira",
+          "url": "https://boletines.latinoinsurance.com/seguro-garantia-se-firma-como-ferramenta-financeira"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Itaú aumenta sus beneficios un 1 % en el segundo trimestre y alcanza los 24 689 mil millones de reales en el semestre; Desenrola garantiza la cobertura de la morosidad de los clientes",
+          "url": "https://boletines.latinoinsurance.com/itau-lucra-1-no-2o-trimestre-e-r-24689-bilhoes-no-semestre-desenrola-segura-inadimplencia-dos-clientes"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "CNSP publica nova resolução sobre regras de resseguro",
+          "url": "https://boletines.latinoinsurance.com/cnsp-publica-nova-resolucao-sobre-regras-de-resseguro"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Fitch reafirma la clasificación &quot;AAA(cl)&quot; de BCI Seguros Generales: un reconocimiento a la disciplina técnica y al liderazgo de mercado",
+          "url": "https://boletines.latinoinsurance.com/fitch-reafirma-la-clasificacion-aaacl-de-bci-seguros-generales-un-reconocimiento-a-la-disciplina-tecnica-y-al-liderazgo-de-mercado"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Ley 21.822: el nuevo mapa de riesgos y oportunidades para la industria aseguradora",
+          "url": "https://boletines.latinoinsurance.com/ley-21-822-el-nuevo-mapa-de-riesgos-y-oportunidades-para-la-industria-aseguradora"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Un puñado de ETFs consigue el visado para recibir flujos de los fondos de pensiones chilenos",
+          "url": "https://boletines.latinoinsurance.com/un-punado-de-etfs-consigue-el-visado-para-recibir-flujos-de-los-fondos-de-pensiones-chilenos"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Seguros paramétricos protegerán a 14.404 productores rurales en Colombia",
+          "url": "https://boletines.latinoinsurance.com/seguros-parametricos-protegeran-a-14-404-productores-rurales-en-colombia"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Seguros Mundial creció 21 % en seguros generales y abrió nueva sede administrativa en Bogotá",
+          "url": "https://boletines.latinoinsurance.com/seguros-mundial-crecio-21-en-seguros-generales-y-abrio-nueva-sede-administrativa-en-bogota"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Sucre lidera en Colombia el primer seguro agropecuario frente al cambio climático",
+          "url": "https://boletines.latinoinsurance.com/sucre-lidera-en-colombia-el-primer-seguro-agropecuario-frente-al-cambio-climatico"
+        },
+        {
+          "country": "Costa Rica",
+          "flag": "🇨🇷",
+          "headline": "Primas Emitidas para ramo Fianzas y Crédito aumentaron 16% en USD a junio 2026 12 meses 2025 (+12% en colones).",
+          "url": "https://boletines.latinoinsurance.com/primas-emitidas-para-ramo-fianzas-y-credito-aumentaron-16-en-usd-a-junio-2026-12-meses-2025-12-en-colones"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "La protección financiera también se construye con seguros",
+          "url": "https://boletines.latinoinsurance.com/la-proteccion-financiera-tambien-se-construye-con-seguros"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Índice de Resultado Técnico para el ramo Fianzas y Crédito finalizó en 42% en junio 2026 12ms",
+          "url": "https://boletines.latinoinsurance.com/indice-de-resultado-tecnico-para-el-ramo-fianzas-y-credito-finalizo-en-42-en-junio-2026-12ms"
+        },
+        {
+          "country": "España",
+          "flag": "🌎",
+          "headline": "La salud mental concentra la mitad de las demandas médicas en los seguros corporativos",
+          "url": "https://boletines.latinoinsurance.com/la-salud-mental-concentra-la-mitad-de-las-demandas-medicas-en-los-seguros-corporativos"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Índice Combinado Neto del ramo de Casco fue 142% a marzo 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-combinado-neto-del-ramo-de-casco-fue-142-a-marzo-2026"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Quálitas reporta avances en sostenibilidad, seguridad vial e inversión social durante 2025",
+          "url": "https://boletines.latinoinsurance.com/qualitas-impulsa-una-industria-aseguradora-mas-confiable-y-sostenible"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "UAEMéx fortalece protección de estudiantes con tres seguros institucionales",
+          "url": "https://boletines.latinoinsurance.com/uaemex-fortalece-proteccion-de-estudiantes-con-tres-seguros-institucionales"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Swiss Re transferirá su cartera de seguros corporativos a GNP Seguros en México",
+          "url": "https://boletines.latinoinsurance.com/swiss-re-transferira-su-cartera-de-seguros-corporativos-a-gnp-seguros-en-mexico"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "El dilema de la innovación financiera: el potencial dispara la producción, pero su adopción se estanca en 8.4%",
+          "url": "https://boletines.latinoinsurance.com/el-dilema-de-la-innovacion-financiera-el-potencial-dispara-la-produccion-pero-su-adopcion-se-estanca-en-8-4"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "Swiss Re Corporate Solutions anuncia alianzas exclusivas en India y México.",
+          "url": "https://boletines.latinoinsurance.com/swiss-re-corporate-solutions-anuncia-alianzas-exclusivas-en-india-y-mexico"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "Swiss Re registra un aumento del 9% en sus ingresos netos, hasta alcanzar los 2.800 millones de dólares en el primer semestre de 2026.",
+          "url": "https://boletines.latinoinsurance.com/swiss-re-registra-un-aumento-del-9-en-sus-ingresos-netos-hasta-alcanzar-los-2-800-millones-de-dolares-en-el-primer-semestre-de-2026"
+        },
+        {
+          "country": "Paraguay",
+          "flag": "🇵🇾",
+          "headline": "Mercado de seguros subió 16% en USD (+4% en guaraníes) en junio 2026 12 meses",
+          "url": "https://boletines.latinoinsurance.com/mercado-de-seguros-subio-16-en-usd-4-en-guaranies-en-junio-2026-12-meses"
+        },
+        {
+          "country": "Paraguay",
+          "flag": "🇵🇾",
+          "headline": "Mercado de seguros en el ramo de Fianzas y Crédito subió 15% en USD (+ 3% en guaraníes) en junio 2026 12 meses",
+          "url": "https://boletines.latinoinsurance.com/mercado-de-seguros-en-el-ramo-de-fianzas-y-credito-subio-15-en-usd-3-en-guaranies-en-junio-2026-12-meses"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "Rentabilidad sobre Primas Emitidas fue 11% en junio 2026",
+          "url": "https://boletines.latinoinsurance.com/rentabilidad-sobre-primas-emitidas-fue-11-en-junio-2026"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "SBS modifica normas sobre el aporte de las entidades financieras al Fondo de Seguro de Depósitos",
+          "url": "https://boletines.latinoinsurance.com/sbs-modifica-normas-sobre-el-aporte-de-las-entidades-financieras-al-fondo-de-seguro-de-depositos"
+        }
+      ]
+    },
+    {
+      "issue": 6289,
+      "date": "2026-08-08",
+      "articles": [
+        {
+          "country": "Anuncio",
+          "flag": "🌎",
+          "headline": "Ya se encuentra en nuestro website la información financiera de Colombia (Ramos-Otra Información) a mayo 2026, de Costa Rica (Ramos-Otra Información) a junio 2026 y de Puerto Rico (Totales, Ramos-Otra Información) a diciembre 2025",
+          "url": "https://boletines.latinoinsurance.com/ya-se-encuentra-en-nuestro-website-la-informacion-financiera-de-colombia-ramos-otra-informacion-a-mayo-2026-de-costa-rica-ramos-otra-informacion-a-junio-2026-y-de-puerto-rico-totales-ramos-otra"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "ADIRA celebra 45 años promoviendo el diálogo y el desarrollo del mercado asegurador argentino",
+          "url": "https://boletines.latinoinsurance.com/adira-celebra-45-anos-promoviendo-el-dialogo-y-el-desarrollo-del-mercado-asegurador-argentino"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "La Superintendencia de Seguros presentó un nuevo sistema de datos para modernizar la supervisión del mercado",
+          "url": "https://boletines.latinoinsurance.com/la-superintendencia-de-seguros-presento-un-nuevo-sistema-de-datos-para-modernizar-la-supervision-del-mercado-4"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "La Segunda Seguros: cuáles son los nuevos negocios que impulsarán su crecimiento",
+          "url": "https://boletines.latinoinsurance.com/la-segunda-seguros-cuales-son-los-nuevos-negocios-que-impulsaran-su-crecimiento"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "El seguro busca un papel protagónico en la película financiera argentina y pide crecimiento económico",
+          "url": "https://boletines.latinoinsurance.com/el-seguro-busca-un-papel-protagonico-en-la-pelicula-financiera-argentina-y-pide-crecimiento-economico"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "BB Seguridade: analistas veem resultado em linha, mas alertam para desafios à frente",
+          "url": "https://boletines.latinoinsurance.com/bb-seguridade-analistas-veem-resultado-em-linha-mas-alertam-para-desafios-a-frente"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Bradesco Seguros es líder en el sector de los seguros y los planes de salud",
+          "url": "https://boletines.latinoinsurance.com/bradesco-seguros-e-lider-no-setor-de-seguros-e-planos-de-saude"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "El seguro como instrumento de política pública y estabilidad contractual en el sector de las infraestructuras",
+          "url": "https://boletines.latinoinsurance.com/o-seguro-como-instrumento-de-politica-publica-e-estabilidade-contratual-na-infraestrutura"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "MSIG anuncia Ariane Ribeiro Luciano como superintendente de gestão de negócios &amp; relacionamento",
+          "url": "https://boletines.latinoinsurance.com/msig-anuncia-ariane-ribeiro-luciano-como-superintendente-de-gestao-de-negocios-relacionamento-2"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Las aseguradoras refuerzan su presencia en la planificación financiera",
+          "url": "https://boletines.latinoinsurance.com/seguros-fortalecem-presenca-no-planejamento-financeiro"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Seguro rural ganha força diante do avanço dos riscos climáticos",
+          "url": "https://boletines.latinoinsurance.com/seguro-rural-ganha-forca-diante-do-avanco-dos-riscos-climaticos"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Seguros embebidos e IA marcarán el Eila 26, adelantó Andrea Triat, directora ejecutiva de InsurteChile",
+          "url": "https://boletines.latinoinsurance.com/seguros-embebidos-e-ia-marcaran-el-eila-26-adelanto-andrea-triat-directora-ejecutiva-de-insurtechile"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "El auge de las mascotas en Chile redefine el hogar y aumenta búsqueda de soluciones para su cuidado y bienestar",
+          "url": "https://boletines.latinoinsurance.com/el-auge-de-las-mascotas-en-chile-redefine-el-hogar-y-aumenta-busqueda-de-soluciones-para-su-cuidado-y-bienestar"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "FID Seguros y Mutual Asesorías sellan alianza estratégica para fortalecer la prevención y la gestión de riesgos",
+          "url": "https://boletines.latinoinsurance.com/fid-seguros-y-mutual-asesorias-sellan-alianza-estrategica-para-fortalecer-la-prevencion-y-la-gestion-de-riesgos"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Min. de Agricultura movilizará millonaria suma para piloto de seguro agropecuario por fenómeno de El Niño",
+          "url": "https://boletines.latinoinsurance.com/min-de-agricultura-movilizara-millonaria-suma-para-piloto-de-seguro-agropecuario-por-fenomeno-de-el-nino"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Mercado de seguros en el ramo de Fianzas subió 12% (6% en pesos) en mayo 2026 12ms",
+          "url": "https://boletines.latinoinsurance.com/mercado-de-seguros-en-el-ramo-de-fianzas-subio-12-6-en-pesos-en-mayo-2026-12ms"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Mercado de seguros en el ramo de Vida subió 10% (5% en pesos) en mayo 2026 12ms",
+          "url": "https://boletines.latinoinsurance.com/mercado-de-seguros-en-el-ramo-de-vida-subio-10-5-en-pesos-en-mayo-2026-12ms"
+        },
+        {
+          "country": "Costa Rica",
+          "flag": "🇨🇷",
+          "headline": "Primas Emitidas para ramo Autos aumentaron 9% en USD a junio 2026 12 meses (+5% en colones).",
+          "url": "https://boletines.latinoinsurance.com/primas-emitidas-para-ramo-autos-aumentaron-9-en-usd-a-junio-2026-12-meses-5-en-colones"
+        },
+        {
+          "country": "Costa Rica",
+          "flag": "🇨🇷",
+          "headline": "Primas Emitidas para ramo Daños aumentaron 3% en USD a junio 2026 12 meses (-1% en colones)",
+          "url": "https://boletines.latinoinsurance.com/primas-emitidas-para-ramo-danos-aumentaron-3-en-usd-a-junio-2026-12-meses-1-en-colones"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Ecuador: seguro agrícola inicia nueva fase contra la sequía",
+          "url": "https://boletines.latinoinsurance.com/ecuador-seguro-agricola-inicia-nueva-fase-contra-la-sequia"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Índice de Resultado Técnico para el ramo Accidentes Personales finalizó en 38% en junio 2026 12ms",
+          "url": "https://boletines.latinoinsurance.com/indice-de-resultado-tecnico-para-el-ramo-accidentes-personales-finalizo-en-38-en-junio-2026-12ms"
+        },
+        {
+          "country": "España",
+          "flag": "🌎",
+          "headline": "Mapfre comienza a vender seguros a través de la agencia vinculada de Carrefour",
+          "url": "https://boletines.latinoinsurance.com/mapfre-comienza-a-vender-seguros-a-traves-de-la-agencia-vinculada-de-carrefour"
+        },
+        {
+          "country": "España",
+          "flag": "🌎",
+          "headline": "El seguro de moto a terceros se dispara en verano: cuánto ahorras frente al todo riesgo",
+          "url": "https://boletines.latinoinsurance.com/el-seguro-de-moto-a-terceros-se-dispara-en-verano-cuanto-ahorras-frente-al-todo-riesgo"
+        },
+        {
+          "country": "Europa",
+          "flag": "🌎",
+          "headline": "Incendios en España: cómo afectan a los seguros, la banca y el turismo",
+          "url": "https://boletines.latinoinsurance.com/incendios-en-espana-como-afectan-a-los-seguros-la-banca-y-el-turismo"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Seguro de responsabilidad civil: el respaldo que todo profesionista independiente necesita",
+          "url": "https://boletines.latinoinsurance.com/seguro-de-responsabilidad-civil-el-respaldo-que-todo-profesionista-independiente-necesita"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Seguros resisten la desaceleración turística en Cancún, sector se mantiene estable",
+          "url": "https://boletines.latinoinsurance.com/seguros-resisten-la-desaceleracion-turistica-en-cancun-sector-se-mantiene-estable"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Índice Combinado Neto del ramo de Responsabilidad Civil subió 7 puntos porcentuales a marzo 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-combinado-neto-del-ramo-de-responsabilidad-civil-subio-7-puntos-porcentuales-a-marzo-2026"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Ansiedad y estrés laboral acorralan a la fuerza joven en México, advierte AXA",
+          "url": "https://boletines.latinoinsurance.com/ansiedad-y-estres-laboral-acorralan-a-la-fuerza-joven-en-mexico-advierte-axa"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Productores de Edomex podrán recibir hasta 30 mil pesos con este seguro de vida y así podrán acceder al apoyo",
+          "url": "https://boletines.latinoinsurance.com/productores-de-edomex-podran-recibir-hasta-30-mil-pesos-con-este-seguro-de-vida-y-asi-podran-acceder-al-apoyo"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "INTX presenta Tenet, la primera capa de inteligencia nativa del sector para el sistema operativo de (re)seguros",
+          "url": "https://boletines.latinoinsurance.com/intx-presenta-tenet-la-primera-capa-de-inteligencia-nativa-del-sector-para-el-sistema-operativo-de-reseguros"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "SBS: Empresas de un mismo grupo financiero ya no podrán operar con reglas distintas de riesgo desde 2027",
+          "url": "https://boletines.latinoinsurance.com/sbs-empresas-de-un-mismo-grupo-financiero-ya-no-podran-operar-con-reglas-distintas-de-riesgo-desde-2027"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "Índice de Resultado Técnico fue casi 3% en junio 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-de-resultado-tecnico-fue-casi-3-en-junio-2026"
+        },
+        {
+          "country": "Puerto Rico",
+          "flag": "🌎",
+          "headline": "Mercado de Seguros de Vida subió 12% a diciembre 2025",
+          "url": "https://boletines.latinoinsurance.com/mercado-de-seguros-de-vida-subio-12-a-diciembre-2025"
+        },
+        {
+          "country": "Puerto Rico",
+          "flag": "🌎",
+          "headline": "Mercado de Seguros Generales subió 2% a diciembre 2025",
+          "url": "https://boletines.latinoinsurance.com/mercado-de-seguros-generales-subio-2-a-diciembre-2025"
+        }
+      ]
+    },
+    {
+      "issue": 6288,
+      "date": "2026-08-07",
+      "articles": [
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "De qué trata el seguro de retiro y para qué sirve",
+          "url": "https://boletines.latinoinsurance.com/de-que-trata-el-seguro-de-retiro-y-para-que-sirve"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Cómo funciona el nuevo seguro para mascotas de Banco Provincia",
+          "url": "https://boletines.latinoinsurance.com/como-funciona-el-nuevo-seguro-para-mascotas-de-banco-provincia"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "“El Productor Aumentado: Las cuatro capacidades para no volverte obsoleto en silencio”, un seminario de AAPAS",
+          "url": "https://boletines.latinoinsurance.com/el-productor-aumentado-las-cuatro-capacidades-para-no-volverte-obsoleto-en-silencio-un-seminario-de-aapas"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Galicia Seguros suma una nueva plataforma digital que mejora la experiencia de los productores",
+          "url": "https://boletines.latinoinsurance.com/galicia-seguros-suma-una-nueva-plataforma-digital-que-mejora-la-experiencia-de-los-productores"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Seguro ganha espaço na estruturação de investimentos climáticos",
+          "url": "https://boletines.latinoinsurance.com/seguro-ganha-espaco-na-estruturacao-de-investimentos-climaticos"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Perdas por extremos climáticos atingiram R$ 3,5 bilhões em 24 dias de julho, diz CNM",
+          "url": "https://boletines.latinoinsurance.com/perdas-por-extremos-climaticos-atingiram-r-35-bilhoes-em-24-dias-de-julho-diz-cnm"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Porto lança Seguro Viagem com cobertura de até US$ 200 mil",
+          "url": "https://boletines.latinoinsurance.com/porto-lanca-seguro-viagem-com-cobertura-de-ate-us-200-mil"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Aon inaugura una oficina en Goiânia para ampliar su presencia en el Centro-Oeste",
+          "url": "https://boletines.latinoinsurance.com/aon-inaugura-escritorio-em-goiania-para-ampliar-atuacao-no-centro-oeste"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Cómo la IA está transformando la suscripción de seguros de vida en Brasil",
+          "url": "https://boletines.latinoinsurance.com/como-a-ia-esta-reescrevendo-o-underwriting-de-seguros-de-vida-no-brasil"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Favela Seguros amplía sus operaciones a ocho estados de Brasil",
+          "url": "https://boletines.latinoinsurance.com/favela-seguros-amplia-operacao-para-oito-estados-do-brasil"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Seguros de Vida y Salud UC CHRISTUS aprueba celebración de seguro colectivo de salud con PUC",
+          "url": "https://boletines.latinoinsurance.com/seguros-de-vida-y-salud-uc-christus-aprueba-celebracion-de-seguro-colectivo-de-salud-con-puc"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "La nueva generación de seguros: más digitales, simples y conectados con las personas",
+          "url": "https://boletines.latinoinsurance.com/la-nueva-generacion-de-seguros-mas-digitales-simples-y-conectados-con-las-personas"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "¿Crees que tu departamento está protegido? Tal vez no lo está si tu edificio no tiene cobertura sísmica",
+          "url": "https://boletines.latinoinsurance.com/crees-que-tu-departamento-esta-protegido-tal-vez-no-lo-esta-si-tu-edificio-no-tiene-cobertura-sismica"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "El negocio asegurador ya no se gana solo vendiendo pólizas: la tecnología redefine la competencia en Colombia",
+          "url": "https://boletines.latinoinsurance.com/el-negocio-asegurador-ya-no-se-gana-solo-vendiendo-polizas-la-tecnologia-redefine-la-competencia-en-colombia"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Cómo pagar el SOAT en línea 2026: 6 sitios oficiales y el paso a paso para comprarlo por internet",
+          "url": "https://boletines.latinoinsurance.com/como-pagar-el-soat-en-linea-2026-6-sitios-oficiales-y-el-paso-a-paso-para-comprarlo-por-internet"
+        },
+        {
+          "country": "Costa Rica",
+          "flag": "🇨🇷",
+          "headline": "En la última década, el mercado de seguros en Costa Rica casi duplicó su tamaño: ¿qué está impulsando este cambio?",
+          "url": "https://boletines.latinoinsurance.com/en-la-ultima-decada-el-mercado-de-seguros-en-costa-rica-casi-duplico-su-tamano-que-esta-impulsando-este-cambio"
+        },
+        {
+          "country": "Dominicana",
+          "flag": "🌎",
+          "headline": "AM BEST confirma las calificaciones crediticias de Seguros Reservas de A- (Excelente)",
+          "url": "https://boletines.latinoinsurance.com/am-best-confirma-las-calificaciones-crediticias-de-seguros-reservas-de-a-excelente"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Mercado para el ramo Transporte subió 9% a junio 2026 12 meses",
+          "url": "https://boletines.latinoinsurance.com/mercado-para-el-ramo-transporte-subio-9-a-junio-2026-12meses"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Mercado para el ramo Casco Marítimo y Aéreo finalizó junio 2026 12 meses con USD 80 millones",
+          "url": "https://boletines.latinoinsurance.com/mercado-para-el-ramo-casco-maritimo-y-aereo-finalizo-junio-2026-12-meses-con-usd-80-millones"
+        },
+        {
+          "country": "España",
+          "flag": "🌎",
+          "headline": "BBVA Seguros mantiene su beneficio en 166 millones hasta junio y acelera el crecimiento de su negocio de Vida",
+          "url": "https://boletines.latinoinsurance.com/bbva-seguros-mantiene-su-beneficio-en-166-millones-hasta-junio-y-acelera-el-crecimiento-de-su-negocio-de-vida"
+        },
+        {
+          "country": "España",
+          "flag": "🌎",
+          "headline": "Mapfre Economics augura un sólido crecimiento del seguro en España, pese a la incertidumbre",
+          "url": "https://boletines.latinoinsurance.com/mapfre-economics-augura-un-solido-crecimiento-del-seguro-en-espana-pese-a-la-incertidumbre"
+        },
+        {
+          "country": "Estados Unidos",
+          "flag": "🌎",
+          "headline": "Medida oficial: Confirmaron que se podrán comprar medicamentos de TrumpRx con seguros médicos en las farmacias CVS",
+          "url": "https://boletines.latinoinsurance.com/medida-oficial-confirmaron-que-se-podran-comprar-medicamentos-de-trumprx-con-seguros-medicos-en-las-farmacias-cvs"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Proponen fijar un plazo máximo para pagar indemnizaciones por accidentes de auto",
+          "url": "https://boletines.latinoinsurance.com/proponen-fijar-un-plazo-maximo-para-pagar-indemnizaciones-por-accidentes-de-auto"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Más de 70% de los siniestros vehiculares en Edomex son provocados por conductores: Adrián Flores",
+          "url": "https://boletines.latinoinsurance.com/mas-de-70-de-los-siniestros-vehiculares-en-edomex-son-provocados-por-conductores-adrian-flores"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Respaldo financiero ante huracanes con seguros paramétricos",
+          "url": "https://boletines.latinoinsurance.com/respaldo-financiero-ante-huracanes-con-seguros-parametricos"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Índice Combinado Neto del ramo de Vida fue 104% a marzo 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-combinado-neto-del-ramo-de-vida-fue-104-a-marzo-2026"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Índice Combinado Neto fue 105% a marzo 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-combinado-neto-fue-105-a-marzo-2026"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "El verdadero obstáculo para la IA en seguros no es la tecnología, sino la fragmentación de los sistemas",
+          "url": "https://boletines.latinoinsurance.com/el-verdadero-obstaculo-para-la-ia-en-seguros-no-es-la-tecnologia-sino-la-fragmentacion-de-los-sistemas"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "La automatización inteligente impulsa una nueva etapa de eficiencia en el sector asegurador",
+          "url": "https://boletines.latinoinsurance.com/la-automatizacion-inteligente-impulsa-una-nueva-etapa-de-eficiencia-en-el-sector-asegurador"
+        },
+        {
+          "country": "Panama",
+          "flag": "🇵🇦",
+          "headline": "Primas de seguros alcanzan los $1,086.4 millones y crecen 5.5% a junio",
+          "url": "https://boletines.latinoinsurance.com/primas-de-seguros-alcanzan-los-1086-4-millones-y-crecen-5-5-a-junio"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "Fenómeno El Niño: PRADO Insurance Group advierte sobre la importancia de revisar coberturas y riesgos empresariales",
+          "url": "https://boletines.latinoinsurance.com/fenomeno-el-nino-prado-insurance-group-advierte-sobre-la-importancia-de-revisar-coberturas-y-riesgos-empresariales"
+        },
+        {
+          "country": "Puerto Rico",
+          "flag": "🌎",
+          "headline": "Seguros Múltiples impulsa el talento joven con su primer programa de internado",
+          "url": "https://boletines.latinoinsurance.com/seguros-multiples-impulsa-el-talento-joven-con-su-primer-programa-de-internado"
+        },
+        {
+          "country": "Uruguay",
+          "flag": "🇺🇾",
+          "headline": "Salto: Ante la situación “crítica”, Fratti llamó a “pensar” en un seguro obligatorio para algunos sectores productivos",
+          "url": "https://boletines.latinoinsurance.com/salto-ante-la-situacion-critica-fratti-llamo-a-pensar-en-un-seguro-obligatorio-para-algunos-sectores-productivos"
+        }
+      ]
+    },
+    {
+      "issue": 6287,
+      "date": "2026-08-06",
+      "articles": [
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Pólizas de caución para obras: qué son, cómo funcionan y por qué pueden ser necesarias",
+          "url": "https://boletines.latinoinsurance.com/polizas-de-caucion-para-obras-que-son-como-funcionan-y-por-que-pueden-ser-necesarias"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Innovar y digitalizar para una mejor toma de decisiones en el sector asegurador",
+          "url": "https://boletines.latinoinsurance.com/innovar-y-digitalizar-para-una-mejor-toma-de-decisiones-en-el-sector-asegurador"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "El Gobierno Nacional impulsa la desregulación del mercado asegurador: cuándo entrará el proyecto de ley al Congreso",
+          "url": "https://boletines.latinoinsurance.com/el-gobierno-nacional-impulsa-la-desregulacion-del-mercado-asegurador-cuando-entrara-el-proyecto-de-ley-al-congreso"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Llega el fenómeno de “El Niño” a la Argentina: alerta por el impacto económico y operativo",
+          "url": "https://boletines.latinoinsurance.com/llega-el-fenomeno-de-el-nino-a-la-argentina-alerta-por-el-impacto-economico-y-operativo"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Proposta obriga planos de saúde a cobrirem fórmulas nutricionais",
+          "url": "https://boletines.latinoinsurance.com/proposta-obriga-planos-de-saude-a-cobrirem-formulas-nutricionais"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "MSIG anuncia Ariane Ribeiro Luciano como superintendente de gestão de negócios &amp; relacionamento",
+          "url": "https://boletines.latinoinsurance.com/msig-anuncia-ariane-ribeiro-luciano-como-superintendente-de-gestao-de-negocios-relacionamento"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Unimed do Brasil reúne lideranças para traçar estratégias para o futuro do Sistema Unimed",
+          "url": "https://boletines.latinoinsurance.com/unimed-do-brasil-reune-liderancas-para-tracar-estrategias-para-o-futuro-do-sistema-unimed"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "BVIX destaca un seguro dirigido a las mujeres durante el «Agosto Lila»",
+          "url": "https://boletines.latinoinsurance.com/bvix-destaca-seguro-voltado-a-mulheres-durante-agosto-lilas"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Darwin Seguros lanza una plataforma digital de seguros de garantía dirigida al mercado de las subastas",
+          "url": "https://boletines.latinoinsurance.com/darwin-seguros-lanca-plataforma-digital-de-seguro-garantia-voltada-ao-mercado-de-leiloeiros"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "El CNseg amplía el debate sobre la adaptación al cambio climático",
+          "url": "https://boletines.latinoinsurance.com/cnseg-amplia-debate-sobre-adaptacao-climatica"
+        },
+        {
+          "country": "Centro América",
+          "flag": "🌎",
+          "headline": "Centroamérica lidera el crecimiento de las empresas tecnológicas de seguros en América Latina",
+          "url": "https://boletines.latinoinsurance.com/centroamerica-lidera-el-crecimiento-de-las-empresas-tecnologicas-de-seguros-en-america-latina"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "FID Seguros Generales firma alianza con Mutual Asesorías para fortalecer su programa de inteligencia de transportes",
+          "url": "https://boletines.latinoinsurance.com/fid-seguros-generales-firma-alianza-con-mutual-asesorias-para-fortalecer-su-programa-de-inteligencia-de-transportes"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Principal reanudará la oferta y contratación de nuevos seguros de rentas vitalicias",
+          "url": "https://boletines.latinoinsurance.com/principal-reanudara-la-oferta-y-contratacion-de-nuevos-seguros-de-rentas-vitalicias"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Seis años sin accidentes y una sola prioridad para Statkraft Chile: volver a casa seguros",
+          "url": "https://boletines.latinoinsurance.com/seis-anos-sin-accidentes-y-una-sola-prioridad-para-statkraft-chile-volver-a-casa-seguros"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Gallagher continúa expandiéndose en Colombia con nueva compra de cartera",
+          "url": "https://boletines.latinoinsurance.com/gallagher-continua-expandiendose-en-colombia-con-nueva-compra-de-cartera"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Cómo la IA está transformando el sector de los seguros y la experiencia del cliente en Colombia",
+          "url": "https://boletines.latinoinsurance.com/como-la-ia-esta-transformando-el-sector-de-los-seguros-y-la-experiencia-del-cliente-en-colombia"
+        },
+        {
+          "country": "Dominicana",
+          "flag": "🌎",
+          "headline": "Aconsejan calcular gastos de seguro y mantenimiento antes de adquirir un vehículo",
+          "url": "https://boletines.latinoinsurance.com/aconsejan-calcular-gastos-de-seguro-y-mantenimiento-antes-de-adquirir-un-vehiculo"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Mercado para Ramos Técnicos subió 4% a junio 2026 12meses",
+          "url": "https://boletines.latinoinsurance.com/mercado-para-ramos-tecnicos-subio-4-a-junio-2026-12meses"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Mercado para el ramo Responsabilidad Civil subió 7% a junio 2026 12meses",
+          "url": "https://boletines.latinoinsurance.com/mercado-para-el-ramo-responsabilidad-civil-subio-7-a-junio-2026-12meses"
+        },
+        {
+          "country": "España",
+          "flag": "🌎",
+          "headline": "Helvetia Caser lanza Caser MiRecuperacio?n, un seguro con plan de recuperacio?n a medida tras un accidente",
+          "url": "https://boletines.latinoinsurance.com/helvetia-caser-lanza-caser-mirecuperacion-un-seguro-con-plan-de-recuperacion-a-medida-tras-un-accidente"
+        },
+        {
+          "country": "España",
+          "flag": "🌎",
+          "headline": "El seguro del coche se contrata cada vez más desde el móvil y menos en la oficina",
+          "url": "https://boletines.latinoinsurance.com/el-seguro-del-coche-se-contrata-cada-vez-mas-desde-el-movil-y-menos-en-la-oficina"
+        },
+        {
+          "country": "Europa",
+          "flag": "🌎",
+          "headline": "Fitch prevé un impacto limitado en las aseguradoras por los incendios de Francia y España",
+          "url": "https://boletines.latinoinsurance.com/fitch-preve-un-impacto-limitado-en-las-aseguradoras-por-los-incendios-de-francia-y-espana"
+        },
+        {
+          "country": "Latinoamérica",
+          "flag": "🌎",
+          "headline": "AM Best Affirms Credit Ratings of Reaseguradora Delta, S.A. and Reaseguradora Delta, C.A.",
+          "url": "https://boletines.latinoinsurance.com/am-best-affirms-credit-ratings-of-reaseguradora-delta-s-a-and-reaseguradora-delta-c-a"
+        },
+        {
+          "country": "Latinoamérica",
+          "flag": "🌎",
+          "headline": "Índice Combinado Bruto para el mercado latinoamericano de seguros de pensiones fue de 97% a diciembre 2025.",
+          "url": "https://boletines.latinoinsurance.com/indice-combinado-bruto-para-el-mercado-latinoamericano-de-seguros-de-pensiones-fue-de-97-a-diciembre-2025"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "El seguro de viaje en México: de beneficio secundario a columna vertebral de la prevención del viajero",
+          "url": "https://boletines.latinoinsurance.com/el-seguro-de-viaje-en-mexico-de-beneficio-secundario-a-columna-vertebral-de-la-prevencion-del-viajero"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Inter.mx y Monks cambian la forma de hablar de seguros",
+          "url": "https://boletines.latinoinsurance.com/inter-mx-y-monks-cambian-la-forma-de-hablar-de-seguros"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Colisiones concentran mayoría de siniestros vehiculares",
+          "url": "https://boletines.latinoinsurance.com/colisiones-concentran-mayoria-de-siniestros-vehiculares"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Índice Combinado Neto del ramo de Fianzas y Crédito fue 90% a marzo 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-combinado-neto-del-ramo-de-fianzas-y-credito-fue-90-a-marzo-2026"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Índice Combinado Neto del ramo de Salud fue 106% a marzo 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-combinado-neto-del-ramo-de-salud-fue-106-a-marzo-2026"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "Las aseguradoras ponen foco en la identidad digital, que se consolida como una prioridad en ciberseguridad",
+          "url": "https://boletines.latinoinsurance.com/las-aseguradoras-ponen-foco-en-la-identidad-digital-que-se-consolida-como-una-prioridad-en-ciberseguridad"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "Auge de la IA de USD 750.000 millones y tensiones geopolíticas transforman el negocio de los seguros",
+          "url": "https://boletines.latinoinsurance.com/auge-de-la-ia-de-usd-750-000-millones-y-tensiones-geopoliticas-transforman-el-negocio-de-los-seguros"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "Gallagher Perú designa a Doris Alvaro como nueva Gerenta de Compliance",
+          "url": "https://boletines.latinoinsurance.com/gallagher-peru-designa-a-doris-alvaro-como-nueva-gerenta-de-compliance-2"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "Incendios en centros logísticos: prevenir no es suficiente",
+          "url": "https://boletines.latinoinsurance.com/incendios-en-centros-logisticos-prevenir-no-es-suficiente"
+        }
+      ]
+    },
+    {
+      "issue": 6286,
+      "date": "2026-08-05",
+      "articles": [
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Impulsan la digitalización del seguro con la firma digital 100% online",
+          "url": "https://boletines.latinoinsurance.com/impulsan-la-digitalizacion-del-seguro-con-la-firma-digital-100-online"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Marzotta: “Nos encontramos con una oferta más vasta y variada que termina incidiendo en los costos del reaseguro”",
+          "url": "https://boletines.latinoinsurance.com/marzotta-nos-encontramos-con-una-oferta-mas-vasta-y-variada-que-termina-incidiendo-en-los-costos-del-reaseguro"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Federación Patronal ART cumple cuatro años impulsando la prevención desde la ergonomía",
+          "url": "https://boletines.latinoinsurance.com/federacion-patronal-art-cumple-cuatro-anos-impulsando-la-prevencion-desde-la-ergonomia"
+        },
+        {
+          "country": "Argentina",
+          "flag": "🇦🇷",
+          "headline": "Gerardo Virkel asumió como director general de Andina ART",
+          "url": "https://boletines.latinoinsurance.com/gerardo-virkel-asumio-como-director-general-de-andina-art"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "La paralización de las obras pone de relieve el Seguro de Garantía como herramienta de protección para los contratantes",
+          "url": "https://boletines.latinoinsurance.com/paralisacao-de-obras-coloca-seguro-garantia-em-evidencia-como-ferramenta-de-protecao-para-contratantes"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Las aseguradoras mantienen su crecimiento y la rentabilidad debería alcanzar el 30 % en 2026, según un estudio de Francisco Galiza",
+          "url": "https://boletines.latinoinsurance.com/seguradoras-mantem-crescimento-e-rentabilidade-deve-atingir-30-em-2026-aponta-estudo-de-francisco-galiza"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Mais um projeto altera regras para seguro saúde",
+          "url": "https://boletines.latinoinsurance.com/mais-um-projeto-altera-regras-para-seguro-saude"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Número de corretores de seguros cresce no Brasil, enquanto empresas corretoras diminuem",
+          "url": "https://boletines.latinoinsurance.com/numero-de-corretores-de-seguros-cresce-no-brasil-enquanto-empresas-corretoras-diminuem"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Indenizações do Seguro Cibernético crescem 253% e Susep reforça orientações de segurança digital",
+          "url": "https://boletines.latinoinsurance.com/indenizacoes-do-seguro-cibernetico-crescem-253-e-susep-reforca-orientacoes-de-seguranca-digital"
+        },
+        {
+          "country": "Brasil",
+          "flag": "🇧🇷",
+          "headline": "Suhai amplía su ámbito de actuación y se introduce en el mercado de los seguros de hogar tras su crecimiento en el sector de la automoción",
+          "url": "https://boletines.latinoinsurance.com/suhai-amplia-atuacao-e-entra-no-mercado-de-seguros-residenciais-apos-crescimento-no-setor-automotivo"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Automatización de cobros recurrentes gana espacio en la industria de seguros",
+          "url": "https://boletines.latinoinsurance.com/automatizacion-de-cobros-recurrentes-gana-espacio-en-la-industria-de-seguros"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "Alejandra Rodríguez asume como nueva gerente corporativa de finanzas en ORSAN Seguros",
+          "url": "https://boletines.latinoinsurance.com/alejandra-rodriguez-asume-como-nueva-gerente-corporativa-de-finanzas-en-orsan-seguros"
+        },
+        {
+          "country": "Chile",
+          "flag": "🇨🇱",
+          "headline": "España arde hoy. Chile debería prepararse desde ahora: las lecciones aseguradoras que deja el verano europeo",
+          "url": "https://boletines.latinoinsurance.com/espana-arde-hoy-chile-deberia-prepararse-desde-ahora-las-lecciones-aseguradoras-que-deja-el-verano-europeo"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "La Superfinanciera lanzó plataforma para centralizar los reportes de cartera",
+          "url": "https://boletines.latinoinsurance.com/la-superfinanciera-lanzo-plataforma-para-centralizar-los-reportes-de-cartera"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Ana María Vesga será la ministra de Salud del Gobierno de Abelardo De La Espriella",
+          "url": "https://boletines.latinoinsurance.com/ana-maria-vesga-sera-la-ministra-de-salud-del-gobierno-de-abelardo-de-la-espriella"
+        },
+        {
+          "country": "Colombia",
+          "flag": "🇨🇴",
+          "headline": "Se retira anticipadamente Juan Carlos Escobar, Auditor Interno de Suramericana S.A.",
+          "url": "https://boletines.latinoinsurance.com/se-retira-anticipadamente-juan-carlos-escobar-auditor-interno-de-suramericana-s-a"
+        },
+        {
+          "country": "Dominicana",
+          "flag": "🌎",
+          "headline": "AM Best Afirma Calificaciones Crediticias de Seguros Reservas S.A.",
+          "url": "https://boletines.latinoinsurance.com/am-best-afirma-calificaciones-crediticias-de-seguros-reservas-s-a-4"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Mercado para el ramo Autos subió 3.4% a junio 2026 12meses",
+          "url": "https://boletines.latinoinsurance.com/mercado-para-el-ramo-autos-subio-3-4-a-junio-2026-12meses"
+        },
+        {
+          "country": "Ecuador",
+          "flag": "🇪🇨",
+          "headline": "Mercado para el ramo Incendio y Terremoto subió 7% a junio 2026 12meses",
+          "url": "https://boletines.latinoinsurance.com/mercado-para-el-ramo-incendio-y-terremoto-subio-7-a-junio-2026-12meses"
+        },
+        {
+          "country": "España",
+          "flag": "🌎",
+          "headline": "Fernando Ariza defiende el modelo mutual y destaca el potencial preventivo de la inteligencia artificial en el seguro",
+          "url": "https://boletines.latinoinsurance.com/fernando-ariza-defiende-el-modelo-mutual-y-destaca-el-potencial-preventivo-de-la-inteligencia-artificial-en-el-seguro"
+        },
+        {
+          "country": "Inglaterra",
+          "flag": "🌎",
+          "headline": "Verisk adquiere McKenzie Intelligence Services para mejorar la preparación y respuesta ante eventos catastróficos",
+          "url": "https://boletines.latinoinsurance.com/verisk-adquiere-mckenzie-intelligence-services-para-mejorar-la-preparacion-y-respuesta-ante-eventos-catastroficos"
+        },
+        {
+          "country": "Latinoamérica",
+          "flag": "🌎",
+          "headline": "Deterioran Índices de Gestión en Mercado latinoamericano de seguros de pensiones a diciembre 2025",
+          "url": "https://boletines.latinoinsurance.com/deterioran-indices-de-gestion-en-mercado-latinoamericano-de-seguros-de-pensiones-a-diciembre-2025"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Costo y beneficios de los seguros médicos y de vida en Orizaba: guía para contratar desde los 30 años",
+          "url": "https://boletines.latinoinsurance.com/costo-y-beneficios-de-los-seguros-medicos-y-de-vida-en-orizaba-guia-para-contratar-desde-los-30-anos"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Índice Combinado Neto del ramo de Daños sin Autos fue 92% a marzo 2026",
+          "url": "https://boletines.latinoinsurance.com/indice-combinado-neto-del-ramo-de-danos-sin-autos-fue-92-a-marzo-2026"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Portabilidad en los seguros de gastos médicos: Continuidad y Protección",
+          "url": "https://boletines.latinoinsurance.com/portabilidad-en-los-seguros-de-gastos-medicos-continuidad-y-proteccion"
+        },
+        {
+          "country": "Mexico",
+          "flag": "🇲🇽",
+          "headline": "Fitch advierte riesgos para financieras no bancarias por costo de fondeo y menores tasas",
+          "url": "https://boletines.latinoinsurance.com/fitch-advierte-riesgos-para-financieras-no-bancarias-por-costo-de-fondeo-y-menores-tasas"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "Willis Re lanza una división global de reaseguros de Vida",
+          "url": "https://boletines.latinoinsurance.com/willis-re-lanza-una-division-global-de-reaseguros-de-vida"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "El mercado asegurador avanza para acotar el “ciberriesgo silencioso”, uno de los mayores desafíos del ciberseguro",
+          "url": "https://boletines.latinoinsurance.com/el-mercado-asegurador-avanza-para-acotar-el-ciberriesgo-silencioso-uno-de-los-mayores-desafios-del-ciberseguro"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "La inversión global en IA llegará a USD 750.000 millones y elevará la demanda de seguros",
+          "url": "https://boletines.latinoinsurance.com/la-inversion-global-en-ia-llegara-a-usd-750-000-millones-y-elevara-la-demanda-de-seguros"
+        },
+        {
+          "country": "Mundo",
+          "flag": "🌎",
+          "headline": "El uso de agentes de IA puede expandir la producción de seguros patrimoniales hasta un 3% en el corto plazo",
+          "url": "https://boletines.latinoinsurance.com/el-uso-de-agentes-de-ia-puede-expandir-la-produccion-de-seguros-patrimoniales-hasta-un-3-en-el-corto-plazo"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "Fenómeno El Niño: Personas podrán protegerse de terremotos y lluvias con seguros más fáciles, ¿cómo funcionan?",
+          "url": "https://boletines.latinoinsurance.com/fenomeno-el-nino-personas-podran-protegerse-de-terremotos-y-lluvias-con-seguros-mas-faciles-como-funcionan"
+        },
+        {
+          "country": "Peru",
+          "flag": "🇵🇪",
+          "headline": "Afiliados a EsSalud podrán atenderse en EPS y viceversa: la propuesta del gobierno de Keiko Fujimori",
+          "url": "https://boletines.latinoinsurance.com/afiliados-a-essalud-podran-atenderse-en-eps-y-viceversa-la-propuesta-del-gobierno-de-keiko-fujimori"
+        },
+        {
+          "country": "Venezuela",
+          "flag": "🇻🇪",
+          "headline": "La cultura de seguros queda en evidencia tras la catástrofe de junio",
+          "url": "https://boletines.latinoinsurance.com/la-cultura-de-seguros-queda-en-evidencia-tras-la-catastrofe-de-junio"
+        }
+      ]
+    }
+  ]
 }
