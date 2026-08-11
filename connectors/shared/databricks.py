@@ -75,6 +75,8 @@ def _create_ddl(df: pd.DataFrame, full_name: str) -> str:
 
 def _fmt(v: Any) -> str:
     """Format a Python scalar as a SQL literal."""
+    import datetime as _dt
+
     if v is None:
         return "NULL"
     try:
@@ -85,6 +87,9 @@ def _fmt(v: Any) -> str:
 
     if isinstance(v, pd.Timestamp):
         return f"DATE '{v.strftime('%Y-%m-%d')}'"
+
+    if isinstance(v, _dt.date):
+        return f"DATE '{v.isoformat()}'"
 
     if isinstance(v, str):
         s = v.replace("\\", "\\\\").replace("'", "\\'")

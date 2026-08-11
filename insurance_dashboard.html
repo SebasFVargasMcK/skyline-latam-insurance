@@ -1,0 +1,2574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PFIC LATAM — Insurance Intelligence</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  :root {
+    --bg:           #F7F8FA;
+    --card:         #ffffff;
+    --card2:        #F7F8FA;
+    --border:       #E8ECF0;
+    --border2:      #E8ECF0;
+    --text:         #343A40;
+    --muted:        #6C757D;
+    --accent:       #00205B;   /* McKinsey navy */
+    --accent-light: #003087;
+    --gold:         #C4A44C;   /* McKinsey gold */
+    --green:        #2E7D32;
+    --red:          #C62828;
+    --purple:       #F57C00;   /* amber */
+    --teal:         #0097A7;
+    --header-h:     110px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Segoe UI', Inter, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  /* ── HEADER ── */
+  #header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #00205B 0%, #1A1A2E 100%);
+    border-bottom: none;
+    padding: 0 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+  }
+  #header::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; width: 280px; height: 100%;
+    background: radial-gradient(ellipse at 100% 50%, rgba(196,164,76,.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0 10px;
+    gap: 16px;
+    position: relative;
+  }
+  .brand { display: flex; flex-direction: column; gap: 2px; flex-shrink: 0; }
+  .brand-name { font-family: Georgia, serif; font-size: 18px; font-weight: 700; color: #ffffff; letter-spacing: .04em; }
+  .brand-sub { font-size: 11px; color: rgba(255,255,255,.55); letter-spacing: .1em; text-transform: uppercase; }
+  .view-pills { display: flex; gap: 3px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 24px; padding: 3px; }
+  .view-pill {
+    padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    cursor: pointer; border: none; background: transparent; color: rgba(255,255,255,.65);
+    transition: all .18s; letter-spacing: .04em;
+  }
+  .view-pill:hover { color: #ffffff; background: rgba(255,255,255,.1); }
+  .view-pill.active { background: #ffffff; color: var(--accent); }
+  .header-right { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+  .badge {
+    padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 600;
+    border: 1px solid rgba(196,164,76,.4); color: var(--gold); background: rgba(196,164,76,.1);
+    font-family: Consolas, monospace; letter-spacing: .04em;
+  }
+  .badge.sm { color: rgba(255,255,255,.5); background: transparent; border-color: rgba(255,255,255,.15); font-weight: 400; }
+  /* ── TAB BAR ── */
+  .tab-bar {
+    display: flex; gap: 0;
+    background: #ffffff;
+    border-top: 1px solid rgba(255,255,255,.12);
+    overflow-x: auto; scrollbar-width: none;
+    margin: 0 -24px;
+    padding: 0 24px;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 9px 18px; font-size: 12px; font-weight: 500; white-space: nowrap;
+    cursor: pointer; border: none; background: transparent; color: #6C757D;
+    border-bottom: 2px solid transparent; transition: all .18s; letter-spacing: .03em;
+  }
+  .tab-btn:hover { color: var(--accent); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--gold); font-weight: 600; }
+  /* ── MAIN ── */
+  #main { padding: 24px; max-width: 1600px; margin: 0 auto; }
+  /* ── LOADING ── */
+  #loading {
+    display: flex; align-items: center; justify-content: center;
+    height: 60vh; flex-direction: column; gap: 16px;
+  }
+  .spinner {
+    width: 40px; height: 40px; border: 3px solid var(--border);
+    border-top-color: var(--accent); border-radius: 50%;
+    animation: spin .7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  /* ── CARDS ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  }
+  .card-title {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: .08em; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-title::before {
+    content: ''; display: inline-block; width: 4px; height: 15px;
+    background: var(--gold); border-radius: 2px; flex-shrink: 0;
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .grid-kpi { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; margin-bottom: 20px; }
+  /* ── KPI TILE ── */
+  .kpi {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  }
+  .kpi-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 6px; }
+  .kpi-value { font-family: Consolas, monospace; font-size: 22px; font-weight: 700; color: var(--accent); }
+  .kpi-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  /* ── ROE TREE ── */
+  .roe-lob-pill {
+    padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600;
+    cursor: pointer; border: 1px solid var(--border); background: transparent;
+    color: var(--muted); transition: all .15s; letter-spacing: .04em;
+  }
+  .roe-lob-pill:hover { color: var(--accent); border-color: var(--accent); }
+  .roe-lob-pill.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
+  .audit-badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; font-family:Consolas,monospace; }
+  .audit-pass  { background:rgba(46,125,50,.12); color:#2E7D32; }
+  .audit-warn  { background:rgba(196,164,76,.15); color:#9A7D2A; }
+  .audit-fail  { background:rgba(198,40,40,.12);  color:#C62828; }
+  .audit-skip  { background:rgba(108,117,125,.1); color:#6C757D; }
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th {
+    padding: 9px 12px; text-align: right;
+    background: var(--accent); color: #ffffff;
+    font-weight: 600; border-bottom: none;
+    white-space: nowrap; text-transform: uppercase; font-size: 10px; letter-spacing: .06em;
+  }
+  th:first-child { text-align: left; border-radius: 0; }
+  td {
+    padding: 8px 12px; text-align: right;
+    border-bottom: 1px solid var(--border); color: var(--text);
+    font-family: Consolas, monospace; font-size: 12px;
+  }
+  td:first-child { text-align: left; font-family: 'Segoe UI', Inter, sans-serif; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(0,32,91,.04); }
+  .delta-pos { color: var(--green); }
+  .delta-neg { color: var(--red); }
+  .rank-num { color: var(--muted); font-size: 11px; }
+  /* ── CANVAS WRAP ── */
+  .chart-wrap { position: relative; }
+  .chart-wrap canvas { max-width: 100%; }
+  /* ── DONUT LEGEND ── */
+  .donut-legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; justify-content: center; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  /* ── METRIC SELECTOR ── */
+  .metric-sel-wrap { margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .metric-sel-wrap label { font-size: 12px; color: var(--muted); font-weight: 600; }
+  select {
+    background: #ffffff; border: 1px solid var(--border); color: var(--text);
+    padding: 6px 10px; border-radius: 6px; font-size: 12px; outline: none;
+    cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  select:focus { border-color: var(--accent); }
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-size: 11px; font-weight: 700; color: var(--accent);
+    margin-bottom: 12px; text-transform: uppercase; letter-spacing: .08em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .sec-title::before {
+    content: ''; display: inline-block; width: 4px; height: 14px;
+    background: var(--gold); border-radius: 2px; flex-shrink: 0;
+  }
+  .mb-20 { margin-bottom: 20px; }
+  .mt-20 { margin-top: 20px; }
+  /* color dot in tables */
+  .cdot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  /* scrollable insurer table */
+  .scroll-table-wrap { max-height: 340px; overflow-y: auto; }
+  .scroll-table-wrap::-webkit-scrollbar { width: 4px; }
+  .scroll-table-wrap::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  /* ── FOCUS / CLIENT BAR ── */
+  #focus-bar {
+    display: none;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0 5px;
+    background: #F0EDE6;
+    border-top: 1px solid rgba(196,164,76,.3);
+    margin: 0 -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    flex-wrap: wrap;
+  }
+  .focus-bar-label { font-size: 10px; color: #9A7D2A; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; flex-shrink: 0; }
+  .focus-ins-sel {
+    background: #ffffff; border: 1px solid rgba(196,164,76,.4); color: var(--text);
+    padding: 4px 8px; border-radius: 4px; font-size: 11px; cursor: pointer;
+    min-width: 220px; outline: none;
+  }
+  .focus-ins-sel:focus { border-color: var(--gold); }
+  .client-badge {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(196,164,76,.18); border: 1px solid rgba(196,164,76,.5);
+    border-radius: 4px; padding: 3px 12px; font-size: 11px; font-weight: 700;
+    color: #7A6118; letter-spacing: .04em; white-space: nowrap;
+  }
+  .client-badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  .peer-chip {
+    background: rgba(0,32,91,.07); border: 1px solid rgba(0,32,91,.2);
+    border-radius: 4px; padding: 2px 8px; font-size: 10px; color: var(--accent);
+    white-space: nowrap;
+  }
+  .focus-clear-btn {
+    background: transparent; border: 1px solid rgba(198,40,40,.3); color: var(--red);
+    border-radius: 4px; padding: 3px 9px; font-size: 10px; cursor: pointer;
+    font-weight: 600; letter-spacing: .04em; flex-shrink: 0;
+  }
+  .focus-clear-btn:hover { background: rgba(198,40,40,.08); }
+  /* focus-insurer row highlight in tables */
+  tr.focus-row td { background: rgba(196,164,76,.08) !important; }
+  tr.focus-row td:first-child { border-left: 3px solid var(--gold) !important; }
+  /* peer row in tables */
+  tr.peer-row td { background: rgba(0,32,91,.04) !important; }
+  /* spotlight empty state */
+  .spotlight-empty {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 320px; gap: 14px; text-align: center;
+  }
+  /* spotlight KPI compare */
+  .compare-kpi-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .compare-col {
+    background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--border); border-radius: 8px; padding: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  }
+  .compare-col.client-col { border-top-color: var(--gold); background: #FDFBF5; }
+  .compare-col-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; margin-bottom: 14px; }
+  .compare-col.client-col .compare-col-title { color: #9A7D2A; }
+  .compare-col:not(.client-col) .compare-col-title { color: var(--muted); }
+  .cmp-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+  .cmp-row:last-child { border-bottom: none; }
+  .cmp-lbl { color: var(--muted); font-size: 11px; }
+  .cmp-val { font-family: Consolas,monospace; font-weight: 600; }
+</style>
+</head>
+<body>
+<!-- HEADER -->
+<div id="header">
+  <div class="header-top">
+    <div class="brand">
+      <div class="brand-name">PFIC LATAM</div>
+      <div class="brand-sub">Insurance Intelligence</div>
+    </div>
+    <div class="view-pills" id="viewPills"></div>
+    <div class="header-right">
+      <div class="badge" id="periodBadge">—</div>
+      <div class="badge sm">USD millions</div>
+    </div>
+  </div>
+  <!-- FOCUS / CLIENT BAR -->
+  <div id="focus-bar">
+    <span class="focus-bar-label">Client</span>
+    <div id="focus-empty-wrap">
+      <select id="focus-ins-sel" class="focus-ins-sel">
+        <option value="">— Select focus insurer —</option>
+      </select>
+    </div>
+    <div id="focus-set-wrap" style="display:none;align-items:center;gap:8px;flex-wrap:wrap">
+      <div class="client-badge"><span class="client-badge-dot"></span><span id="focus-name-lbl">—</span></div>
+      <span style="font-size:10px;color:var(--muted);flex-shrink:0">Peers:</span>
+      <div id="focus-peers-chips" style="display:flex;gap:5px;flex-wrap:wrap"></div>
+      <button class="focus-clear-btn" onclick="clearFocusInsurer()">✕ Clear</button>
+    </div>
+    <div id="group-toggle-wrap" style="display:none;margin-left:auto;flex-shrink:0">
+      <button id="group-toggle-btn"
+        style="padding:5px 13px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.07);color:var(--muted);transition:all .18s"
+        onclick="toggleGroupMode(activeView)">Companies</button>
+    </div>
+  </div>
+  <div class="tab-bar" id="tabBar"></div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+  <div id="loading">
+    <div class="spinner"></div>
+    <div style="color:var(--muted);font-size:13px;">Loading portal context…</div>
+  </div>
+  <div id="content" style="display:none;"></div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   GLOBALS
+═══════════════════════════════════════════════════════════════ */
+let CTX = null;          // full portal_context.json
+let activeView = 'LATAM';
+let activeTab  = 0;
+const chartRegistry = {}; // key → Chart instance
+
+// Focus / Client state
+let focusInsurer = null;   // insurer object (from country_data[x].insurers)
+let focusPeers   = [];     // auto-computed peer insurers
+let focusCountry = null;   // country key while focus is active
+
+// Group-mode state: per country key → 'companies' | 'groups'
+const VIEW_MODES = {};
+
+function destroyChart(key) {
+  if (chartRegistry[key]) { chartRegistry[key].destroy(); delete chartRegistry[key]; }
+}
+function storeChart(key, instance) {
+  destroyChart(key);
+  chartRegistry[key] = instance;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FORMATTERS
+═══════════════════════════════════════════════════════════════ */
+const fmt = {
+  usd:  v => v == null ? '—' : Number(v).toLocaleString('en-US', {minimumFractionDigits:1,maximumFractionDigits:1}),
+  pct:  v => v == null ? '—' : (v*100).toFixed(1)+'%',
+  pct1: v => v == null ? '—' : (v*100).toFixed(1),   // numeric, no % sign
+  mult: v => v == null ? '—' : Number(v).toFixed(2)+'x',
+  num:  v => v == null ? '—' : Number(v).toLocaleString('en-US'),
+  val:  (v, unit) => {
+    if (v == null) return '—';
+    if (unit === '%') return fmt.pct(v);
+    if (unit === 'x') return fmt.mult(v);
+    return fmt.usd(v);
+  }
+};
+
+function deltaHtml(v) {
+  if (v == null) return '<span style="color:var(--muted)">—</span>';
+  const sign = v >= 0 ? '▲' : '▼';
+  const cls  = v >= 0 ? 'delta-pos' : 'delta-neg';
+  return `<span class="${cls}">${sign} ${Math.abs(v*100).toFixed(1)}%</span>`;
+}
+
+function metricLabel(key) {
+  if (!CTX || !CTX.metric_contract) return key;
+  const c = CTX.metric_contract.metric_catalog;
+  return (c && c[key]) ? c[key].label_en : key;
+}
+function metricUnit(key) {
+  if (!CTX || !CTX.metric_contract) return '';
+  const c = CTX.metric_contract.metric_catalog;
+  return (c && c[key]) ? c[key].unit : '';
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CHART DEFAULTS
+═══════════════════════════════════════════════════════════════ */
+Chart.defaults.color = '#6C757D';
+Chart.defaults.font.family = "'Segoe UI', Inter, sans-serif";
+Chart.defaults.font.size   = 11;
+
+const gridOpts = {
+  color: 'rgba(200,212,226,.7)',
+  drawBorder: false
+};
+const tickOpts = { color: '#6C757D', font: { size: 11 } };
+
+function baseScales(xLabel, yLabel) {
+  return {
+    x: { grid: gridOpts, ticks: tickOpts, title: xLabel ? {display:true,text:xLabel,color:'#6C757D'} : undefined },
+    y: { grid: gridOpts, ticks: tickOpts, title: yLabel ? {display:true,text:yLabel,color:'#6C757D'} : undefined }
+  };
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COUNTRY COLOR
+═══════════════════════════════════════════════════════════════ */
+function countryColor(key) {
+  try { return CTX.metadata.country_meta[key].color; } catch(e) { return '#58a6ff'; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS / CLIENT INSURER
+═══════════════════════════════════════════════════════════════ */
+const _exclName = n => n && (n.toUpperCase().includes('TOTAL DE MERCADO') || n.toUpperCase() === 'TOTALES');
+
+function _isGroupMode(key) {
+  return (VIEW_MODES[key] || 'companies') === 'groups';
+}
+
+function _countryInsurers(key) {
+  const data     = CTX.country_data?.[key];
+  const useGroups = _isGroupMode(key);
+  const list = (useGroups && data?.grouped_insurers?.length ? data.grouped_insurers : data?.insurers) || [];
+  return list
+    .filter(i => !i.is_market && (i.market_share == null || i.market_share < 0.49) && !_exclName(i.name))
+    .sort((a,b) => (b.metrics?.gwp_usd_mm||0) - (a.metrics?.gwp_usd_mm||0));
+}
+
+function _countryRankings(key) {
+  const data     = CTX.country_data?.[key];
+  const useGroups = _isGroupMode(key);
+  return (useGroups && data?.grouped_rankings && Object.keys(data.grouped_rankings).length)
+    ? data.grouped_rankings
+    : data?.rankings;
+}
+
+function _paintGroupToggle(key) {
+  const btn  = document.getElementById('group-toggle-btn');
+  if (!btn) return;
+  const isGrp = _isGroupMode(key);
+  btn.textContent   = isGrp ? 'Groups' : 'Companies';
+  btn.style.background   = isGrp ? 'rgba(196,164,76,.22)' : 'rgba(255,255,255,.07)';
+  btn.style.color        = isGrp ? 'var(--gold)'          : 'var(--muted)';
+  btn.style.borderColor  = isGrp ? 'rgba(196,164,76,.5)'  : 'rgba(255,255,255,.15)';
+}
+
+function toggleGroupMode(key) {
+  const cur = VIEW_MODES[key] || 'companies';
+  VIEW_MODES[key] = cur === 'companies' ? 'groups' : 'companies';
+  _paintGroupToggle(key);
+  clearFocusInsurer();
+  showFocusBar(key);
+  renderCountryTab(key, activeTab);
+}
+
+function computeSmartPeers(country, focusName) {
+  const all   = _countryInsurers(country).filter(i => i.name !== focusName);
+  const focus = _countryInsurers(country).find(i => i.name === focusName) ||
+                (CTX.country_data?.[country]?.insurers || []).find(i => i.name === focusName);
+  if (!focus || !all.length) return all.slice(0, 5);
+
+  const fGwp = focus.metrics?.gwp_usd_mm    || 1;
+  const fRet = focus.metrics?.retention_rate || 0.5;
+  const fLr  = focus.metrics?.loss_ratio_gross    || 0.5;
+  const fCr  = focus.metrics?.combined_ratio_gross || 1;
+
+  const scored = all.map(i => {
+    const gwpN = Math.abs(((i.metrics?.gwp_usd_mm || 0) - fGwp) / fGwp);
+    const retN = Math.abs((i.metrics?.retention_rate || 0) - fRet);
+    const lrN  = Math.abs((i.metrics?.loss_ratio_gross || 0) - fLr);
+    const crN  = Math.abs(((i.metrics?.combined_ratio_gross || 0) - fCr) / Math.max(fCr, 0.1));
+    return { ins: i, score: gwpN * 0.45 + retN * 0.15 + lrN * 0.2 + crN * 0.2 };
+  });
+  return scored.sort((a,b) => a.score - b.score).slice(0, 5).map(x => x.ins);
+}
+
+function setFocusInsurer(country, insName) {
+  if (!insName) { clearFocusInsurer(); return; }
+  const ins = _countryInsurers(country).find(i => i.name === insName);
+  if (!ins) return;
+  focusInsurer = ins;
+  focusPeers   = computeSmartPeers(country, insName);
+  focusCountry = country;
+  _paintFocusBar(country);
+  renderCountryTab(country, activeTab);
+}
+
+function clearFocusInsurer() {
+  const wasCountry = focusCountry;
+  focusInsurer = null;
+  focusPeers   = [];
+  focusCountry = null;
+  const sel = document.getElementById('focus-ins-sel');
+  if (sel) sel.value = '';
+  document.getElementById('focus-empty-wrap').style.display  = 'block';
+  document.getElementById('focus-set-wrap').style.display    = 'none';
+  if (wasCountry) renderCountryTab(wasCountry, activeTab);
+}
+
+function _paintFocusBar(country) {
+  const isFocusActive = focusInsurer && focusCountry === country;
+  document.getElementById('focus-empty-wrap').style.display = isFocusActive ? 'none'  : 'block';
+  document.getElementById('focus-set-wrap').style.display   = isFocusActive ? 'flex'  : 'none';
+  if (isFocusActive) {
+    document.getElementById('focus-name-lbl').textContent = focusInsurer.alias || focusInsurer.name;
+    const chips = document.getElementById('focus-peers-chips');
+    if (chips) chips.innerHTML = focusPeers.map(p =>
+      `<div class="peer-chip">${(p.alias || p.name).substring(0, 18)}</div>`
+    ).join('');
+  }
+}
+
+function showFocusBar(country) {
+  const bar = document.getElementById('focus-bar');
+  bar.style.display = 'flex';
+  // Populate dropdown
+  const ins = _countryInsurers(country);
+  const sel = document.getElementById('focus-ins-sel');
+  if (sel) {
+    sel.innerHTML = '<option value="">— Select focus insurer —</option>' +
+      ins.map(i => `<option value="${i.name.replace(/"/g,'&quot;')}">${(i.alias || i.name).substring(0,50)}</option>`).join('');
+    if (focusInsurer && focusCountry === country) sel.value = focusInsurer.name;
+    sel.onchange = function() { setFocusInsurer(country, this.value || null); };
+  }
+  // If a focus insurer is already set for another country, clear it
+  if (focusInsurer && focusCountry !== country) clearFocusInsurer();
+  _paintFocusBar(country);
+  // Show/hide group toggle depending on whether group data exists
+  const toggleWrap = document.getElementById('group-toggle-wrap');
+  if (toggleWrap) {
+    const hasGroups = !!(CTX?.country_data?.[country]?.grouped_insurers?.length);
+    toggleWrap.style.display = hasGroups ? 'flex' : 'none';
+    if (hasGroups) _paintGroupToggle(country);
+  }
+}
+
+function hideFocusBar() {
+  document.getElementById('focus-bar').style.display = 'none';
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LOAD & BOOT
+═══════════════════════════════════════════════════════════════ */
+fetch('./portal_context.json')
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(data => {
+    CTX = data;
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    document.getElementById('periodBadge').textContent = CTX.metadata.period;
+    buildViewPills();
+    selectView('LATAM');
+  })
+  .catch(err => {
+    document.getElementById('loading').innerHTML =
+      `<div style="color:var(--red);font-size:14px;">Failed to load portal_context.json<br><small style="color:var(--muted)">${err}</small><br><small style="color:var(--muted);margin-top:8px;display:block;">Serve this file over HTTP (e.g. python -m http.server)</small></div>`;
+  });
+
+/* ═══════════════════════════════════════════════════════════════
+   VIEW PILLS
+═══════════════════════════════════════════════════════════════ */
+function buildViewPills() {
+  const views = CTX.views ? CTX.views.available : ['LATAM','AR','CL','CO','EC','MX','PE'];
+  const wrap = document.getElementById('viewPills');
+  wrap.innerHTML = '';
+  views.forEach(v => {
+    const btn = document.createElement('button');
+    btn.className = 'view-pill' + (v === activeView ? ' active' : '');
+    btn.textContent = v;
+    btn.onclick = () => selectView(v);
+    wrap.appendChild(btn);
+  });
+  // Audit pill
+  const auditBtn = document.createElement('button');
+  auditBtn.className = 'view-pill audit-pill';
+  auditBtn.textContent = '⊞ Audit';
+  auditBtn.style.cssText = 'border-color:var(--gold);color:var(--gold)';
+  auditBtn.onclick = () => renderAuditView();
+  wrap.appendChild(auditBtn);
+}
+
+function selectView(v) {
+  activeView = v;
+  activeTab  = 0;
+  document.querySelectorAll('.view-pill').forEach(b => b.classList.toggle('active', b.textContent === v));
+  document.querySelector('.audit-pill')?.classList.remove('active');
+  Object.keys(chartRegistry).forEach(k => destroyChart(k));
+  if (v === 'LATAM') { hideFocusBar(); renderLatamView(); }
+  else renderCountryView(v);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TAB BAR
+═══════════════════════════════════════════════════════════════ */
+function buildTabBar(tabs) {
+  const bar = document.getElementById('tabBar');
+  bar.innerHTML = '';
+  tabs.forEach((t, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i === activeTab ? ' active' : '');
+    btn.textContent = t;
+    btn.onclick = () => selectTab(i, tabs);
+    bar.appendChild(btn);
+  });
+}
+
+function selectTab(i, tabs) {
+  activeTab = i;
+  document.querySelectorAll('.tab-btn').forEach((b,j) => b.classList.toggle('active', j===i));
+  if (activeView === 'LATAM') renderLatamTab(i);
+  else renderCountryTab(activeView, i);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ██  LATAM VIEW
+═══════════════════════════════════════════════════════════════ */
+const LATAM_TABS = ['Market Overview', 'Country Trends', 'LoB Mix by Country'];
+
+function renderLatamView() {
+  buildTabBar(LATAM_TABS);
+  renderLatamTab(0);
+}
+
+function renderLatamTab(i) {
+  Object.keys(chartRegistry).forEach(k => destroyChart(k));
+  const el = document.getElementById('content');
+  if (i === 0) el.innerHTML = latamOverviewHTML();
+  else if (i === 1) el.innerHTML = latamTrendsHTML();
+  else if (i === 2) el.innerHTML = latamLobHTML();
+
+  setTimeout(() => {
+    if (i === 0) latamOverviewCharts();
+    else if (i === 1) latamTrendsCharts();
+    else if (i === 2) latamLobCharts();
+  });
+}
+
+/* ── LATAM TAB 1: Market Overview ── */
+function latamOverviewHTML() {
+  return `
+  <div class="grid-2 mb-20">
+    <div class="card">
+      <div class="card-title">GWP by Country (USD mm)</div>
+      <div class="chart-wrap" style="height:280px"><canvas id="ch_gwpBar"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">LATAM GWP Mix</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="ch_gwpDonut"></canvas></div>
+      <div class="donut-legend" id="donutLegend"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Country Comparison — ${CTX.metadata.period}</div>
+    <div class="tbl-wrap" id="latamCompTable"></div>
+  </div>`;
+}
+
+function latamOverviewCharts() {
+  const countries = [...(CTX.region.countries || [])].sort((a,b) => (b.metrics?.gwp_usd_mm||0)-(a.metrics?.gwp_usd_mm||0));
+  const labels = countries.map(c => c.name || c.key);
+  const gwps   = countries.map(c => c.metrics?.gwp_usd_mm || 0);
+  const shares = countries.map(c => c.latam_share || 0);
+  const colors = countries.map(c => countryColor(c.key));
+
+  // Horizontal bar
+  const ctxBar = document.getElementById('ch_gwpBar');
+  if (ctxBar) {
+    storeChart('gwpBar', new Chart(ctxBar, {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [{
+          data: gwps,
+          backgroundColor: colors.map(c => c+'cc'),
+          borderColor: colors,
+          borderWidth: 1,
+          borderRadius: 4,
+          label: 'GWP USD mm'
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const i = ctx.dataIndex;
+                return ` ${fmt.usd(ctx.parsed.x)} mm  |  ${fmt.pct(shares[i])} of LATAM`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: { grid: gridOpts, ticks: tickOpts },
+          y: { grid: { display: false }, ticks: { ...tickOpts, font: { size: 12, weight: '500' } } }
+        }
+      }
+    }));
+  }
+
+  // Donut
+  const ctxDonut = document.getElementById('ch_gwpDonut');
+  if (ctxDonut) {
+    storeChart('gwpDonut', new Chart(ctxDonut, {
+      type: 'doughnut',
+      data: { labels, datasets: [{ data: gwps, backgroundColor: colors, borderWidth: 1, borderColor: '#ffffff', hoverOffset: 6 }] },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        cutout: '62%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` ${fmt.usd(ctx.parsed)} mm (${fmt.pct(shares[ctx.dataIndex])})`
+            }
+          }
+        }
+      }
+    }));
+    const leg = document.getElementById('donutLegend');
+    if (leg) {
+      leg.innerHTML = labels.map((l,i) =>
+        `<div class="legend-item"><div class="legend-dot" style="background:${colors[i]}"></div>${l} ${fmt.pct(shares[i])}</div>`
+      ).join('');
+    }
+  }
+
+  // Table
+  const tbl = document.getElementById('latamCompTable');
+  if (tbl) {
+    const cols = ['gwp_usd_mm','retention_rate','loss_ratio_gross','combined_ratio_gross','technical_margin'];
+    const heads = cols.map(k => metricLabel(k) || k);
+    tbl.innerHTML = `<table>
+      <thead><tr>
+        <th>Country</th>
+        ${heads.map(h=>`<th>${h}</th>`).join('')}
+      </tr></thead>
+      <tbody>
+        ${countries.map(c => {
+          const m = c.metrics || {};
+          return `<tr>
+            <td><span class="cdot" style="background:${countryColor(c.key)}"></span>${c.name||c.key}</td>
+            <td>${fmt.usd(m.gwp_usd_mm)}</td>
+            <td>${fmt.pct(m.retention_rate)}</td>
+            <td>${fmt.pct(m.loss_ratio_gross)}</td>
+            <td>${fmt.pct(m.combined_ratio_gross)}</td>
+            <td>${fmt.pct(m.technical_margin)}</td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>`;
+  }
+}
+
+/* ── LATAM TAB 2: Country Trends ── */
+function latamTrendsHTML() {
+  return `
+  <div class="card mb-20">
+    <div class="card-title">GWP Trend by Country (USD mm)</div>
+    <div class="chart-wrap" style="height:280px"><canvas id="ch_gwpTrend"></canvas></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Retention Rate Trend</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="ch_retTrend"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Loss Ratio (Gross) Trend</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="ch_lrTrend"></canvas></div>
+    </div>
+  </div>`;
+}
+
+function latamTrendsCharts() {
+  const history = CTX.region.annual_history || [];
+  const years   = history.map(h => h.year);
+  const keys    = CTX.metadata.available_countries || [];
+
+  function buildDatasets(metricFn) {
+    return keys.map(key => {
+      const color = countryColor(key);
+      return {
+        label: CTX.metadata.country_meta[key]?.name || key,
+        data: history.map(h => {
+          const c = (h.countries||[]).find(x => x.key === key);
+          return c ? metricFn(c) : null;
+        }),
+        borderColor: color,
+        backgroundColor: color+'22',
+        tension: .35,
+        spanGaps: true,
+        pointRadius: 3,
+        fill: false
+      };
+    });
+  }
+
+  function makeLine(canvasId, datasets, yPct, storeKey) {
+    const el = document.getElementById(canvasId);
+    if (!el) return;
+    storeChart(storeKey, new Chart(el, {
+      type: 'line',
+      data: { labels: years, datasets },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+        scales: {
+          x: { grid: gridOpts, ticks: tickOpts },
+          y: {
+            grid: gridOpts, ticks: {
+              ...tickOpts,
+              callback: v => yPct ? fmt.pct1(v)+'%' : fmt.usd(v)
+            }
+          }
+        }
+      }
+    }));
+  }
+
+  makeLine('ch_gwpTrend',  buildDatasets(c => c.metrics?.gwp_usd_mm),       false, 'gwpTrend');
+  makeLine('ch_retTrend',  buildDatasets(c => c.metrics?.retention_rate),    true,  'retTrend');
+  makeLine('ch_lrTrend',   buildDatasets(c => c.metrics?.loss_ratio_gross),  true,  'lrTrend');
+}
+
+/* ── LATAM TAB 3: LoB Mix ── */
+function latamLobHTML() {
+  return `
+  <div class="card">
+    <div class="card-title">GWP Mix by Line of Business (current year)</div>
+    <div class="chart-wrap" style="height:360px"><canvas id="ch_lobMix"></canvas></div>
+  </div>`;
+}
+
+function latamLobCharts() {
+  const keys = CTX.metadata.available_countries || [];
+  const allLobs = new Set();
+  keys.forEach(k => {
+    const lobs = CTX.country_data?.[k]?.lob_analysis?.lobs || [];
+    lobs.forEach(l => allLobs.add(l.lob_key));
+  });
+  const lobList = [...allLobs];
+  const lobColors = ['#58a6ff','#40d19b','#f0b84d','#ff5f67','#8b7cff','#4ecdc4','#ff9f43'];
+
+  const datasets = lobList.map((lob, li) => ({
+    label: lob,
+    data: keys.map(k => {
+      const lobs = CTX.country_data?.[k]?.lob_analysis?.lobs || [];
+      const found = lobs.find(l => l.lob_key === lob);
+      return found ? (found.market_mix || 0) * 100 : 0;
+    }),
+    backgroundColor: lobColors[li % lobColors.length] + 'cc',
+    borderColor: lobColors[li % lobColors.length],
+    borderWidth: 1,
+    borderRadius: 3
+  }));
+
+  const el = document.getElementById('ch_lobMix');
+  if (!el) return;
+  storeChart('lobMix', new Chart(el, {
+    type: 'bar',
+    data: {
+      labels: keys.map(k => CTX.metadata.country_meta[k]?.name || k),
+      datasets
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } },
+      scales: {
+        x: { stacked: true, grid: { display: false }, ticks: tickOpts },
+        y: { stacked: true, grid: gridOpts, ticks: { ...tickOpts, callback: v => v+'%' }, max: 100 }
+      }
+    }
+  }));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ██  COUNTRY VIEW
+═══════════════════════════════════════════════════════════════ */
+const COUNTRY_TABS = ['Client Spotlight', 'Rankings', 'Market Overview', 'Underwriting', 'LoB Analysis', 'Company Comparison', 'ROE Tree', 'Peer Matrix', 'Reinsurance', 'Expense Anatomy', 'Reserves & Solvency', 'Financial Result'];
+
+function renderCountryView(key) {
+  showFocusBar(key);
+  buildTabBar(COUNTRY_TABS);
+  renderCountryTab(key, 0);
+}
+
+function renderCountryTab(key, i) {
+  Object.keys(chartRegistry).forEach(k => destroyChart(k));
+  const el = document.getElementById('content');
+  if (i === 0) { el.innerHTML = clientSpotlightHTML(key);    setTimeout(() => clientSpotlightCharts(key)); }
+  if (i === 1) { el.innerHTML = countryRankingsHTML(key);    setTimeout(() => countryRankingsCharts(key)); }
+  if (i === 2) { el.innerHTML = countryOverviewHTML(key);    setTimeout(() => countryOverviewCharts(key)); }
+  if (i === 3) { el.innerHTML = countryUnderwritingHTML(key);setTimeout(() => countryUnderwritingCharts(key)); }
+  if (i === 4) { el.innerHTML = countryLobHTML(key);         setTimeout(() => countryLobCharts(key)); }
+  if (i === 5) { el.innerHTML = countryCompHTML(key);        setTimeout(() => countryCompCharts(key)); }
+  if (i === 6) { el.innerHTML = countryRoeHTML(key);              setTimeout(() => countryRoeCharts(key)); }
+  if (i === 7) { el.innerHTML = countryPeerHTML(key);             setTimeout(() => countryPeerCharts(key)); }
+  if (i === 8) { el.innerHTML = countryReinsuranceHTML(key);      setTimeout(() => countryReinsuranceCharts(key)); }
+  if (i === 9) { el.innerHTML = countryExpenseHTML(key);          setTimeout(() => countryExpenseCharts(key)); }
+  if (i === 10){ el.innerHTML = countryReservesHTML(key);         setTimeout(() => countryReservesCharts(key)); }
+  if (i === 11){ el.innerHTML = countryFinancialHTML(key);        setTimeout(() => countryFinancialCharts(key)); }
+}
+
+/* ── COUNTRY TAB 0: Client Spotlight ── */
+function clientSpotlightHTML(key) {
+  if (!focusInsurer || focusCountry !== key) {
+    return `<div class="spotlight-empty">
+      <div style="font-size:40px;color:var(--border)">⊙</div>
+      <div style="font-size:16px;color:var(--muted);font-weight:600">No focus insurer selected</div>
+      <div style="font-size:12px;color:var(--muted);max-width:360px;line-height:1.6">
+        Use the <strong style="color:var(--gold)">Client</strong> bar above to pick an insurer.
+        The dashboard will compare it to auto-selected peers and the market.
+      </div>
+    </div>`;
+  }
+  const data = CTX.country_data?.[key];
+  const mkt  = data?.market?.metrics || {};
+  const fi   = focusInsurer;
+  const fm   = fi.metrics || {};
+  const countryName = CTX.metadata?.country_meta?.[key]?.name || key;
+
+  // Peer average helper
+  const peerAvg = k => {
+    const vals = focusPeers.map(p => p.metrics?.[k] ?? p[k] ?? null).filter(v => v != null);
+    return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+  };
+  const peerAvgYoy = () => {
+    const vals = focusPeers.map(p => p.gwp_yoy ?? null).filter(v => v != null);
+    return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+  };
+
+  const CMP_METRICS = [
+    { k:'gwp_usd_mm',           lbl:'GWP',              t:'usd', yoy: fi.gwp_yoy },
+    { k:'market_share',         lbl:'Market Share',     t:'pct', special:'mshare' },
+    { k:'retention_rate',       lbl:'Retention Rate',   t:'pct' },
+    { k:'combined_ratio_gross', lbl:'Combined Ratio',   t:'pct', lb:true },
+    { k:'loss_ratio_gross',     lbl:'Loss Ratio',       t:'pct', lb:true },
+    { k:'technical_margin',     lbl:'Technical Margin', t:'pct' },
+    { k:'roe',                  lbl:'ROE',              t:'pct' },
+    { k:'net_income_usd_mm',    lbl:'Net Income',       t:'usd' },
+  ];
+
+  const fmtV = (v, t) => {
+    if (v == null) return '—';
+    if (t === 'pct') return (v*100).toFixed(1)+'%';
+    if (t === 'usd') return v>=1000?(v/1000).toFixed(1)+'B':v.toFixed(0)+' M';
+    return String(v);
+  };
+  const colorV = (fv, mv, lb) => {
+    if (fv==null||mv==null) return 'var(--text)';
+    const better = lb ? fv < mv : fv > mv;
+    const thr = Math.abs(mv||0)*0.04 + 0.005;
+    if (Math.abs(fv-mv) < thr) return 'var(--text)';
+    return better ? '#40d19b' : '#ff5f67';
+  };
+
+  const makeCol = (title, getVal, isClient, isMkt) => {
+    const rows = CMP_METRICS.map(m => {
+      const raw = m.special === 'mshare' ? (isClient ? fi.market_share : null) : getVal(m.k);
+      const mktV = m.special === 'mshare' ? null : (mkt[m.k] ?? null);
+      const col = isClient && !isMkt ? colorV(raw, mktV, m.lb) : isMkt ? 'var(--gold)' : 'var(--muted)';
+      return `<div class="cmp-row">
+        <span class="cmp-lbl">${m.lbl}</span>
+        <span class="cmp-val" style="color:${col}">${fmtV(raw, m.t)}</span>
+      </div>`;
+    }).join('');
+    return `<div class="compare-col${isClient?' client-col':''}">
+      <div class="compare-col-title">${title}</div>
+      ${rows}
+    </div>`;
+  };
+
+  const rank = (() => {
+    const sorted = _countryInsurers(key).sort((a,b)=>(b.metrics?.gwp_usd_mm||0)-(a.metrics?.gwp_usd_mm||0));
+    const idx = sorted.findIndex(i=>i.name===fi.name);
+    return idx >= 0 ? idx+1 : null;
+  })();
+
+  const peersTableRows = focusPeers.map((p, idx) => {
+    const gwpDiff = (p.metrics?.gwp_usd_mm && fm.gwp_usd_mm)
+      ? ((p.metrics.gwp_usd_mm - fm.gwp_usd_mm)/fm.gwp_usd_mm*100).toFixed(0)+'%' : '—';
+    return `<tr>
+      <td style="color:var(--accent);font-weight:600">#${idx+1}</td>
+      <td>${p.alias||p.name}</td>
+      <td>${fmtV(p.metrics?.gwp_usd_mm,'usd')}</td>
+      <td style="font-size:10px;color:var(--muted)">${gwpDiff} vs client</td>
+      <td>${fmtV(p.metrics?.combined_ratio_gross,'pct')}</td>
+      <td>${fmtV(p.metrics?.roe,'pct')}</td>
+    </tr>`;
+  }).join('');
+
+  return `
+  <!-- Client header -->
+  <div class="card mb-20" style="border-color:rgba(240,184,77,.35);background:rgba(240,184,77,.03)">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+      <div>
+        <div style="font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Client Focus — ${countryName}</div>
+        <div style="font-size:20px;font-weight:700;color:var(--text)">${fi.alias||fi.name}</div>
+        ${rank ? `<div style="font-size:11px;color:var(--muted);margin-top:3px">Rank #${rank} by GWP · ${fmtV(fi.market_share,'pct')} market share</div>` : ''}
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,auto);gap:6px 24px">
+        <div><div style="font-size:10px;color:var(--muted)">GWP</div><div style="font-family:Consolas,monospace;font-size:15px;font-weight:700">${fmtV(fm.gwp_usd_mm,'usd')}</div></div>
+        <div><div style="font-size:10px;color:var(--muted)">Combined Ratio</div><div style="font-family:Consolas,monospace;font-size:15px;font-weight:700;color:${colorV(fm.combined_ratio_gross,mkt.combined_ratio_gross,true)}">${fmtV(fm.combined_ratio_gross,'pct')}</div></div>
+        <div><div style="font-size:10px;color:var(--muted)">ROE</div><div style="font-family:Consolas,monospace;font-size:15px;font-weight:700;color:${colorV(fm.roe,mkt.roe,false)}">${fmtV(fm.roe,'pct')}</div></div>
+        <div><div style="font-size:10px;color:var(--muted)">Net Income</div><div style="font-family:Consolas,monospace;font-size:15px;font-weight:700">${fmtV(fm.net_income_usd_mm,'usd')}</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI Compare: Client | Peer Avg | Market -->
+  <div class="compare-kpi-grid">
+    ${makeCol(fi.alias||fi.name, k => fm[k], true, false)}
+    ${makeCol('Peer Average', k => peerAvg(k), false, false)}
+    ${makeCol('Market — '+countryName, k => mkt[k], false, true)}
+  </div>
+
+  <!-- Metric bars + Peer table -->
+  <div class="grid-2 mb-20">
+    <div class="card">
+      <div class="card-title">Key Ratios — Client vs Peer Avg vs Market</div>
+      <div style="height:280px"><canvas id="ch_spotlight_bars"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Auto-Selected Peers <span style="font-size:10px;color:var(--muted);font-weight:400">(by size &amp; underwriting similarity)</span></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr>
+            <th style="text-align:left">#</th>
+            <th style="text-align:left">Company</th>
+            <th>GWP</th><th>vs Client</th><th>Comb. Ratio</th><th>ROE</th>
+          </tr></thead>
+          <tbody>${peersTableRows}</tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Positioning scatter -->
+  <div class="card">
+    <div class="card-title">Market Positioning — GWP Size vs Combined Ratio</div>
+    <div style="font-size:11px;color:var(--muted);margin-bottom:10px">
+      <span style="color:var(--gold)">●</span> Client &nbsp;
+      <span style="color:var(--accent)">●</span> Auto-peers &nbsp;
+      <span style="color:rgba(142,161,192,.4)">●</span> Other companies
+    </div>
+    <div style="height:320px"><canvas id="ch_spotlight_scatter"></canvas></div>
+  </div>`;
+}
+
+function clientSpotlightCharts(key) {
+  if (!focusInsurer || focusCountry !== key) return;
+  const data = CTX.country_data?.[key];
+  const mkt  = data?.market?.metrics || {};
+  const fm   = focusInsurer.metrics || {};
+
+  const peerAvg = k => {
+    const vals = focusPeers.map(p=>p.metrics?.[k]??null).filter(v=>v!=null);
+    return vals.length ? vals.reduce((a,b)=>a+b,0)/vals.length : null;
+  };
+
+  // ── Bar chart: 6 ratios, 3 datasets ──────────────────────────
+  const BAR_M = [
+    { k:'retention_rate',       lbl:'Retention',      lb:false },
+    { k:'loss_ratio_gross',     lbl:'Loss Ratio',     lb:true  },
+    { k:'net_acq_cost_ratio',   lbl:'Acq. Cost',      lb:true  },
+    { k:'admin_expense_ratio',  lbl:'Admin',          lb:true  },
+    { k:'combined_ratio_gross', lbl:'Combined Ratio', lb:true  },
+    { k:'technical_margin',     lbl:'Tech. Margin',   lb:false },
+    { k:'roe',                  lbl:'ROE',            lb:false },
+  ];
+  const toP = v => v != null ? +(v*100).toFixed(2) : null;
+  const el1 = document.getElementById('ch_spotlight_bars');
+  if (el1) storeChart('spotBars', new Chart(el1, {
+    type: 'bar',
+    data: {
+      labels: BAR_M.map(m=>m.lbl),
+      datasets: [
+        { label: focusInsurer.alias||focusInsurer.name, data: BAR_M.map(m=>toP(fm[m.k])),           backgroundColor:'rgba(240,184,77,.7)', borderColor:'#f0b84d', borderWidth:1, borderRadius:3 },
+        { label: 'Peer Avg',                            data: BAR_M.map(m=>toP(peerAvg(m.k))),      backgroundColor:'rgba(88,166,255,.45)', borderColor:'#58a6ff', borderWidth:1, borderRadius:3 },
+        { label: 'Market',                              data: BAR_M.map(m=>toP(mkt[m.k])),           backgroundColor:'rgba(64,209,155,.3)',  borderColor:'#40d19b', borderWidth:1, borderRadius:3 },
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales: {
+        x: { grid:{display:false}, ticks:tickOpts },
+        y: { grid:gridOpts, ticks:{ ...tickOpts, callback:v=>v+'%' } }
+      }
+    }
+  }));
+
+  // ── Scatter: positioning chart ────────────────────────────────
+  const allIns = _countryInsurers(key);
+  const peerNames = new Set(focusPeers.map(p=>p.name));
+
+  const otherPts = allIns
+    .filter(i => i.name !== focusInsurer.name && !peerNames.has(i.name) && i.metrics?.gwp_usd_mm && i.metrics?.combined_ratio_gross)
+    .map(i => ({ x: i.metrics.gwp_usd_mm, y: +(i.metrics.combined_ratio_gross*100).toFixed(2), r: Math.max(3, Math.sqrt(i.metrics.gwp_usd_mm/50)), label: i.alias||i.name }));
+
+  const peerPts = focusPeers
+    .filter(i => i.metrics?.gwp_usd_mm && i.metrics?.combined_ratio_gross)
+    .map(i => ({ x: i.metrics.gwp_usd_mm, y: +(i.metrics.combined_ratio_gross*100).toFixed(2), r: Math.max(5, Math.sqrt(i.metrics.gwp_usd_mm/50)), label: i.alias||i.name }));
+
+  const clientPt = fm.gwp_usd_mm && fm.combined_ratio_gross ? [{
+    x: fm.gwp_usd_mm,
+    y: +(fm.combined_ratio_gross*100).toFixed(2),
+    r: Math.max(8, Math.sqrt(fm.gwp_usd_mm/50)),
+    label: focusInsurer.alias||focusInsurer.name
+  }] : [];
+
+  const el2 = document.getElementById('ch_spotlight_scatter');
+  if (el2) storeChart('spotScatter', new Chart(el2, {
+    type: 'bubble',
+    data: {
+      datasets: [
+        { label:'Other companies', data:otherPts, backgroundColor:'rgba(142,161,192,.22)', borderColor:'rgba(142,161,192,.4)', borderWidth:1 },
+        { label:'Peers',           data:peerPts,  backgroundColor:'rgba(88,166,255,.4)',   borderColor:'#58a6ff', borderWidth:2 },
+        { label:focusInsurer.alias||focusInsurer.name, data:clientPt, backgroundColor:'rgba(240,184,77,.8)', borderColor:'#f0b84d', borderWidth:2 },
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: {
+        legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } },
+        tooltip:{
+          callbacks:{
+            label: ctx => {
+              const d = ctx.raw;
+              return ` ${d.label}  |  GWP: ${d.x?.toFixed(0)} M  |  CR: ${d.y?.toFixed(1)}%`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid:gridOpts, ticks:tickOpts, title:{ display:true, text:'GWP (USD MM)', color:'#6C757D' } },
+        y: { grid:gridOpts, ticks:{ ...tickOpts, callback:v=>v+'%' }, title:{ display:true, text:'Combined Ratio', color:'#6C757D' } }
+      }
+    }
+  }));
+}
+
+/* ── COUNTRY TAB 1: Rankings ── */
+function countryRankingsHTML(key) {
+  const data = CTX.country_data?.[key];
+  if (!data) return '<div style="color:var(--muted);padding:40px">No data available.</div>';
+  const insurers = _countryInsurers(key).slice(0, 25);
+  const modeLabel = _isGroupMode(key) ? 'Groups' : 'Companies';
+  return `
+  <div class="card mb-20">
+    <div class="card-title">Top 25 ${modeLabel} by GWP — ${CTX.metadata.country_meta[key]?.name || key}</div>
+    <div class="chart-wrap" style="height:${Math.max(240, insurers.length * 22)}px"><canvas id="ch_rankBar"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Rankings Table</div>
+    <div class="scroll-table-wrap tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>#</th><th>Company</th>
+          <th>GWP (USD mm)</th><th>Market Share</th><th>Retention Rate</th>
+        </tr></thead>
+        <tbody>
+          ${insurers.map((ins,i) => {
+            const isFocus = focusInsurer && focusCountry === key && ins.name === focusInsurer.name;
+            const isPeer  = !isFocus && focusPeers.some(p => p.name === ins.name);
+            const rowCls  = isFocus ? 'focus-row' : isPeer ? 'peer-row' : '';
+            const focusBadge = isFocus ? ' <span style="font-size:9px;background:rgba(240,184,77,.18);color:var(--gold);border-radius:4px;padding:1px 5px;font-weight:700;letter-spacing:.04em">CLIENT</span>' : isPeer ? ' <span style="font-size:9px;background:rgba(88,166,255,.12);color:var(--accent);border-radius:4px;padding:1px 5px">PEER</span>' : '';
+            return `<tr class="${rowCls}">
+              <td class="rank-num">${i+1}</td>
+              <td>${ins.name || ins.alias || '—'}${focusBadge}</td>
+              <td>${fmt.usd(ins.metrics?.gwp_usd_mm)}</td>
+              <td>${fmt.pct(ins.market_share)}</td>
+              <td>${fmt.pct(ins.metrics?.retention_rate)}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+}
+
+function countryRankingsCharts(key) {
+  const data = CTX.country_data?.[key];
+  if (!data) return;
+  const insurers = _countryInsurers(key).slice(0, 25);
+  const color    = countryColor(key);
+  const el       = document.getElementById('ch_rankBar');
+  if (!el) return;
+  storeChart('rankBar', new Chart(el, {
+    type: 'bar',
+    data: {
+      labels: insurers.map(i => i.alias || i.name),
+      datasets: [{
+        data: insurers.map(i => i.metrics?.gwp_usd_mm || 0),
+        backgroundColor: color+'bb',
+        borderColor: color,
+        borderWidth: 1, borderRadius: 4, label: 'GWP USD mm'
+      }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${fmt.usd(ctx.parsed.x)} mm  (${fmt.pct(insurers[ctx.dataIndex]?.market_share)} share)`
+          }
+        }
+      },
+      scales: {
+        x: { grid: gridOpts, ticks: tickOpts },
+        y: { grid: { display: false }, ticks: { ...tickOpts, font: { size: 11 } } }
+      }
+    }
+  }));
+}
+
+/* ── COUNTRY TAB 2: Market Overview ── */
+function countryOverviewHTML(key) {
+  const data    = CTX.country_data?.[key];
+  const m       = data?.market?.metrics || {};
+  const meta    = CTX.metadata.country_meta[key] || {};
+  const nIns    = data?.annual_history?.slice(-1)[0]?.market?.n_insurers;
+  return `
+  <div class="grid-kpi mb-20">
+    <div class="kpi"><div class="kpi-label">Total GWP</div><div class="kpi-value">${fmt.usd(m.gwp_usd_mm)}</div><div class="kpi-sub">USD millions</div></div>
+    <div class="kpi"><div class="kpi-label">Insurers</div><div class="kpi-value">${nIns != null ? nIns : '—'}</div><div class="kpi-sub">active companies</div></div>
+    <div class="kpi"><div class="kpi-label">Retention Rate</div><div class="kpi-value">${fmt.pct(m.retention_rate)}</div></div>
+    <div class="kpi"><div class="kpi-label">Loss Ratio</div><div class="kpi-value">${fmt.pct(m.loss_ratio_gross)}</div><div class="kpi-sub">gross</div></div>
+    <div class="kpi"><div class="kpi-label">Combined Ratio</div><div class="kpi-value">${fmt.pct(m.combined_ratio_gross)}</div>${m.loss_ratio_gross==null?'<div class="kpi-sub" style="color:var(--gold)">⚠ excl. loss ratio (CNSF)</div>':''}</div>
+    <div class="kpi"><div class="kpi-label">Technical Margin</div><div class="kpi-value" style="color:${m.technical_margin==null?'var(--muted)':m.technical_margin>=0?'var(--green)':'var(--red)'}">${fmt.pct(m.technical_margin)}</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">GWP Trend</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="ch_gwpOv"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Claims &amp; Loss Ratio Trend</div>
+      <div class="chart-wrap" style="height:240px"><canvas id="ch_claimsOv"></canvas></div>
+    </div>
+  </div>`;
+}
+
+function countryOverviewCharts(key) {
+  const hist  = (CTX.country_data?.[key]?.annual_history || []);
+  const years = hist.map(h => h.year);
+  const color = countryColor(key);
+
+  // GWP + retention line
+  const gwpGross = hist.map(h => h.market?.metrics?.gwp_usd_mm || null);
+  const gwpNet   = hist.map(h => {
+    const m = h.market?.metrics;
+    return (m?.gwp_usd_mm && m?.retention_rate) ? m.gwp_usd_mm * m.retention_rate : null;
+  });
+  const retRate  = hist.map(h => h.market?.metrics?.retention_rate || null);
+
+  const el1 = document.getElementById('ch_gwpOv');
+  if (el1) storeChart('gwpOv', new Chart(el1, {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [
+        { type:'bar',  label:'Gross GWP',   data: gwpGross, backgroundColor: color+'88', borderColor: color, borderWidth:1, borderRadius:3, yAxisID:'yGwp' },
+        { type:'bar',  label:'Net Retained',data: gwpNet,   backgroundColor: color+'44', borderColor: color+'88', borderWidth:1, borderRadius:3, yAxisID:'yGwp' },
+        { type:'line', label:'Retention %', data: retRate,  borderColor:'#f0b84d', backgroundColor:'transparent', tension:.3, pointRadius:3, yAxisID:'yPct', spanGaps:true }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales: {
+        x: { grid:gridOpts, ticks:tickOpts },
+        yGwp: { grid:gridOpts, ticks:tickOpts, position:'left' },
+        yPct: { grid:{display:false}, ticks:{ ...tickOpts, callback:v=>fmt.pct1(v)+'%' }, position:'right', max:1, min:0 }
+      }
+    }
+  }));
+
+  // Claims & LR
+  const claims = hist.map(h => {
+    const m = h.market?.metrics;
+    return (m?.gwp_usd_mm && m?.loss_ratio_gross) ? m.gwp_usd_mm * m.loss_ratio_gross : null;
+  });
+  const lr = hist.map(h => h.market?.metrics?.loss_ratio_gross || null);
+
+  const el2 = document.getElementById('ch_claimsOv');
+  if (el2) storeChart('claimsOv', new Chart(el2, {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [
+        { type:'bar',  label:'Claims USD mm', data: claims, backgroundColor:'#ff5f6788', borderColor:'#ff5f67', borderWidth:1, borderRadius:3, yAxisID:'yCl' },
+        { type:'line', label:'Loss Ratio %',  data: lr,     borderColor:'#f0b84d', backgroundColor:'transparent', tension:.3, pointRadius:3, yAxisID:'yPct', spanGaps:true }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales: {
+        x: { grid:gridOpts, ticks:tickOpts },
+        yCl:  { grid:gridOpts, ticks:tickOpts, position:'left' },
+        yPct: { grid:{display:false}, ticks:{ ...tickOpts, callback:v=>fmt.pct1(v)+'%' }, position:'right', max:1, min:0 }
+      }
+    }
+  }));
+}
+
+/* ── COUNTRY TAB 3: Underwriting ── */
+function countryUnderwritingHTML(key) {
+  return `
+  <div class="card mb-20">
+    <div class="card-title">Combined Ratio Breakdown</div>
+    <div class="chart-wrap" style="height:280px"><canvas id="ch_combined"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Technical Result &amp; Margin</div>
+    <div class="chart-wrap" style="height:240px"><canvas id="ch_techResult"></canvas></div>
+  </div>`;
+}
+
+function countryUnderwritingCharts(key) {
+  const hist  = CTX.country_data?.[key]?.annual_history || [];
+  const years = hist.map(h => h.year);
+  const color = countryColor(key);
+
+  const _pct  = (v) => v != null ? v * 100 : null;
+  const lossR = hist.map(h => _pct(h.market?.metrics?.loss_ratio_gross));
+  const commR = hist.map(h => _pct(h.market?.metrics?.net_acq_cost_ratio ?? h.market?.metrics?.commission_ratio));
+  const admR  = hist.map(h => _pct(h.market?.metrics?.admin_expense_ratio));
+  const combR = hist.map(h => _pct(h.market?.metrics?.combined_ratio_gross));
+
+  const el1 = document.getElementById('ch_combined');
+  if (el1) storeChart('combined', new Chart(el1, {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [
+        { type:'bar',  label:'Loss Ratio',       data: lossR, backgroundColor:'#ff5f6788', borderColor:'#ff5f67', borderWidth:1, borderRadius:[0,0,3,3], stack:'cr' },
+        { type:'bar',  label:'Commission Ratio',  data: commR, backgroundColor:'#f0b84d88', borderColor:'#f0b84d', borderWidth:1, stack:'cr' },
+        { type:'bar',  label:'Admin Ratio',       data: admR,  backgroundColor:'#8b7cff88', borderColor:'#8b7cff', borderWidth:1, borderRadius:[3,3,0,0], stack:'cr' },
+        { type:'line', label:'Combined Ratio',    data: combR, borderColor:'#343A40', backgroundColor:'transparent', tension:.3, pointRadius:4, borderWidth:2, spanGaps:true }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales: {
+        x: { stacked:true, grid:{display:false}, ticks:tickOpts },
+        y: { stacked:true, grid:gridOpts, ticks:{ ...tickOpts, callback:v=>v+'%' } }
+      }
+    }
+  }));
+
+  // Technical result
+  const techResult = hist.map(h => {
+    const m = h.market?.metrics;
+    return (m?.gwp_usd_mm && m?.technical_margin) ? m.gwp_usd_mm * m.technical_margin : null;
+  });
+  const techMargin = hist.map(h => h.market?.metrics?.technical_margin || null);
+
+  const el2 = document.getElementById('ch_techResult');
+  if (el2) storeChart('techResult', new Chart(el2, {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [
+        { type:'bar',  label:'Technical Result', data: techResult,
+          backgroundColor: techResult.map(v => (v||0)>=0?'#40d19b88':'#ff5f6788'),
+          borderColor:     techResult.map(v => (v||0)>=0?'#40d19b':'#ff5f67'),
+          borderWidth:1, borderRadius:4, yAxisID:'yRes' },
+        { type:'line', label:'Tech Margin %', data: techMargin,
+          borderColor:'#58a6ff', backgroundColor:'transparent', tension:.3, pointRadius:3, yAxisID:'yPct', spanGaps:true }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales: {
+        x: { grid:gridOpts, ticks:tickOpts },
+        yRes: { grid:gridOpts, ticks:tickOpts, position:'left' },
+        yPct: { grid:{display:false}, ticks:{ ...tickOpts, callback:v=>fmt.pct1(v)+'%' }, position:'right' }
+      }
+    }
+  }));
+}
+
+/* ── COUNTRY TAB 4: LoB Analysis ── */
+function countryLobHTML(key) {
+  return `
+  <div class="grid-2 mb-20">
+    <div class="card">
+      <div class="card-title">Premium Mix by LoB</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="ch_lobDonut"></canvas></div>
+      <div class="donut-legend" id="lobDonutLeg"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">GWP by LoB (current vs prior year)</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="ch_lobBar"></canvas></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">LoB Ranking Table</div>
+    <div class="tbl-wrap" id="lobTable"></div>
+  </div>`;
+}
+
+function countryLobCharts(key) {
+  const lobs     = CTX.country_data?.[key]?.lob_analysis?.lobs || [];
+  const color    = countryColor(key);
+  const lobColors= ['#58a6ff','#40d19b','#f0b84d','#ff5f67','#8b7cff','#4ecdc4','#ff9f43'];
+  const labels   = lobs.map(l => l.lob_label_en || l.lob_key);
+  const gwps     = lobs.map(l => l.gwp_usd_mm || 0);
+  const mixes    = lobs.map(l => (l.market_mix || 0) * 100);
+  const colors   = lobs.map((_,i) => lobColors[i % lobColors.length]);
+
+  // Donut
+  const el1 = document.getElementById('ch_lobDonut');
+  if (el1) storeChart('lobDonut', new Chart(el1, {
+    type: 'doughnut',
+    data: { labels, datasets: [{ data: gwps, backgroundColor: colors, borderWidth:1, borderColor:'#070d1b', hoverOffset:6 }] },
+    options: {
+      responsive:true, maintainAspectRatio:false, cutout:'62%',
+      plugins: {
+        legend:{display:false},
+        tooltip:{ callbacks:{ label: ctx=>`  ${fmt.usd(ctx.parsed)} mm (${mixes[ctx.dataIndex].toFixed(1)}%)` } }
+      }
+    }
+  }));
+  const leg = document.getElementById('lobDonutLeg');
+  if (leg) leg.innerHTML = labels.map((l,i) =>
+    `<div class="legend-item"><div class="legend-dot" style="background:${colors[i]}"></div>${l}</div>`
+  ).join('');
+
+  // GWP bar (current vs prior — derive prior from annual_history)
+  const hist = CTX.country_data?.[key]?.annual_history || [];
+  const sortedHist = [...hist].sort((a,b) => a.year - b.year);
+  // We only have current-year lob data; use yoy to compute prior
+  const priorGwps = lobs.map(l => {
+    const cur = l.gwp_usd_mm;
+    const yoy = l.gwp_yoy;
+    if (cur == null || yoy == null) return null;
+    return cur / (1 + yoy);
+  });
+
+  const el2 = document.getElementById('ch_lobBar');
+  if (el2) storeChart('lobBar', new Chart(el2, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: String(CTX.metadata.period - 1), data: priorGwps, backgroundColor: colors.map(c=>c+'55'), borderColor: colors.map(c=>c+'88'), borderWidth:1, borderRadius:3 },
+        { label: String(CTX.metadata.period),     data: gwps,      backgroundColor: colors.map(c=>c+'cc'), borderColor: colors,              borderWidth:1, borderRadius:3 }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales: {
+        x: { grid:{display:false}, ticks:tickOpts },
+        y: { grid:gridOpts, ticks:tickOpts }
+      }
+    }
+  }));
+
+  // Table
+  const tbl = document.getElementById('lobTable');
+  if (tbl) tbl.innerHTML = `<table>
+    <thead><tr><th>LoB</th><th>GWP (USD mm)</th><th>Mix %</th><th>YoY</th><th>Retention</th><th>Loss Ratio</th><th>VPP</th></tr></thead>
+    <tbody>
+      ${lobs.map((l,i) => `<tr>
+        <td><span class="cdot" style="background:${colors[i]}"></span>${labels[i]}</td>
+        <td>${fmt.usd(l.gwp_usd_mm)}</td>
+        <td>${mixes[i].toFixed(1)}%</td>
+        <td>${deltaHtml(l.gwp_yoy)}</td>
+        <td>${fmt.pct(l.retention_rate)}</td>
+        <td>${l.loss_ratio_gross != null && l.loss_ratio_gross > 0 ? fmt.pct(l.loss_ratio_gross) : '—'}</td>
+        <td>${l.vpp != null ? fmt.usd(l.vpp) : '—'}</td>
+      </tr>`).join('')}
+    </tbody>
+  </table>`;
+}
+
+/* ── COUNTRY TAB 5: Company Comparison ── */
+function countryCompHTML(key) {
+  const catalog = CTX.metric_contract?.metric_catalog || {};
+  const options = Object.entries(catalog)
+    .map(([k,v]) => `<option value="${k}">${v.label_en}</option>`)
+    .join('');
+  return `
+  <div class="card">
+    <div class="metric-sel-wrap">
+      <label>Metric:</label>
+      <select id="compMetricSel">${options}</select>
+    </div>
+    <div class="card-title" id="compChartTitle">Company Comparison</div>
+    <div class="chart-wrap" style="height:500px"><canvas id="ch_compBar"></canvas></div>
+  </div>`;
+}
+
+function countryCompCharts(key) {
+  const sel = document.getElementById('compMetricSel');
+  if (!sel) return;
+
+  function draw(metricKey) {
+    destroyChart('compBar');
+    const insurers = _countryInsurers(key);
+    const unit     = metricUnit(metricKey);
+    const label    = metricLabel(metricKey);
+    const color    = countryColor(key);
+
+    // Try rankings first, then metrics
+    let ranked = [];
+    const rankData = _countryRankings(key)?.[metricKey];
+    if (rankData && rankData.length) {
+      ranked = [...rankData].filter(r => !_exclName(r.name)).sort((a,b) => (b.value||0)-(a.value||0));
+    } else {
+      ranked = insurers
+        .filter(i => i.metrics?.[metricKey] != null)
+        .map(i => ({ name: i.alias||i.name, value: i.metrics[metricKey] }))
+        .sort((a,b) => b.value - a.value);
+    }
+
+    const values   = ranked.map(r => r.value);
+    const avg      = values.length ? values.reduce((a,b)=>a+b,0)/values.length : null;
+    const isPct    = unit === '%';
+
+    const title = document.getElementById('compChartTitle');
+    if (title) title.textContent = `${label} — all companies`;
+
+    const el = document.getElementById('ch_compBar');
+    if (!el) return;
+    storeChart('compBar', new Chart(el, {
+      type: 'bar',
+      data: {
+        labels: ranked.map(r => r.name),
+        datasets: [{
+          data: values.map(v => isPct ? v*100 : v),
+          backgroundColor: color+'bb',
+          borderColor: color,
+          borderWidth: 1, borderRadius: 4, label
+        }]
+      },
+      options: {
+        indexAxis: 'y', responsive:true, maintainAspectRatio:false,
+        plugins: {
+          legend:{display:false},
+          annotation: avg != null ? {
+            annotations: {
+              avg: {
+                type: 'line', xMin: isPct?avg*100:avg, xMax: isPct?avg*100:avg,
+                borderColor: '#f0b84d', borderWidth: 1.5, borderDash: [5,3],
+                label: { display:true, content:'Market avg', color:'#f0b84d', font:{size:10} }
+              }
+            }
+          } : {}
+        },
+        scales: {
+          x: { grid:gridOpts, ticks:{ ...tickOpts, callback: v => isPct ? v+'%' : fmt.usd(v) } },
+          y: { grid:{display:false}, ticks:{ ...tickOpts, font:{size:10} } }
+        }
+      }
+    }));
+  }
+
+  draw(sel.value);
+  sel.onchange = () => draw(sel.value);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ██  COUNTRY TAB 6: ROE Tree (McKinsey Structure)
+   ROE = (Net Income / NPE) ÷ (Capital / NPE)
+   Net Income/NPE = Oper/NPE + Fin/NPE − Tax/NPE
+   Oper/NPE = 1 − Combined Ratio
+   Combined Ratio = Loss Ratio + Acq. Ratio + Admin Ratio
+═══════════════════════════════════════════════════════════════ */
+function countryRoeHTML(key) {
+  const data = CTX.country_data?.[key];
+  if (!data) return '<div style="color:var(--muted);padding:40px">No data available.</div>';
+  const companies = _countryInsurers(key).slice(0, 25);
+  const lobs = data.lob_analysis?.lobs || [];
+  return `
+  <div class="card">
+    <div style="display:flex;align-items:flex-start;gap:28px;flex-wrap:wrap;margin-bottom:16px">
+      <div>
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Company</div>
+        <select id="roe-co-sel" style="background:var(--card2);border:1px solid var(--border);color:var(--text);padding:7px 10px;border-radius:6px;font-size:12px;cursor:pointer;min-width:200px">
+          <option value="__market__">Market Total</option>
+          ${companies.map(i => `<option value="${i.name}">${i.alias || i.name}</option>`).join('')}
+        </select>
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Line of Business</div>
+        <div id="roe-lob-pills" style="display:flex;gap:6px;flex-wrap:wrap">
+          <button class="roe-lob-pill active" data-lob="">Total Portfolio</button>
+          ${lobs.map(l => `<button class="roe-lob-pill" data-lob="${l.lob_key}">${l.lob_label_en}</button>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-size:10px;color:var(--muted)">
+      <span><span style="display:inline-block;width:10px;height:10px;background:#40d19b;border-radius:2px;margin-right:4px;vertical-align:middle"></span>Above market</span>
+      <span><span style="display:inline-block;width:10px;height:10px;background:#ff5f67;border-radius:2px;margin-right:4px;vertical-align:middle"></span>Below market</span>
+      <span>mkt: = market benchmark — all ratios on Net Retained Premium (NPE) basis</span>
+    </div>
+    <div id="roe-tree-wrap" style="overflow-x:auto"></div>
+  </div>`;
+}
+
+function countryRoeCharts(key) {
+  let activeLob = '';
+  const refresh = () => {
+    const coName = document.getElementById('roe-co-sel')?.value || '__market__';
+    renderRoeTree(key, coName, activeLob);
+  };
+  const sel = document.getElementById('roe-co-sel');
+  // Pre-select focus insurer if one is active for this country
+  if (sel && focusInsurer && focusCountry === key) sel.value = focusInsurer.name;
+  if (sel) sel.onchange = refresh;
+  document.querySelectorAll('.roe-lob-pill').forEach(btn => {
+    btn.onclick = function() {
+      document.querySelectorAll('.roe-lob-pill').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      activeLob = this.dataset.lob;
+      refresh();
+    };
+  });
+  refresh();
+}
+
+function renderRoeTree(key, coName, lobKey) {
+  const data = CTX.country_data?.[key];
+  if (!data) return;
+  const isMarket = coName === '__market__';
+  const insurer  = isMarket ? data.market : _countryInsurers(key).find(i => i.name === coName);
+  const m   = insurer?.metrics || {};
+  const mkt = data.market?.metrics || {};
+
+  // LoB data: prefer per-company breakdown, fall back to market-level LoB
+  const compLoB = lobKey ? (insurer?.lob_breakdown || []).find(l => l.lob_key === lobKey) : null;
+  const mktLoB  = lobKey ? (data.lob_analysis?.lobs || []).find(l => l.lob_key === lobKey) : null;
+  const lobData = compLoB || mktLoB;
+  const lobSrc  = compLoB ? 'company' : mktLoB ? 'market' : null;
+
+  // NPE = net retained premiums (proxy denominator)
+  const npe    = m.net_premiums_usd_mm   || null;
+  const mktNpe = mkt.net_premiums_usd_mm || null;
+  const safe   = (n, d) => (n != null && d && d !== 0) ? n / d : null;
+
+  // Zero-stored-as-placeholder guard: if net_income AND financial_result AND roe
+  // are ALL exactly 0, treat them as missing data (not genuine zero profit).
+  const _zeroPlaceholder = (m.net_income_usd_mm === 0 && m.financial_result_usd_mm === 0 && m.roe === 0);
+  const _ni  = _zeroPlaceholder ? null : m.net_income_usd_mm;
+  const _fin = _zeroPlaceholder ? null : m.financial_result_usd_mm;
+  const _roe = _zeroPlaceholder ? null : m.roe;
+
+  // ── Base metrics (total portfolio) ──────────────────────────────
+  const nim0  = safe(_ni,                        npe);    // Net Income / NPE
+  const cnp0  = safe(m.equity_usd_mm,           npe);    // Capital / NPE
+  const opr0  = safe(m.technical_result_usd_mm, npe);    // Oper Result / NPE
+  const fin0  = safe(_fin,                       npe);    // Financial / NPE
+  const tax0  = (opr0!=null && fin0!=null && nim0!=null) ? opr0 + fin0 - nim0 : null; // Tax+Other / NPE (cost)
+  const crat0 = m.combined_ratio_gross;
+  const lr0   = m.loss_ratio_gross;
+  const ar0   = m.net_acq_cost_ratio;
+  const adm0  = m.admin_expense_ratio;
+
+  // ── LoB-adjusted metrics ─────────────────────────────────────────
+  // Loss ratio: from LoB data (company or market)
+  const lrat = lobData ? lobData.loss_ratio_gross : lr0;
+  // Combined Ratio (LoB loss + company acq + admin)
+  const crat = (lobData && lrat!=null && ar0!=null && adm0!=null) ? lrat + ar0 + adm0 : crat0;
+  // Oper/NPE = 1 − CR  (technical result margin)
+  const opr  = crat != null ? (1 - crat) : opr0;
+  // Capital/NPE: allocated proportionally to LoB GWP%, adjusted for LoB retention
+  // LoB Cap/NPE = company Cap/NPE × (total_retention / lob_retention)
+  let cnp = cnp0;
+  if (lobData && m.retention_rate && lobData.retention_rate && lobData.retention_rate > 0) {
+    cnp = cnp0 != null ? cnp0 * (m.retention_rate / lobData.retention_rate) : null;
+  }
+  // Fin/NPE and Tax/NPE: use company-level as approximation when LoB active
+  const fin  = fin0;
+  const tax  = (opr!=null && fin!=null && cnp!=null)
+               ? (opr + fin - (cnp != null && cnp !== 0 ? (_roe ?? 0) * cnp : nim0 || 0))
+               : tax0;  // fallback to base tax
+  // Recalculate NI/NPE and ROE from adjusted components
+  const nim  = (opr!=null && fin0!=null && tax0!=null) ? opr + fin0 - tax0 : nim0;
+  const roe  = (nim!=null && cnp!=null && cnp!==0) ? nim / cnp : _roe;
+
+  // ── Market benchmarks ────────────────────────────────────────────
+  const _mktZero = (mkt.net_income_usd_mm === 0 && mkt.financial_result_usd_mm === 0 && mkt.roe === 0);
+  const mktNim  = safe(_mktZero ? null : mkt.net_income_usd_mm,       mktNpe);
+  const mktCnp  = safe(mkt.equity_usd_mm,           mktNpe);
+  const mktOpr  = safe(mkt.technical_result_usd_mm, mktNpe);
+  const mktFin  = safe(_mktZero ? null : mkt.financial_result_usd_mm, mktNpe);
+  const mktTax  = (mktOpr!=null && mktFin!=null && mktNim!=null) ? mktOpr + mktFin - mktNim : null;
+  const mktLrat = mktLoB ? mktLoB.loss_ratio_gross : mkt.loss_ratio_gross;
+
+  // ── Formatting helpers ───────────────────────────────────────────
+  const fv = (v, t) => {
+    if (v == null) return 'n/a';
+    if (t === 'pct') return (v * 100).toFixed(1) + '%';
+    if (t === 'x')   return v.toFixed(2) + '×';
+    return v.toFixed(2);
+  };
+
+  // Node border/value color vs benchmark
+  const nc = (val, bmark, higherBetter) => {
+    if (val == null || bmark == null || isMarket) return '#343A40';
+    const d = val - bmark;
+    const thr = Math.max(Math.abs(bmark || 0) * 0.05, 0.01);
+    if (higherBetter  && d >  thr) return '#40d19b';
+    if (higherBetter  && d < -thr) return '#ff5f67';
+    if (!higherBetter && d < -thr) return '#40d19b';
+    if (!higherBetter && d >  thr) return '#ff5f67';
+    return '#343A40';
+  };
+
+  const roeColor = (() => {
+    if (roe == null) return '#8ea1c0';
+    if (roe > 0.14) return '#40d19b';
+    if (roe > 0.07) return '#f0b84d';
+    if (roe > 0)    return '#ff8c00';
+    return '#ff5f67';
+  })();
+
+  // ── SVG Layout ───────────────────────────────────────────────────
+  // Canvas: 1000 × 535
+  // NW=120 NH=64 for L0-L3; SW=96 SH=58 for L4
+  const W=1000, H=535, NW=120, NH=64, SW=96, SH=58;
+
+  // Node positions (top-left corner)
+  // L0: ROE           cx=500
+  // L1: nim cx=215    cnp cx=785
+  // L2: opr cx=115, fin cx=245, tax cx=375  (all under nim)
+  // L3: crat cx=115   (under opr)
+  // L4: lr cx=53, ar cx=159, adm cx=265 (SW-width, under crat)
+  const NODES = [
+    { id:'roe',  x:440, y:10,  lbl:'ROE',              lbl2:null,          val:roe,    t:'pct', c:roeColor,                          bmark:mkt.roe,                   bv:'pct', root:true },
+    { id:'nim',  x:155, y:116, lbl:'Net Income',        lbl2:'/ NPE',       val:nim,    t:'pct', c:nc(nim,mktNim,true),               bmark:mktNim,                    bv:'pct' },
+    { id:'cnp',  x:725, y:116, lbl:'Capital',           lbl2:'/ NPE',       val:cnp,    t:'x',   c:nc(cnp,mktCnp,false),             bmark:mktCnp,                    bv:'x',   lobTag: lobData ? 'est.' : null },
+    { id:'opr',  x:55,  y:228, lbl:'Oper. Result',      lbl2:'/ NPE',       val:opr,    t:'pct', c:nc(opr,mktOpr,true),               bmark:mktOpr,                    bv:'pct' },
+    { id:'fin',  x:185, y:228, lbl:'Financial',         lbl2:'/ NPE',       val:fin,    t:'pct', c:nc(fin,mktFin,true),               bmark:mktFin,                    bv:'pct' },
+    { id:'tax',  x:315, y:228, lbl:'Taxes & Other',     lbl2:'/ NPE',       val:tax0,   t:'pct', c:nc(tax0,mktTax,false),             bmark:mktTax,                    bv:'pct' },
+    { id:'crat', x:55,  y:340, lbl:'Combined Ratio',    lbl2:null,          val:crat,   t:'pct', c:nc(crat,mkt.combined_ratio_gross,false), bmark:mkt.combined_ratio_gross, bv:'pct' },
+    { id:'lr',   x:5,   y:444, lbl:'Loss Ratio',        lbl2:null,          val:lrat,   t:'pct', c:nc(lrat,mktLrat,false),            bmark:mktLrat,                   bv:'pct', sm:true, lobTag: lobData ? '★' : null },
+    { id:'ar',   x:111, y:444, lbl:'Acq. Ratio',        lbl2:null,          val:ar0,    t:'pct', c:nc(ar0,mkt.net_acq_cost_ratio,false), bmark:mkt.net_acq_cost_ratio,  bv:'pct', sm:true },
+    { id:'adm',  x:217, y:444, lbl:'Admin Ratio',       lbl2:null,          val:adm0,   t:'pct', c:nc(adm0,mkt.admin_expense_ratio,false), bmark:mkt.admin_expense_ratio, bv:'pct', sm:true },
+  ];
+
+  const LINES = [
+    ['roe','nim'],['roe','cnp'],
+    ['nim','opr'],['nim','fin'],['nim','tax'],
+    ['opr','crat'],
+    ['crat','lr'],['crat','ar'],['crat','adm'],
+  ];
+
+  const OPS = [
+    { x:500, y:152, t:'÷', sz:22 },  // ROE = nim ÷ cnp
+    { x:175, y:262, t:'+', sz:18 },  // opr + fin
+    { x:305, y:262, t:'−', sz:18 },  // − tax
+    { x:106, y:462, t:'+', sz:15 },  // lr + ar
+    { x:212, y:462, t:'+', sz:15 },  // ar + adm
+  ];
+
+  const nmap = {};
+  NODES.forEach(n => nmap[n.id] = n);
+  const nw  = n => n.sm ? SW : NW;
+  const nh  = n => n.sm ? SH : NH;
+  const ncx = n => n.x + nw(n) / 2;
+  const nbot = n => n.y + nh(n);
+
+  const lineSVG = LINES.map(([a,b]) => {
+    const na=nmap[a], nb=nmap[b];
+    const x1=ncx(na), y1=nbot(na), x2=ncx(nb), y2=nb.y, my=(y1+y2)/2;
+    return `<path d="M${x1},${y1} C${x1},${my} ${x2},${my} ${x2},${y2}" stroke="#CED4DA" stroke-width="1.5" fill="none"/>`;
+  }).join('');
+
+  const opSVG = OPS.map(o =>
+    `<text x="${o.x}" y="${o.y}" text-anchor="middle" fill="#9AA5B1" font-size="${o.sz}" font-family="Georgia,serif" font-weight="300">${o.t}</text>`
+  ).join('');
+
+  // "= 1 − CR" annotation on the opr → crat connector
+  const annSVG = `<text x="122" y="305" fill="#9AA5B1" font-size="9" font-family="Segoe UI,sans-serif" text-anchor="middle">= 1 − CR</text>`;
+
+  const nodeSVG = NODES.map(n => {
+    const w=nw(n), h=nh(n);
+    const lines = [n.lbl, n.lbl2].filter(Boolean);
+    const ly0   = lines.length > 1 ? (n.sm ? 12 : 14) : (n.sm ? 18 : 20);
+    const lblSVG = lines.map((l,i) =>
+      `<text x="${w/2}" y="${ly0+i*12}" text-anchor="middle" fill="${n.root?'rgba(255,255,255,.7)':'#6C757D'}" font-size="${n.sm?8:9.5}" font-family="Segoe UI,sans-serif">${l}</text>`
+    ).join('');
+    const valY  = lines.length>1 ? (n.sm?40:43) : (n.sm?36:40);
+    const vSz   = n.root ? 22 : (n.sm ? 14 : 17);
+    const bdrC  = n.c === '#343A40' ? '#CED4DA' : n.c;
+    const bSVG  = (n.bmark!=null && !isMarket)
+      ? `<text x="${w-3}" y="${h-5}" text-anchor="end" fill="#9AA5B1" font-size="7" font-family="Consolas,monospace">mkt:${fv(n.bmark,n.bv)}</text>` : '';
+    const lbSVG = n.lobTag
+      ? `<text x="3" y="${h-5}" fill="#C4A44C" font-size="7.5" font-family="Segoe UI,sans-serif">${n.lobTag}</text>` : '';
+    return `<g transform="translate(${n.x},${n.y})">
+      <rect width="${w}" height="${h}" rx="7" fill="${n.root?'#00205B':'#ffffff'}" stroke="${bdrC}" stroke-width="${n.root?2:1.5}"/>
+      ${lblSVG}
+      <text x="${w/2}" y="${valY}" text-anchor="middle" fill="${n.c}" font-size="${vSz}" font-weight="700" font-family="Consolas,monospace">${fv(n.val,n.t)}</text>
+      ${bSVG}${lbSVG}
+    </g>`;
+  }).join('');
+
+  const title = isMarket
+    ? `Market Total — ${CTX.metadata.country_meta[key]?.name || key}`
+    : `${insurer?.alias || insurer?.name} — ${CTX.metadata.country_meta[key]?.name || key}`;
+
+  const svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:${W}px;height:auto;display:block">
+    <text x="6" y="9" fill="#9AA5B1" font-size="9" font-family="Segoe UI,sans-serif">ROE Decomposition — ${title}</text>
+    ${lineSVG}${annSVG}${opSVG}${nodeSVG}
+  </svg>`;
+
+  let lobPanel = '';
+  if (lobData) {
+    const gwpMix = fv(lobData.gwp_mix ?? lobData.market_mix, 'pct');
+    const src = lobSrc === 'company' ? 'Per-company LoB data' : 'Market-level LoB (per-company data pending motor re-run)';
+    lobPanel = `
+    <div style="margin-top:10px;padding:10px 14px;background:rgba(240,184,77,.06);border:1px solid rgba(240,184,77,.25);border-radius:8px;display:flex;gap:18px;flex-wrap:wrap;align-items:center">
+      <span style="font-size:11px;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:.05em">★ ${lobData.lob_label_en || lobKey}</span>
+      <span style="font-size:12px">GWP Mix: <strong>${gwpMix}</strong></span>
+      <span style="font-size:12px">Loss Ratio: <strong style="color:${lrat<.6?'var(--green)':lrat<.75?'var(--gold)':'var(--red)'}">${fv(lrat,'pct')}</strong></span>
+      <span style="font-size:12px">Retention: <strong>${fv(lobData.retention_rate,'pct')}</strong></span>
+      <span style="font-size:10px;color:var(--muted)">${src}. Capital/NPE estimated via GWP-proportional equity allocation. Combined Ratio and Oper/NPE updated accordingly.</span>
+    </div>`;
+  }
+
+  document.getElementById('roe-tree-wrap').innerHTML = svg + lobPanel;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ██  COUNTRY TAB 7: Peer Matrix
+   Selectable companies × selectable metric bar chart + scorecard
+═══════════════════════════════════════════════════════════════ */
+function countryPeerHTML(key) {
+  const data = CTX.country_data?.[key];
+  if (!data) return '<div style="color:var(--muted);padding:40px">No data available.</div>';
+  const insurers = _countryInsurers(key);
+
+  const METRICS = [
+    { k:'combined_ratio_gross', lbl:'Combined Ratio' },
+    { k:'loss_ratio_gross',     lbl:'Loss Ratio' },
+    { k:'net_acq_cost_ratio',   lbl:'Acq. Cost Ratio' },
+    { k:'admin_expense_ratio',  lbl:'Admin Exp. Ratio' },
+    { k:'technical_margin',     lbl:'Technical Margin' },
+    { k:'roe',                  lbl:'ROE' },
+    { k:'gwp_usd_mm',           lbl:'GWP (USD MM)' },
+    { k:'market_share',         lbl:'Market Share' },
+    { k:'gwp_yoy',              lbl:'GWP YoY Growth' },
+    { k:'retention_rate',       lbl:'Retention Rate' },
+    { k:'net_income_usd_mm',    lbl:'Net Income (USD MM)' },
+    { k:'equity_usd_mm',        lbl:'Equity (USD MM)' },
+  ];
+
+  const defaultSel = (focusInsurer && focusCountry === key)
+    ? [focusInsurer.name, ...focusPeers.map(p => p.name)]
+    : insurers.slice(0, 6).map(i => i.name);
+  const countryName = CTX.metadata?.country_meta?.[key]?.name || key;
+
+  return `
+  <div class="card" style="margin-bottom:14px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px">
+      <div>
+        <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px">Peer Matrix — ${countryName}</div>
+        <div style="font-size:11.5px;color:var(--dim)">Select players and a metric. Bar chart colors: green = better than market, red = worse.</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <label style="font-size:11px;color:var(--muted)">Metric:</label>
+        <select id="peer-metric-sel" style="background:var(--card2);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:6px;font-size:12px;cursor:pointer">
+          ${METRICS.map(m => `<option value="${m.k}" ${m.k==='combined_ratio_gross'?'selected':''}>${m.lbl}</option>`).join('')}
+        </select>
+        <button id="peer-reset-btn" style="background:rgba(88,166,255,.12);color:var(--accent);border:1px solid rgba(88,166,255,.25);border-radius:8px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer">Reset top 6</button>
+      </div>
+    </div>
+    <div id="peer-checkgrid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:7px">
+      ${insurers.map(i => {
+        const nm = (i.alias || i.name).replace(/"/g,'&quot;');
+        const chk = defaultSel.includes(i.name) ? 'checked' : '';
+        return `<label style="background:rgba(255,255,255,.025);border:1px solid var(--border2);border-radius:9px;padding:8px 9px;font-size:11px;color:var(--muted);display:flex;gap:7px;align-items:center;cursor:pointer;min-width:0;overflow:hidden">
+          <input type="checkbox" ${chk} data-name="${i.name.replace(/"/g,'&quot;')}" style="accent-color:var(--accent);flex:0 0 auto">
+          <span style="min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${nm}">${nm}</span>
+        </label>`;
+      }).join('')}
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+    <div class="card">
+      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px" id="peer-bar-title">Bar Chart</div>
+      <div id="peer-bar-wrap"></div>
+      <div id="peer-bar-note" style="font-size:10.5px;color:var(--muted);margin-top:10px"></div>
+    </div>
+    <div class="card" style="overflow-x:auto">
+      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">Ranking — selected metric</div>
+      <div id="peer-rank-wrap"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">Scorecard matrix</div>
+    <div id="peer-matrix-wrap" style="overflow-x:auto"></div>
+  </div>`;
+}
+
+function countryPeerCharts(key) {
+  const data = CTX.country_data?.[key];
+  if (!data) return;
+  const mkt = data.market?.metrics || {};
+  const _excl = n => n && (n.toUpperCase().includes('TOTAL DE MERCADO') || n.toUpperCase() === 'TOTALES');
+
+  const METRICS = [
+    { k:'combined_ratio_gross', lbl:'Combined Ratio',      t:'pct', lb:true  },
+    { k:'loss_ratio_gross',     lbl:'Loss Ratio',          t:'pct', lb:true  },
+    { k:'net_acq_cost_ratio',   lbl:'Acq. Cost Ratio',     t:'pct', lb:true  },
+    { k:'admin_expense_ratio',  lbl:'Admin Exp. Ratio',    t:'pct', lb:true  },
+    { k:'technical_margin',     lbl:'Technical Margin',    t:'pct', lb:false },
+    { k:'roe',                  lbl:'ROE',                 t:'pct', lb:false },
+    { k:'gwp_usd_mm',           lbl:'GWP (USD MM)',        t:'abs', lb:false },
+    { k:'market_share',         lbl:'Market Share',        t:'pct', lb:false },
+    { k:'gwp_yoy',              lbl:'GWP YoY Growth',      t:'pct', lb:false },
+    { k:'retention_rate',       lbl:'Retention Rate',      t:'pct', lb:false },
+    { k:'net_income_usd_mm',    lbl:'Net Income (USD MM)', t:'abs', lb:false },
+    { k:'equity_usd_mm',        lbl:'Equity (USD MM)',     t:'abs', lb:false },
+  ];
+
+  const MATRIX_ROWS = [
+    { k:'gwp_usd_mm',           lbl:'GWP (USD MM)',        t:'abs', lb:false },
+    { k:'market_share',         lbl:'Market Share',        t:'pct', lb:false },
+    { k:'gwp_yoy',              lbl:'GWP YoY',             t:'pct', lb:false },
+    { k:'retention_rate',       lbl:'Retention',           t:'pct', lb:false },
+    { k:'combined_ratio_gross', lbl:'Combined Ratio',      t:'pct', lb:true  },
+    { k:'loss_ratio_gross',     lbl:'Loss Ratio',          t:'pct', lb:true  },
+    { k:'net_acq_cost_ratio',   lbl:'Acq. Cost Ratio',     t:'pct', lb:true  },
+    { k:'admin_expense_ratio',  lbl:'Admin Exp. Ratio',    t:'pct', lb:true  },
+    { k:'technical_margin',     lbl:'Tech. Margin',        t:'pct', lb:false },
+    { k:'roe',                  lbl:'ROE',                 t:'pct', lb:false },
+    { k:'net_income_usd_mm',    lbl:'Net Income (USD MM)', t:'abs', lb:false },
+    { k:'equity_usd_mm',        lbl:'Equity (USD MM)',     t:'abs', lb:false },
+  ];
+
+  const allInsurers = _countryInsurers(key);
+
+  // Auto-populate with focus + peers when a focus insurer is active
+  let selected = (focusInsurer && focusCountry === key)
+    ? [focusInsurer.name, ...focusPeers.map(p => p.name)]
+    : allInsurers.slice(0, 6).map(i => i.name);
+  let metric   = 'combined_ratio_gross';
+
+  const fv = (v, t) => {
+    if (v == null) return '—';
+    if (t === 'pct') return (v * 100).toFixed(1) + '%';
+    if (t === 'abs') return v >= 1000 ? (v/1000).toFixed(1)+'B' : v.toFixed(0);
+    return String(v);
+  };
+
+  // Helper: read a metric value from insurer, handling fields outside metrics{}
+  const readVal = (ins, k) => {
+    if (k === 'market_share') return ins.market_share ?? null;
+    if (k === 'gwp_yoy')     return ins.gwp_yoy ?? null;
+    return ins.metrics?.[k] ?? null;
+  };
+
+  const render = () => {
+    const md   = METRICS.find(m => m.k === metric) || METRICS[0];
+    const sel  = allInsurers.filter(i => selected.includes(i.name));
+    // market benchmark: gwp_yoy lives in annual_history, market_share has no single market value
+    const mktV = md.k === 'gwp_yoy'     ? (data.annual_history?.slice(-1)[0]?.market?.gwp_yoy ?? null)
+               : md.k === 'market_share' ? null
+               : (mkt[md.k] ?? null);
+
+    // ── Bar chart ──────────────────────────────────────────────
+    document.getElementById('peer-bar-title').textContent = `${md.lbl} · selected companies vs market`;
+
+    const sorted = sel
+      .map(i => ({ name: i.alias || i.name, v: readVal(i, md.k) }))
+      .sort((a,b) => md.lb ? (a.v ?? Infinity) - (b.v ?? Infinity)
+                           : (b.v ?? -Infinity) - (a.v ?? -Infinity));
+
+    const maxAbs = Math.max(
+      ...sorted.map(x => Math.abs(x.v ?? 0)),
+      mktV != null ? Math.abs(mktV) : 0, 0.001
+    );
+
+    const barHtml = sorted.map(x => {
+      const pct = x.v != null ? Math.abs(x.v) / maxAbs * 100 : 0;
+      const col = (x.v == null || mktV == null) ? '#58a6ff'
+                : (md.lb ? (x.v < mktV ? '#40d19b' : '#ff5f67')
+                         : (x.v > mktV ? '#40d19b' : '#ff5f67'));
+      const mktPct = mktV != null ? (Math.abs(mktV) / maxAbs * 100).toFixed(1) : null;
+      return `<div style="display:grid;grid-template-columns:140px 1fr 72px;gap:10px;align-items:center;margin-bottom:9px">
+        <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11.5px;color:var(--muted)" title="${x.name}">${x.name}</div>
+        <div style="height:20px;background:rgba(0,0,0,.22);border-radius:5px;overflow:visible;position:relative">
+          <div style="height:100%;width:${pct.toFixed(1)}%;background:${col};border-radius:5px;min-width:2px"></div>
+          ${mktPct ? `<div style="position:absolute;top:-4px;bottom:-4px;left:${mktPct}%;width:2px;background:rgba(240,184,77,.85);border-radius:1px"></div>` : ''}
+        </div>
+        <div style="font:600 11px Consolas,monospace;text-align:right;color:${x.v!=null?'var(--text)':'var(--muted)'}">${fv(x.v,md.t)}</div>
+      </div>`;
+    }).join('');
+
+    document.getElementById('peer-bar-wrap').innerHTML = barHtml ||
+      '<div style="color:var(--muted);font-size:12px;padding:12px 0">No companies selected.</div>';
+    document.getElementById('peer-bar-note').innerHTML = mktV != null
+      ? `<span style="display:inline-block;width:12px;height:2px;background:rgba(240,184,77,.85);vertical-align:middle;margin-right:5px"></span>Market benchmark: <strong>${fv(mktV,md.t)}</strong>`
+      : '';
+
+    // ── Ranking table ──────────────────────────────────────────
+    const rankRows = sorted.map((x, idx) => {
+      const gap = (x.v != null && mktV != null) ? x.v - mktV : null;
+      const gapFmt = gap == null ? '—'
+        : (gap > 0 ? '+' : '') + fv(gap, md.t === 'pct' ? 'pct' : 'abs');
+      const gapCls = gap == null ? 'color:var(--muted)'
+        : (md.lb ? (gap < 0 ? 'color:#40d19b' : 'color:#ff5f67')
+                 : (gap > 0 ? 'color:#40d19b' : 'color:#ff5f67'));
+      return `<tr>
+        <td style="padding:5px 8px;font-size:11.5px;color:var(--muted)">${idx+1}</td>
+        <td style="padding:5px 8px;font-size:11.5px;font-weight:600">${x.name}</td>
+        <td style="padding:5px 8px;text-align:right;font-family:Consolas,monospace;font-size:11.5px">${fv(x.v,md.t)}</td>
+        <td style="padding:5px 8px;text-align:right;font-family:Consolas,monospace;font-size:11px;${gapCls}">${gapFmt}</td>
+      </tr>`;
+    }).join('');
+
+    const th = (t, right) =>
+      `<th style="padding:6px 8px;${right?'text-align:right;':''}color:var(--muted);font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid var(--border)">${t}</th>`;
+    document.getElementById('peer-rank-wrap').innerHTML = `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr>${th('#')}${th('Company')}${th(md.lbl,true)}${th('vs Market',true)}</tr></thead>
+        <tbody>${rankRows || '<tr><td colspan="4" style="padding:12px;color:var(--muted)">No companies selected.</td></tr>'}</tbody>
+      </table>`;
+
+    // ── Scorecard matrix ───────────────────────────────────────
+    const cols = sel.slice(0, 10);
+    const stickyTh = s => `<th style="padding:6px 8px;text-align:left;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);position:sticky;left:0;background:var(--card2);white-space:nowrap">${s}</th>`;
+    const plainTh  = (s, gold) => `<th style="padding:6px 8px;text-align:right;font-size:9px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);color:${gold?'var(--gold)':'var(--muted)'};white-space:nowrap;max-width:100px;overflow:hidden;text-overflow:ellipsis">${s}</th>`;
+
+    const isFocusCol = i => focusInsurer && focusCountry === key && i.name === focusInsurer.name;
+    const thead = [
+      stickyTh('Metric'),
+      plainTh('Market', true),
+      ...cols.map(i => plainTh((i.alias||i.name).substring(0,14), isFocusCol(i)))
+    ].join('');
+
+    // Market gwp_yoy lives in annual_history, not market.metrics
+    const mktGwpYoy = data.annual_history?.slice(-1)[0]?.market?.gwp_yoy ?? null;
+
+    const tbody = MATRIX_ROWS.map(row => {
+      const mv = row.k === 'gwp_yoy' ? mktGwpYoy
+               : row.k === 'market_share' ? null   // no single market-level share
+               : (mkt[row.k] ?? null);
+      const cells = cols.map(i => {
+        const v = row.k === 'market_share' ? (i.market_share ?? null)
+                : row.k === 'gwp_yoy'     ? (i.gwp_yoy ?? null)
+                : (i.metrics?.[row.k] ?? null);
+        let clr = 'color:var(--text)';
+        if (v != null && mv != null) {
+          clr = (row.lb ? v < mv : v > mv) ? 'color:#40d19b' : 'color:#ff5f67';
+        }
+        const focusBg = isFocusCol(i) ? 'background:rgba(240,184,77,.07);' : '';
+        return `<td style="padding:5px 8px;text-align:right;font-family:Consolas,monospace;font-size:11px;border-bottom:1px solid var(--border2);${focusBg}${clr}">${fv(v,row.t)}</td>`;
+      }).join('');
+      return `<tr>
+        <td style="padding:5px 8px;font-size:11px;color:var(--muted);border-bottom:1px solid var(--border2);position:sticky;left:0;background:var(--card2);white-space:nowrap">${row.lbl}</td>
+        <td style="padding:5px 8px;text-align:right;font-family:Consolas,monospace;font-size:11px;border-bottom:1px solid var(--border2);color:var(--gold)">${fv(mv,row.t)}</td>
+        ${cells}
+      </tr>`;
+    }).join('');
+
+    document.getElementById('peer-matrix-wrap').innerHTML = `
+      <table style="width:100%;border-collapse:collapse;min-width:500px">
+        <thead><tr>${thead}</tr></thead>
+        <tbody>${tbody}</tbody>
+      </table>
+      <div style="font-size:10px;color:var(--muted);margin-top:8px">
+        <span style="color:#40d19b">■</span> better than market &nbsp;
+        <span style="color:#ff5f67">■</span> worse than market &nbsp;·&nbsp;
+        Market column = ${CTX.metadata?.country_meta?.[key]?.name||key} aggregate (all companies)
+      </div>`;
+  };
+
+  // ── Wire up controls ───────────────────────────────────────────
+  const metSel = document.getElementById('peer-metric-sel');
+  if (metSel) metSel.onchange = function() { metric = this.value; render(); };
+
+  document.querySelectorAll('#peer-checkgrid input[type="checkbox"]').forEach(cb => {
+    cb.onchange = function() {
+      const nm = this.dataset.name;
+      if (this.checked) { if (!selected.includes(nm)) selected.push(nm); }
+      else { selected = selected.filter(x => x !== nm); }
+      render();
+    };
+  });
+
+  const resetBtn = document.getElementById('peer-reset-btn');
+  if (resetBtn) resetBtn.onclick = () => {
+    selected = allInsurers.slice(0, 6).map(i => i.name);
+    document.querySelectorAll('#peer-checkgrid input[type="checkbox"]').forEach(cb => {
+      cb.checked = selected.includes(cb.dataset.name);
+    });
+    render();
+  };
+
+  render();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ██  AUDIT VIEW
+═══════════════════════════════════════════════════════════════ */
+function renderAuditView() {
+  document.querySelectorAll('.view-pill').forEach(b => b.classList.remove('active'));
+  document.querySelector('.audit-pill')?.classList.add('active');
+  Object.keys(chartRegistry).forEach(k => destroyChart(k));
+  const el = document.getElementById('content');
+  document.getElementById('tabBar').innerHTML = '';
+  el.innerHTML = '<div style="color:var(--muted);padding:40px;text-align:center">Loading audit_report.json…</div>';
+
+  fetch('./audit_report.json')
+    .then(r => { if (!r.ok) throw new Error('audit_report.json not found — run: python -m src.insurance_audit'); return r.json(); })
+    .then(rpt => {
+      const s = rpt.summary;
+      const statusColor = s.overall === 'PASS' ? 'var(--green)' : s.overall === 'WARN' ? 'var(--gold)' : 'var(--red)';
+      const cats = [...new Set(rpt.checks.map(c => c.category))].sort();
+      const countries = [...new Set(rpt.checks.map(c => c.country).filter(Boolean))].sort();
+
+      let filterCat = '', filterCtry = '', filterStatus = '';
+
+      const render = () => {
+        const checks = rpt.checks.filter(c =>
+          (!filterCat    || c.category === filterCat) &&
+          (!filterCtry   || c.country  === filterCtry) &&
+          (!filterStatus || c.status   === filterStatus)
+        );
+
+        el.innerHTML = `
+        <div class="grid-kpi mb-20">
+          <div class="kpi"><div class="kpi-label">Overall</div><div class="kpi-value" style="color:${statusColor}">${s.overall}</div><div class="kpi-sub">${s.total} checks</div></div>
+          <div class="kpi"><div class="kpi-label">Pass</div><div class="kpi-value" style="color:var(--green)">${s.passed}</div></div>
+          <div class="kpi"><div class="kpi-label">Warn</div><div class="kpi-value" style="color:var(--gold)">${s.warned}</div></div>
+          <div class="kpi"><div class="kpi-label">Fail</div><div class="kpi-value" style="color:var(--red)">${s.failed}</div></div>
+          <div class="kpi"><div class="kpi-label">Generated</div><div class="kpi-value" style="font-size:13px">${rpt.generated_at.substring(0,10)}</div><div class="kpi-sub">Tolerance: ±${(rpt.tolerances?.relative_pct*100||0.5).toFixed(1)}%</div></div>
+        </div>
+        <div class="card mb-20">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
+            <div class="card-title" style="margin:0">Reconciliation Checks</div>
+            <select id="aud-cat" style="background:var(--card2);border:1px solid var(--border);color:var(--text);padding:5px 8px;border-radius:5px;font-size:11px">
+              <option value="">All categories</option>
+              ${cats.map(c => `<option value="${c}" ${c===filterCat?'selected':''}>${c}</option>`).join('')}
+            </select>
+            <select id="aud-ctry" style="background:var(--card2);border:1px solid var(--border);color:var(--text);padding:5px 8px;border-radius:5px;font-size:11px">
+              <option value="">All countries</option>
+              ${countries.map(c => `<option value="${c}" ${c===filterCtry?'selected':''}>${c}</option>`).join('')}
+            </select>
+            <select id="aud-status" style="background:var(--card2);border:1px solid var(--border);color:var(--text);padding:5px 8px;border-radius:5px;font-size:11px">
+              <option value="">All statuses</option>
+              ${['PASS','WARN','FAIL','SKIP'].map(s => `<option value="${s}" ${s===filterStatus?'selected':''}>${s}</option>`).join('')}
+            </select>
+            <span style="font-size:11px;color:var(--muted)">${checks.length} checks shown</span>
+          </div>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr>
+                <th style="text-align:left">Status</th>
+                <th style="text-align:left">Country</th>
+                <th style="text-align:left">Category</th>
+                <th style="text-align:left">Check</th>
+                <th>Dashboard Value</th>
+                <th>Source Value</th>
+                <th>Delta</th>
+              </tr></thead>
+              <tbody>
+                ${checks.map(c => {
+                  const dv = c.dashboard_value != null ? c.dashboard_value.toLocaleString('en-US', {maximumFractionDigits:3}) : '—';
+                  const sv = c.source_value    != null ? c.source_value.toLocaleString('en-US', {maximumFractionDigits:3})    : '—';
+                  const dp = c.delta_pct != null ? ((c.delta_pct >= 0 ? '+' : '') + (c.delta_pct*100).toFixed(2) + '%') : '—';
+                  const dpColor = c.delta_pct == null ? '' : Math.abs(c.delta_pct) <= 0.005 ? 'var(--green)' : Math.abs(c.delta_pct) <= 0.02 ? 'var(--gold)' : 'var(--red)';
+                  return `<tr>
+                    <td><span class="audit-badge audit-${c.status.toLowerCase()}">${c.status}</span></td>
+                    <td style="text-align:left">${c.country||'—'}</td>
+                    <td style="text-align:left;color:var(--muted);font-size:11px">${c.category}</td>
+                    <td style="text-align:left;font-size:11px" title="${c.description}">${c.check_name}</td>
+                    <td>${dv}</td>
+                    <td>${sv}</td>
+                    <td style="color:${dpColor}">${dp}</td>
+                  </tr>`;
+                }).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        ${rpt.fx_detail?.length ? `
+        <div class="card">
+          <div class="card-title">FX Rate Detail</div>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th style="text-align:left">Country</th><th>Avg FX</th><th>Min FX</th><th>Max FX</th><th>Distinct Values</th><th>Consistent</th></tr></thead>
+              <tbody>
+                ${rpt.fx_detail.map(fx => `<tr>
+                  <td style="text-align:left">${fx.country}</td>
+                  <td>${fx.avg_fx?.toFixed(4)||'—'}</td>
+                  <td>${fx.min_fx?.toFixed(4)||'—'}</td>
+                  <td>${fx.max_fx?.toFixed(4)||'—'}</td>
+                  <td>${fx.n_distinct}</td>
+                  <td><span class="audit-badge ${fx.consistent?'audit-pass':'audit-warn'}">${fx.consistent?'YES':'REVIEW'}</span></td>
+                </tr>`).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>` : ''}`;
+
+        document.getElementById('aud-cat')?.addEventListener('change', e => { filterCat = e.target.value; render(); });
+        document.getElementById('aud-ctry')?.addEventListener('change', e => { filterCtry = e.target.value; render(); });
+        document.getElementById('aud-status')?.addEventListener('change', e => { filterStatus = e.target.value; render(); });
+      };
+
+      render();
+    })
+    .catch(err => {
+      el.innerHTML = `
+      <div class="card" style="text-align:center;padding:40px">
+        <div style="color:var(--gold);font-size:16px;margin-bottom:12px">Audit report not found</div>
+        <div style="color:var(--muted);font-size:13px;margin-bottom:16px">${err.message}</div>
+        <div style="background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:16px;display:inline-block;text-align:left">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px">Generate the audit report by running:</div>
+          <code style="color:var(--accent);font-family:Consolas,monospace;font-size:13px">python -m src.insurance_audit</code>
+        </div>
+      </div>`;
+    });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ██  COUNTRY TAB 8: Reinsurance
+   Premium cession analysis — retained vs. ceded, retention rate trend
+═══════════════════════════════════════════════════════════════ */
+function countryReinsuranceHTML(key) {
+  const mkt = CTX.country_data?.[key]?.market?.metrics || {};
+  const n   = CTX.metadata?.country_meta?.[key]?.name || key;
+  return `
+  <div class="card mb-20">
+    <div class="card-title">Reinsurance — ${n}</div>
+    <div class="grid-kpi">
+      <div class="kpi-card"><div class="kpi-label">GWP</div><div class="kpi-value">${fmt.usd(mkt.gwp_usd_mm)}</div><div class="kpi-sub">USD MM</div></div>
+      <div class="kpi-card"><div class="kpi-label">Ceded Premiums</div><div class="kpi-value">${fmt.usd(mkt.ceded_premiums_usd_mm)}</div><div class="kpi-sub">USD MM</div></div>
+      <div class="kpi-card"><div class="kpi-label">Net Retained</div><div class="kpi-value">${fmt.usd(mkt.net_premiums_usd_mm)}</div><div class="kpi-sub">USD MM</div></div>
+      <div class="kpi-card"><div class="kpi-label">Retention Rate</div><div class="kpi-value">${fmt.pct(mkt.retention_rate)}</div><div class="kpi-sub">% of GWP kept</div></div>
+      <div class="kpi-card"><div class="kpi-label">Cession Rate</div><div class="kpi-value">${fmt.pct(mkt.cession_rate)}</div><div class="kpi-sub">% of GWP ceded</div></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">GWP: Retained vs. Ceded (USD MM)</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="ch_reinsPremium"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Retention &amp; Cession Rate Trend</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="ch_reinsRetention"></canvas></div>
+    </div>
+  </div>`;
+}
+
+function countryReinsuranceCharts(key) {
+  const hist  = CTX.country_data?.[key]?.annual_history || [];
+  const years = hist.map(h => h.year);
+  const color = countryColor(key);
+
+  const gwp      = hist.map(h => h.market?.metrics?.gwp_usd_mm ?? null);
+  const ceded    = hist.map(h => h.market?.metrics?.ceded_premiums_usd_mm ?? null);
+  const retained = hist.map((h, i) => {
+    const g = gwp[i]; const c = ceded[i];
+    return (g != null && c != null) ? g - c : (g ?? null);
+  });
+  const retRate = hist.map(h => { const v = h.market?.metrics?.retention_rate; return v != null ? v * 100 : null; });
+  const cesRate = hist.map(h => { const v = h.market?.metrics?.cession_rate;   return v != null ? v * 100 : null; });
+
+  const el1 = document.getElementById('ch_reinsPremium');
+  if (el1) storeChart('reinsPremium', new Chart(el1, {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [
+        { label:'Net Retained', data:retained, backgroundColor:color+'aa', borderColor:color,     borderWidth:1, borderRadius:[0,0,4,4], stack:'p' },
+        { label:'Ceded to RI',  data:ceded,    backgroundColor:'#f0b84d99', borderColor:'#f0b84d', borderWidth:1, borderRadius:[4,4,0,0], stack:'p' }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales:{
+        x:{ stacked:true, grid:{display:false}, ticks:tickOpts },
+        y:{ stacked:true, grid:gridOpts, ticks:tickOpts }
+      }
+    }
+  }));
+
+  const el2 = document.getElementById('ch_reinsRetention');
+  if (el2) storeChart('reinsRetention', new Chart(el2, {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        { label:'Retention Rate %', data:retRate, borderColor:color,      backgroundColor:color+'22', fill:true,  tension:.3, pointRadius:4, spanGaps:true },
+        { label:'Cession Rate %',   data:cesRate, borderColor:'#f0b84d', backgroundColor:'transparent',           tension:.3, pointRadius:4, borderDash:[4,3], spanGaps:true }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales:{
+        x:{ grid:{display:false}, ticks:tickOpts },
+        y:{ grid:gridOpts, ticks:{ ...tickOpts, callback:v=>v+'%' }, suggestedMin:50, suggestedMax:100 }
+      }
+    }
+  }));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ██  COUNTRY TAB 9: Expense Anatomy
+   Acquisition cost, admin expense, combined ratio decomposition
+═══════════════════════════════════════════════════════════════ */
+function countryExpenseHTML(key) {
+  const mkt  = CTX.country_data?.[key]?.market?.metrics || {};
+  const n    = CTX.metadata?.country_meta?.[key]?.name || key;
+  const acqR = mkt.net_acq_cost_ratio ?? mkt.commission_ratio;
+  return `
+  <div class="card mb-20">
+    <div class="card-title">Expense Anatomy — ${n}</div>
+    <div class="grid-kpi">
+      <div class="kpi-card"><div class="kpi-label">Acquisition Ratio</div><div class="kpi-value">${fmt.pct(acqR)}</div><div class="kpi-sub">% of net premiums</div></div>
+      <div class="kpi-card"><div class="kpi-label">Admin Expense Ratio</div><div class="kpi-value">${fmt.pct(mkt.admin_expense_ratio)}</div><div class="kpi-sub">% of net premiums</div></div>
+      <div class="kpi-card"><div class="kpi-label">Loss Ratio</div><div class="kpi-value">${fmt.pct(mkt.loss_ratio_gross)}</div><div class="kpi-sub">Claims / GWP</div></div>
+      <div class="kpi-card"><div class="kpi-label">Combined Ratio</div><div class="kpi-value">${fmt.pct(mkt.combined_ratio_gross)}</div><div class="kpi-sub">Loss + Acq + Admin</div></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Combined Ratio Decomposition (% Net Retained Premiums)</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="ch_expRatios"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Acquisition &amp; Admin Costs (USD MM)</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="ch_expAmounts"></canvas></div>
+    </div>
+  </div>`;
+}
+
+function countryExpenseCharts(key) {
+  const hist  = CTX.country_data?.[key]?.annual_history || [];
+  const years = hist.map(h => h.year);
+
+  const lossR = hist.map(h => { const v = h.market?.metrics?.loss_ratio_gross;   return v != null ? v * 100 : null; });
+  const acqR  = hist.map(h => { const m = h.market?.metrics; const v = m?.net_acq_cost_ratio ?? m?.commission_ratio; return v != null ? v * 100 : null; });
+  const admR  = hist.map(h => { const v = h.market?.metrics?.admin_expense_ratio; return v != null ? v * 100 : null; });
+  const combR = hist.map(h => { const v = h.market?.metrics?.combined_ratio_gross;return v != null ? v * 100 : null; });
+
+  const el1 = document.getElementById('ch_expRatios');
+  if (el1) storeChart('expRatios', new Chart(el1, {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [
+        { type:'bar',  label:'Loss Ratio',        data:lossR, backgroundColor:'#ff5f6788', borderColor:'#ff5f67', borderWidth:1, borderRadius:[0,0,4,4], stack:'x' },
+        { type:'bar',  label:'Acquisition Ratio', data:acqR,  backgroundColor:'#f0b84d88', borderColor:'#f0b84d', borderWidth:1, stack:'x' },
+        { type:'bar',  label:'Admin Ratio',        data:admR,  backgroundColor:'#8b7cff88', borderColor:'#8b7cff', borderWidth:1, borderRadius:[4,4,0,0], stack:'x' },
+        { type:'line', label:'Combined Ratio',     data:combR, borderColor:'#343A40', backgroundColor:'transparent', tension:.3, pointRadius:3, borderWidth:2, spanGaps:true }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales:{
+        x:{ stacked:true, grid:{display:false}, ticks:tickOpts },
+        y:{ stacked:true, grid:gridOpts, ticks:{ ...tickOpts, callback:v=>v+'%' } }
+      }
+    }
+  }));
+
+  const nrp   = hist.map(h => h.market?.metrics?.net_premiums_usd_mm ?? null);
+  const acqAmt = hist.map((h, i) => { const m = h.market?.metrics; const r = m?.net_acq_cost_ratio ?? m?.commission_ratio; const n = nrp[i]; return (r != null && n != null) ? r * n : null; });
+  const admAmt = hist.map((h, i) => { const r = h.market?.metrics?.admin_expense_ratio; const n = nrp[i]; return (r != null && n != null) ? r * n : null; });
+
+  const el2 = document.getElementById('ch_expAmounts');
+  if (el2) storeChart('expAmounts', new Chart(el2, {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [
+        { label:'Acquisition Costs', data:acqAmt, backgroundColor:'#f0b84dcc', borderColor:'#f0b84d', borderWidth:1, borderRadius:[0,0,4,4], stack:'e' },
+        { label:'Admin Expenses',    data:admAmt, backgroundColor:'#8b7cffcc', borderColor:'#8b7cff', borderWidth:1, borderRadius:[4,4,0,0], stack:'e' }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales:{
+        x:{ stacked:true, grid:{display:false}, ticks:tickOpts },
+        y:{ stacked:true, grid:gridOpts, ticks:tickOpts }
+      }
+    }
+  }));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ██  COUNTRY TAB 10: Reserves & Solvency
+   Technical reserves, equity, leverage, reserves-to-premiums
+═══════════════════════════════════════════════════════════════ */
+function countryReservesHTML(key) {
+  const mkt = CTX.country_data?.[key]?.market?.metrics || {};
+  const n   = CTX.metadata?.country_meta?.[key]?.name || key;
+  return `
+  <div class="card mb-20">
+    <div class="card-title">Reserves &amp; Solvency — ${n}</div>
+    <div class="grid-kpi">
+      <div class="kpi-card"><div class="kpi-label">Technical Reserves</div><div class="kpi-value">${fmt.usd(mkt.technical_reserves_usd_mm)}</div><div class="kpi-sub">USD MM</div></div>
+      <div class="kpi-card"><div class="kpi-label">Shareholders' Equity</div><div class="kpi-value">${fmt.usd(mkt.equity_usd_mm)}</div><div class="kpi-sub">USD MM</div></div>
+      <div class="kpi-card"><div class="kpi-label">Total Investments</div><div class="kpi-value">${fmt.usd(mkt.total_investments_usd_mm)}</div><div class="kpi-sub">USD MM</div></div>
+      <div class="kpi-card"><div class="kpi-label">Reserves / GWP</div><div class="kpi-value">${fmt.mult(mkt.reserves_to_premiums)}</div><div class="kpi-sub">times</div></div>
+      <div class="kpi-card"><div class="kpi-label">Asset Leverage</div><div class="kpi-value">${fmt.mult(mkt.asset_leverage)}</div><div class="kpi-sub">Assets / Equity</div></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Balance Sheet Trend (USD MM)</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="ch_bsTrend"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Asset Leverage &amp; Reserves / GWP</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="ch_leverage"></canvas></div>
+    </div>
+  </div>`;
+}
+
+function countryReservesCharts(key) {
+  const hist    = CTX.country_data?.[key]?.annual_history || [];
+  const years   = hist.map(h => h.year);
+  const color   = countryColor(key);
+
+  const reserves = hist.map(h => h.market?.metrics?.technical_reserves_usd_mm ?? null);
+  const equity   = hist.map(h => h.market?.metrics?.equity_usd_mm ?? null);
+  const invest   = hist.map(h => h.market?.metrics?.total_investments_usd_mm ?? null);
+  const leverage = hist.map(h => h.market?.metrics?.asset_leverage ?? null);
+  const resvGwp  = hist.map(h => h.market?.metrics?.reserves_to_premiums ?? null);
+
+  const el1 = document.getElementById('ch_bsTrend');
+  if (el1) storeChart('bsTrend', new Chart(el1, {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        { label:'Technical Reserves',  data:reserves, borderColor:'#58a6ff', backgroundColor:'#58a6ff22', fill:true, tension:.3, pointRadius:4, spanGaps:true },
+        { label:"Shareholders' Equity",data:equity,   borderColor:color,     backgroundColor:'transparent', tension:.3, pointRadius:4, spanGaps:true },
+        { label:'Total Investments',   data:invest,   borderColor:'#40d19b', backgroundColor:'transparent', borderDash:[5,3], tension:.3, pointRadius:3, spanGaps:true }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales:{
+        x:{ grid:{display:false}, ticks:tickOpts },
+        y:{ grid:gridOpts, ticks:tickOpts }
+      }
+    }
+  }));
+
+  const el2 = document.getElementById('ch_leverage');
+  if (el2) storeChart('leverage', new Chart(el2, {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [
+        { type:'bar',  label:'Asset Leverage (x)',  data:leverage, backgroundColor:color+'88', borderColor:color,     borderWidth:1, borderRadius:4, yAxisID:'yLev'  },
+        { type:'line', label:'Reserves / GWP (x)',  data:resvGwp,  borderColor:'#f0b84d',     backgroundColor:'transparent', tension:.3, pointRadius:4, spanGaps:true, yAxisID:'yRGwp' }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales:{
+        x:{ grid:{display:false}, ticks:tickOpts },
+        yLev:  { grid:gridOpts,       ticks:{ ...tickOpts, callback:v=>v+'x' }, position:'left'  },
+        yRGwp: { grid:{display:false},ticks:{ ...tickOpts, callback:v=>v+'x' }, position:'right' }
+      }
+    }
+  }));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ██  COUNTRY TAB 11: Financial Result
+   Technical + financial result composition, ROE & margin trend
+═══════════════════════════════════════════════════════════════ */
+function countryFinancialHTML(key) {
+  const mkt = CTX.country_data?.[key]?.market?.metrics || {};
+  const n   = CTX.metadata?.country_meta?.[key]?.name || key;
+  return `
+  <div class="card mb-20">
+    <div class="card-title">Financial Result &amp; Profitability — ${n}</div>
+    <div class="grid-kpi">
+      <div class="kpi-card"><div class="kpi-label">Technical Result</div><div class="kpi-value">${fmt.usd(mkt.technical_result_usd_mm)}</div><div class="kpi-sub">USD MM</div></div>
+      <div class="kpi-card"><div class="kpi-label">Financial Result</div><div class="kpi-value">${fmt.usd(mkt.financial_result_usd_mm)}</div><div class="kpi-sub">USD MM</div></div>
+      <div class="kpi-card"><div class="kpi-label">Net Income</div><div class="kpi-value">${fmt.usd(mkt.net_income_usd_mm)}</div><div class="kpi-sub">USD MM</div></div>
+      <div class="kpi-card"><div class="kpi-label">ROE</div><div class="kpi-value">${fmt.pct(mkt.roe)}</div><div class="kpi-sub">Net Income / Equity</div></div>
+      <div class="kpi-card"><div class="kpi-label">Technical Margin</div><div class="kpi-value">${fmt.pct(mkt.technical_margin)}</div><div class="kpi-sub">Tech Result / GWP</div></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">P&amp;L Components (USD MM)</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="ch_plComponents"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">ROE &amp; Technical Margin Trend</div>
+      <div class="chart-wrap" style="height:260px"><canvas id="ch_roeTrend2"></canvas></div>
+    </div>
+  </div>`;
+}
+
+function countryFinancialCharts(key) {
+  const hist  = CTX.country_data?.[key]?.annual_history || [];
+  const years = hist.map(h => h.year);
+  const color = countryColor(key);
+
+  const techRes  = hist.map(h => h.market?.metrics?.technical_result_usd_mm ?? null);
+  const finRes   = hist.map(h => h.market?.metrics?.financial_result_usd_mm ?? null);
+  const netInc   = hist.map(h => h.market?.metrics?.net_income_usd_mm ?? null);
+  const roe      = hist.map(h => { const v = h.market?.metrics?.roe;              return v != null ? v * 100 : null; });
+  const techMarg = hist.map(h => { const v = h.market?.metrics?.technical_margin; return v != null ? v * 100 : null; });
+
+  const el1 = document.getElementById('ch_plComponents');
+  if (el1) storeChart('plComponents', new Chart(el1, {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [
+        { type:'bar',  label:'Technical Result',
+          data: techRes,
+          backgroundColor: techRes.map(v => (v||0)>=0 ? '#40d19b99' : '#ff5f6799'),
+          borderColor:     techRes.map(v => (v||0)>=0 ? '#40d19b'   : '#ff5f67'),
+          borderWidth:1, borderRadius:[0,0,4,4] },
+        { type:'bar',  label:'Financial Result',
+          data: finRes,
+          backgroundColor: finRes.map(v => (v||0)>=0 ? '#58a6ff88' : '#f0b84d88'),
+          borderColor:     finRes.map(v => (v||0)>=0 ? '#58a6ff'   : '#f0b84d'),
+          borderWidth:1, borderRadius:[4,4,0,0] },
+        { type:'line', label:'Net Income',
+          data: netInc,
+          borderColor:'#343A40', backgroundColor:'transparent',
+          tension:.3, pointRadius:5, borderWidth:2.5, spanGaps:true }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales:{
+        x:{ grid:{display:false}, ticks:tickOpts },
+        y:{ grid:gridOpts, ticks:tickOpts }
+      }
+    }
+  }));
+
+  const el2 = document.getElementById('ch_roeTrend2');
+  if (el2) storeChart('roeTrend2', new Chart(el2, {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        { label:'ROE %',              data:roe,       borderColor:color,    backgroundColor:color+'22', fill:true, tension:.3, pointRadius:4, spanGaps:true },
+        { label:'Technical Margin %', data:techMarg, borderColor:'#40d19b', backgroundColor:'transparent', tension:.3, pointRadius:4, borderDash:[4,3], spanGaps:true }
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12, font:{size:11} } } },
+      scales:{
+        x:{ grid:{display:false}, ticks:tickOpts },
+        y:{ grid:gridOpts, ticks:{ ...tickOpts, callback:v=>v+'%' } }
+      }
+    }
+  }));
+}
+</script>
+</body>
+</html>

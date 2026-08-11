@@ -1,17 +1,18 @@
-"""Load normalized CMF FECU data into DuckDB (local) or Databricks (production)."""
+"""Load SSN Argentina balances data to DuckDB (local) or Databricks."""
 
 from __future__ import annotations
 
 import os
 from pathlib import Path
 
-import duckdb
 import pandas as pd
 
-TABLE = "cmf_fecu"
+TABLE = "ssn_balances"
 
 
 def load_duckdb(df: pd.DataFrame, db_path: Path, *, mode: str = "replace") -> int:
+    import duckdb
+
     db_path.parent.mkdir(parents=True, exist_ok=True)
     con = duckdb.connect(str(db_path))
     try:
@@ -30,12 +31,11 @@ def load_duckdb(df: pd.DataFrame, db_path: Path, *, mode: str = "replace") -> in
 
 def load_databricks(df: pd.DataFrame, *, table: str = TABLE) -> str:
     from connectors.shared.databricks import upload_dataframe
-    import os
 
     return upload_dataframe(
         df,
         table,
-        schema="insurance_cl",
+        schema="insurance_ar",
         catalog=os.environ.get("DATABRICKS_CATALOG"),
     )
 
